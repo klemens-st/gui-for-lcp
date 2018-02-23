@@ -1,14 +1,14 @@
 === Plugin Name ===
-Contributors: (this should be a list of wordpress.org userid's)
-Donate link: http://example.com/
-Tags: comments, spam
-Requires at least: 3.0.1
-Tested up to: 3.4
-Stable tag: 4.3
+Contributors: zymeth25
+Donate link: @TODO
+Tags: @TODO
+Requires at least: 4.8
+Tested up to: 4.9
+Stable tag: 1.0.0
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: http://www.gnu.org/licenses/gpl-2.0.txt
 
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+This plugin adds an "Add LCP" button to post edit screen which opens a modal with a convenient GUI for creating List Category Posts shortcodes.
 
 == Description ==
 

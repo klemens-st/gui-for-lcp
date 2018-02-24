@@ -133,13 +133,13 @@ module.exports = function( grunt ) {
 			},
 			tag: {
 				options: {
-					src: './',
+					src: './gui-for-lcp/',
 					dest: '<%= svn_settings.tag %>'
 				}
 			},
 			trunk: {
 				options: {
-				src: './',
+				src: './gui-for-lcp/',
 				dest: '<%= svn_settings.trunk %>'
 				}
 			}

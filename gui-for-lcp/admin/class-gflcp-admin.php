@@ -62,13 +62,13 @@ class Gflcp_Admin {
     $ajax_nonce = wp_create_nonce( 'gui-for-lcp' );
 
     wp_enqueue_style( $this->plugin_name . '-jquery-ui',
-                      plugin_dir_url( __FILE__ ) . 'css/jquery-ui.css',
+                      plugin_dir_url( __FILE__ ) . 'assets/css/jquery-ui.css',
                       array(),
                       $this->version,
                       'all' );
 
     wp_enqueue_script( $this->plugin_name,
-                       plugin_dir_url( __FILE__ ) . 'js/gflcp-admin.js',
+                       plugin_dir_url( __FILE__ ) . 'assets/js/gflcp-admin.js',
                        array( 'jquery', 'jquery-ui-datepicker' ),
                        $this->version,
                        false );

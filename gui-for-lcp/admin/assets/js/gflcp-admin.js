@@ -32,7 +32,7 @@ jQuery(function($) {
 			});
             
             let data = {
-                'action': 'lcp_gui_setup',
+                'action': 'gflcp_setup',
                 'security': ajax_object.nonce,
             };
             $.post(ajax_object.ajax_url, data, function(r) {
@@ -151,7 +151,7 @@ jQuery(function($) {
         const taxonomies = $('select[name="taxonomy"]').val();
         
         const data = {
-            'action': 'lcp_load_terms',
+            'action': 'gflcp_load_terms',
             'security': ajax_object.nonce,
             'taxonomies': taxonomies
         };

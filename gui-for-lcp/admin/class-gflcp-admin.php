@@ -3,9 +3,6 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- *
  * @package    gui_for_lcp
  * @subpackage gui_for_lcp/includes
  * @author     Funcacja "Pro Novitate"
@@ -51,7 +48,7 @@ class Gflcp_Admin {
 	 */
 	public function enqueue_styles() {
 
-		
+
 
 	}
 
@@ -80,24 +77,27 @@ class Gflcp_Admin {
                         'ajax_object',
                         array( 'ajax_url' => admin_url( 'admin-ajax.php' ),
                                'nonce' => $ajax_nonce ));
-
 	}
-  
+
   /**
 	 * Register the media button.
 	 *
 	 * @since    1.0.0
 	 */
 	public function add_media_button() {
+
     echo '<a href="#" class="insert-lcp button">Add LCP</a>';
+
   }
-  
+
   /**
 	 * Register media templates.
 	 *
 	 * @since    1.0.0
 	 */
 	public function print_media_templates() {
+
     require_once 'partials/templates.php';
+
   }
 }

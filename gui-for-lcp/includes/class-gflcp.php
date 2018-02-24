@@ -75,6 +75,7 @@ class Gflcp {
 	 * - Gflcp_Loader. Orchestrates the hooks of the plugin.
 	 * - Gflcp_i18n. Defines internationalization functionality.
 	 * - Gflcp_Admin. Defines all hooks for the admin area.
+   * - Gflcp_Ajax. Defines all ajax handlers.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -141,6 +142,22 @@ class Gflcp {
 		$this->loader->add_action( 'wp_enqueue_media', $plugin_admin, 'enqueue_media' );
 		$this->loader->add_action( 'media_buttons', $plugin_admin, 'add_media_button' );
 		$this->loader->add_action( 'print_media_templates', $plugin_admin, 'print_media_templates' );
+
+	}
+
+  /**
+	 * Register all of the hooks related to the admin ajax functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_ajax_hooks() {
+
+		$plugin_ajax = new Gflcp_Ajax() );
+
+		$this->loader->add_action( 'wp_ajax_gflcp_setup', $plugin_ajax, 'gui_setup' );
+		$this->loader->add_action( 'wp_ajax_gflcp_load_terms', $plugin_ajax, 'load_terms' );
 
 	}
 

@@ -154,7 +154,7 @@ class Gflcp {
 	 */
 	private function define_ajax_hooks() {
 
-		$plugin_ajax = new Gflcp_Ajax() );
+		$plugin_ajax = new Gflcp_Ajax();
 
 		$this->loader->add_action( 'wp_ajax_gflcp_setup', $plugin_ajax, 'gui_setup' );
 		$this->loader->add_action( 'wp_ajax_gflcp_load_terms', $plugin_ajax, 'load_terms' );

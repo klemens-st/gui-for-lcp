@@ -93,7 +93,7 @@ extra_wp_config: |
 #
 # Theme unit testing
 #
-theme_unit_test: false
+theme_unit_test: true
 theme_unit_test_uri: https://raw.githubusercontent.com/WPTRT/theme-unit-test/master/themeunittestdata.wordpress.xml
 # theme_unit_test_uri: https://raw.githubusercontent.com/jawordpressorg/theme-test-data-ja/master/wordpress-theme-test-date-ja.xml
 

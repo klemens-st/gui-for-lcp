@@ -41,3 +41,9 @@ dwsync.xml
 intermediate
 .idea
 cache
+
+# VCCW
+.vagrant/
+wordpress/
+wp-cli.yml
+wp-cli/

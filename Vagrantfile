@@ -53,6 +53,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.synced_folder _conf['synced_folder'],
       _conf['document_root'], :create => "true", :mount_options => ['dmode=755', 'fmode=644']
+  config.vm.synced_folder "gui-for-lcp/", "/var/www/html/wp-content/plugins/gui-for-lcp",
+      :create => "true", id: "gflcp"
 
   if Vagrant.has_plugin?('vagrant-hostsupdater')
     config.hostsupdater.remove_on_suspend = true

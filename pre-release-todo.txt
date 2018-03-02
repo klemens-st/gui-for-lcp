@@ -1,0 +1,12 @@
+* Secure input
+* Secure output
+* Finish post selection section
+* Create display selection section
+* Capability checks in ajax
+* Form styling
+* Update testing env for custom taxonomies
+* Update README.md
+* Update plugin readme.txt
+* Remove unnecessary elements of the boilerplate
+* Create phpunit testing suite
+* Create QUnit testing suite (probably later, after release)

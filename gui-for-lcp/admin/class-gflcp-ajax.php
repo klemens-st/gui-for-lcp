@@ -26,13 +26,13 @@ class Gflcp_Ajax {
              ] ] );
     $post_types = get_post_types( array( 'public' => true ) );
 
-    $response = json_encode( [
+    $response = json_encode( ['init' => [
       'categories' => $categories,
       'users' => $users,
       'tags' => $tags,
       'taxonomies' => $taxonomies,
       'post_types' => $post_types
-    ] );
+    ]] );
     echo $response;
     wp_die();
   }

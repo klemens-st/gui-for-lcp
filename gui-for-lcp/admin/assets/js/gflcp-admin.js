@@ -7,6 +7,147 @@ jQuery(function($) {
         $('.insert-lcp').click(lcpOpenMediaWindow);
     });
 
+    // wp.Backbone.Model does not exist so I'm using wp.media.controller.State
+    // because it extends directly from Backbone.Model
+    const MainModel = wp.media.controller.State.extend({
+        ajaxData: {
+            'action': 'gflcp_setup',
+            'security': ajax_object.nonce,
+        },
+
+        // Initial state, with proper data types for reference
+        defaults: {'init': {
+            categories: [],
+            users: [],
+            tags: [],
+            taxonomies: [],
+            post_types: {}
+        }},
+
+        initialize() {
+            // Use the Backbone fetch method to get state value.
+            // This will trigger a 'change' event on completion.
+            this.fetch({
+                method: 'POST',
+                url: ajax_object.ajax_url,
+                data: this.ajaxData,
+            });
+        }
+    });
+
+    var ModalContentView = wp.Backbone.View.extend({
+        initialize() {
+            // The 'change' event is fired on the model whenever state changes.
+            this.listenTo(this.model, 'change', this.render);
+        },
+
+        template: wp.template( 'modal-content' ),
+
+        events: {
+            'click #load-terms': 'loadTerms',
+            'submit #lcp-insert-form': 'insertShortcode',
+            'change .lcp-swtich-checkbox': 'toggleFieldset',
+            'change .lcp-categorypage, .lcp-currenttags': 'toggleCurrent',
+            'change .tag, .extag, .cat, .excat': 'handleExcludes',
+            'change [name="ps-mode"], [name="pt-mode"]': 'toggleSelection'
+        },
+
+        render: function() {
+            this.$el.html(this.template(this.model.get('init')));
+            this.$('.lcp-datepicker').datepicker({
+                dateFormat: 'yy/mm/dd'
+            });
+            return this;
+        },
+
+        loadTerms: function() {
+            this.views.set('.taxonomy-terms', new ModalContentSubview);
+        },
+
+        toggleFieldset: function(e) {
+            const el = $(e.currentTarget);
+            const checked = el.prop('checked');
+            const targetEl = $('.' + el.attr('name'));
+
+            if (true === checked) {
+                targetEl.prop('disabled', false);
+            } else {
+                targetEl.prop('disabled', true);
+            }
+        },
+
+        toggleCurrent: function(e) {
+            const el = $(e.currentTarget);
+            const value = el.val();
+            const cssClass = el.attr('class');
+            let target;
+
+            if (false === el.prop('checked')) return null;
+
+            if ('lcp-categorypage' === cssClass) target = '#lcp-cat-select';
+            else if ('lcp-currenttags' === cssClass) target = '#lcp-tag-select';
+
+            if ('1' === value) $(target).prop('disabled', true);
+            else if ('0' === value) $(target).prop('disabled', false);
+        },
+
+        toggleSelection: function(e) {
+            const el = $(e.currentTarget);
+            const name = el.attr('name');
+
+            let targetEl;
+
+            if ('ps-mode' === name) targetEl = '#lcp-ps-select';
+            else if ('pt-mode' === name) targetEl = '#lcp-pt-select';
+
+            if (true === el.prop('checked') && 'select' === el.val()) {
+                $(targetEl).prop('disabled', false);
+            }
+            else $(targetEl).prop('disabled', true);
+        },
+
+        handleExcludes: function(e) {
+            const el = $(e.currentTarget);
+
+            let targetName;
+
+            switch (el.attr('name')) {
+                case 'cat':
+                    targetName = 'excat';
+                    break;
+                case 'excat':
+                    targetName = 'cat';
+                    break;
+                case 'tag':
+                    targetName = 'extag';
+                    break;
+                case 'extag':
+                    targetName = 'tag';
+                    break;
+            }
+            const targetEl = $(`[name="${targetName}"][value="${el.val()}"]`);
+
+            if (true === el.prop('checked')) {
+                targetEl.prop('disabled', true);
+            } else {
+                targetEl.prop('disabled', false);
+            }
+
+        },
+
+        insertShortcode: function(e) {
+            e.preventDefault();
+            const FD = new FormData(e.currentTarget);
+            wp.media.editor.insert(lcpCreateShortcode(FD));
+        }
+    });
+
+    var ModalContentSubview = wp.Backbone.View.extend({
+        template: wp.template( 'taxonomy-terms' ),
+
+        render: loadTaxonomyTerms
+    });
+
     function lcpOpenMediaWindow() {
         if (this.window === undefined) {
 
@@ -17,129 +158,9 @@ jQuery(function($) {
                 // getting console errors.
                 controller: { trigger: function() {} }
             });
-
-            var ModalContentSubview = wp.Backbone.View.extend({
-                template: wp.template( 'taxonomy-terms' ),
-
-                render: loadTaxonomyTerms
-            });
-
-            var self = this;
-            this.window.on('select', function() {
-                var first = self.window.state().get('selection').first().toJSON();
-                wp.media.editor.insert('[myshortcode id="' + first.id + '"]');
-            });
-
-            let data = {
-                'action': 'gflcp_setup',
-                'security': ajax_object.nonce,
-            };
-            $.post(ajax_object.ajax_url, data, function(r) {
-                // Create a modal content view.
-
-                var ModalContentView = wp.Backbone.View.extend({
-                    template: wp.template( 'modal-content' ),
-
-                    events: {
-                        'click #load-terms': 'loadTerms',
-                        'submit #lcp-insert-form': 'insertShortcode',
-                        'change .lcp-swtich-checkbox': 'toggleFieldset',
-                        'change .lcp-categorypage, .lcp-currenttags': 'toggleCurrent',
-                        'change .tag, .extag, .cat, .excat': 'handleExcludes',
-                        'change [name="ps-mode"], [name="pt-mode"]': 'toggleSelection'
-                    },
-
-                    render: function() {
-                        this.$el.html(this.template(JSON.parse(r)));
-                        this.$('.lcp-datepicker').datepicker({
-                            dateFormat: 'yy/mm/dd'
-                        });
-                        return this;
-                    },
-
-                    loadTerms: function() {
-                        this.views.set('.taxonomy-terms', new ModalContentSubview);
-                    },
-
-                    toggleFieldset: function(e) {
-                        const el = $(e.currentTarget);
-                        const checked = el.prop('checked');
-                        const targetEl = $('.' + el.attr('name'));
-
-                        if (true === checked) {
-                            targetEl.prop('disabled', false);
-                        } else {
-                            targetEl.prop('disabled', true);
-                        }
-                    },
-
-                    toggleCurrent: function(e) {
-                        const el = $(e.currentTarget);
-                        const value = el.val();
-                        const cssClass = el.attr('class');
-                        let target;
-
-                        if (false === el.prop('checked')) return null;
-
-                        if ('lcp-categorypage' === cssClass) target = '#lcp-cat-select';
-                        else if ('lcp-currenttags' === cssClass) target = '#lcp-tag-select';
-
-                        if ('1' === value) $(target).prop('disabled', true);
-                        else if ('0' === value) $(target).prop('disabled', false);
-                    },
-
-                    toggleSelection: function(e) {
-                        const el = $(e.currentTarget);
-                        const name = el.attr('name');
-
-                        let targetEl;
-
-                        if ('ps-mode' === name) targetEl = '#lcp-ps-select';
-                        else if ('pt-mode' === name) targetEl = '#lcp-pt-select';
-
-                        if (true === el.prop('checked') && 'select' === el.val()) {
-                            $(targetEl).prop('disabled', false);
-                        }
-                        else $(targetEl).prop('disabled', true);
-                    },
-
-                    handleExcludes: function(e) {
-                        const el = $(e.currentTarget);
-
-                        let targetName;
-
-                        switch (el.attr('name')) {
-                            case 'cat':
-                                targetName = 'excat';
-                                break;
-                            case 'excat':
-                                targetName = 'cat';
-                                break;
-                            case 'tag':
-                                targetName = 'extag';
-                                break;
-                            case 'extag':
-                                targetName = 'tag';
-                                break;
-                        }
-                        const targetEl = $(`[name="${targetName}"][value="${el.val()}"]`);
-
-                        if (true === el.prop('checked')) {
-                            targetEl.prop('disabled', true);
-                        } else {
-                            targetEl.prop('disabled', false);
-                        }
-
-                    },
-
-                    insertShortcode: function(e) {
-                        e.preventDefault();
-                        const FD = new FormData(e.currentTarget);
-                        wp.media.editor.insert(lcpCreateShortcode(FD));
-                    }
-                });
-                self.window.content( new ModalContentView );
-            });
+            this.window.content( new ModalContentView({
+                model: new MainModel()
+            }));
         }
 
         this.window.open();

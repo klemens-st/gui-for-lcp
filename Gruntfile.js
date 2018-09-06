@@ -1,4 +1,3 @@
-/* jshint node:true */
 /*eslint indent: ["error", 2] */
 /* global module, require */
 'use strict';
@@ -44,15 +43,6 @@ module.exports = function( grunt ) {
         '*.zip'
       ]
     },
-
-    // javascript linting with eslint
-    // eslint: {
-    //     options: {
-    //         configFile: 'conf/eslint.json',
-    //         rulePaths: ['conf/rules']
-    //     },
-    //     target: ['file.js']
-    // }
 
     eslint: {
       target: [

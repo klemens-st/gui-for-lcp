@@ -1,12 +1,13 @@
+/* global jQuery, _, wp, ajax_object */
 jQuery(function($) {
-	'use strict';
+    'use strict';
 
     $(document).ready(function(){
 
-		$('.insert-lcp').click(lcpOpenMediaWindow);
-	});
+        $('.insert-lcp').click(lcpOpenMediaWindow);
+    });
 
-	function lcpOpenMediaWindow() {
+    function lcpOpenMediaWindow() {
         if (this.window === undefined) {
 
             // Create a modal view.
@@ -23,13 +24,11 @@ jQuery(function($) {
                 render: loadTaxonomyTerms
             });
 
-            var Subview = new ModalContentSubview();
-
             var self = this;
             this.window.on('select', function() {
-				var first = self.window.state().get('selection').first().toJSON();
-				wp.media.editor.insert('[myshortcode id="' + first.id + '"]');
-			});
+                var first = self.window.state().get('selection').first().toJSON();
+                wp.media.editor.insert('[myshortcode id="' + first.id + '"]');
+            });
 
             let data = {
                 'action': 'gflcp_setup',
@@ -42,10 +41,10 @@ jQuery(function($) {
                     template: wp.template( 'modal-content' ),
 
                     events: {
-                        "click #load-terms": "loadTerms",
-                        "submit #lcp-insert-form": "insertShortcode",
-                        "change .lcp-swtich-checkbox": "toggleFieldset",
-                        "change .lcp-categorypage, .lcp-currenttags": "toggleCurrent",
+                        'click #load-terms': 'loadTerms',
+                        'submit #lcp-insert-form': 'insertShortcode',
+                        'change .lcp-swtich-checkbox': 'toggleFieldset',
+                        'change .lcp-categorypage, .lcp-currenttags': 'toggleCurrent',
                         'change .tag, .extag, .cat, .excat': 'handleExcludes',
                         'change [name="ps-mode"], [name="pt-mode"]': 'toggleSelection'
                     },
@@ -145,7 +144,7 @@ jQuery(function($) {
 
         this.window.open();
         return false;
-	}
+    }
 
     function loadTaxonomyTerms() {
         const taxonomies = $('select[name="taxonomy"]').val();
@@ -167,7 +166,7 @@ jQuery(function($) {
 
         const catRel = (FD.has('catrel')) ? (FD.get('catrel')) : null;
 
-        let output= []
+        let output= [];
         let ids;
         let categories;
         let exCategories;
@@ -206,7 +205,7 @@ jQuery(function($) {
 
         const tagRel = (FD.has('tagrel')) ? (FD.get('tagrel')) : null;
 
-        let output= []
+        let output= [];
         let tags;
         let exTags;
 
@@ -267,15 +266,15 @@ jQuery(function($) {
                 singleTaxTerms = (FD.has(`${taxonomy}-term`)) ? (FD.getAll(`${taxonomy}-term`)) : null;
 
                 if (_.isArray(singleTaxTerms)) {
-                    shortcode = `taxonomy="${taxonomy}" terms="${singleTaxTerms.join(separator)}"`
+                    shortcode = `taxonomy="${taxonomy}" terms="${singleTaxTerms.join(separator)}"`;
                 }
             } else if (taxonomies.length > 1) {
-                let taxonomyQueries = []
+                let taxonomyQueries = [];
                 _.each(taxonomies, function(taxonomy) {
                     singleTaxTerms = (FD.has(`${taxonomy}-term`)) ? (FD.getAll(`${taxonomy}-term`)) : null;
 
                     if (_.isArray(singleTaxTerms)) {
-                    taxonomyQueries.push(`${taxonomy}:{${singleTaxTerms.join(',')}}`);
+                        taxonomyQueries.push(`${taxonomy}:{${singleTaxTerms.join(',')}}`);
                     }
                 });
                 if (taxonomyQueries.length > 1) {

@@ -437,3 +437,4 @@ jQuery(function($) {
 // TODO:
 // * custom taxonomies - multiple taxonomies handling, debug
 // * optimize shortcode creation with helper functions
+// Check if better to use target than currentTarget

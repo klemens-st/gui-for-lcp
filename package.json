@@ -11,7 +11,7 @@
   "devDependencies": {
     "grunt": "^1.0.3",
     "grunt-contrib-compass": "^1.1.1",
-    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-contrib-uglify-es": "^3.3.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-eslint": "^21.0.0",
     "grunt-rsync": "^3.0.0",

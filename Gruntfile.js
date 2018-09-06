@@ -45,14 +45,19 @@ module.exports = function( grunt ) {
       ]
     },
 
-    // javascript linting with jshint
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc'
-      },
-      all: [
+    // javascript linting with eslint
+    // eslint: {
+    //     options: {
+    //         configFile: 'conf/eslint.json',
+    //         rulePaths: ['conf/rules']
+    //     },
+    //     target: ['file.js']
+    // }
+
+    eslint: {
+      target: [
         'Gruntfile.js',
-        '<%= dirs.admin.js %>/admin.js',
+        '<%= dirs.admin.js %>/gflcp-admin.js',
       ]
     },
 
@@ -194,7 +199,7 @@ module.exports = function( grunt ) {
 
   // default task
   grunt.registerTask( 'default', [
-    'jshint',
+    'eslint',
     'compass',
     'uglify'
   ] );

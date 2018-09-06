@@ -1,19 +1,21 @@
 {
   "name": "gui-for-lcp",
+  "version": "1.0.0",
   "description": "This plugin adds an \"Add LCP\" button to post edit screen which opens a modal with a convenient GUI for creating List Category Posts shortcodes.",
-  "version": "0.1",
-  "main": "Gruntfile.js",
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "load-grunt-tasks": "0.2.0",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-compass": "~0.7.0",
-    "grunt-contrib-uglify": "~0.2.7",
-    "grunt-rsync": "~0.2.1",
-    "grunt-shell": "~0.6.1"
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": ""
   },
-  "engines": {
-    "node": ">=0.8.0",
-    "npm": ">=1.1.0"
+  "author": "Klemens Starybrat",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-uglify": "^4.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-eslint": "^21.0.0",
+    "grunt-rsync": "^3.0.0",
+    "grunt-shell": "^2.1.0",
+    "load-grunt-tasks": "^4.0.0"
   }
 }

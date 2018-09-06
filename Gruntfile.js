@@ -57,7 +57,7 @@ module.exports = function( grunt ) {
     eslint: {
       target: [
         'Gruntfile.js',
-        '<%= dirs.admin.js %>/gflcp-admin.js',
+        '<%= dirs.admin.js %>/**',
       ]
     },
 

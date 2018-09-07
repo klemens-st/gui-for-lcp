@@ -162,6 +162,54 @@ function lcpGetDateRanges(FD) {
     return output;
 }
 
+function lcpGetSearch(FD) {
+    let output = [];
+
+    if (FD.has('search')) {
+        const search = FD.get('search');
+        if ( ! _.isEmpty( search ) ) {
+            output.push(`search="${search}"`);
+        }
+    }
+    return output;
+}
+
+function lcpGetExcludedPosts(FD) {
+    if (!FD.has('lcp-exclude-posts')) return [];
+
+    let exCurPost;
+    let exPost;
+    let separator;
+    let output = [];
+
+    if (FD.has('excurpost') && '1' === FD.get('excurpost')) {
+        exCurPost = 'this';
+    } else {
+        exCurPost = '';
+    }
+    exPost = FD.has('expost') ? FD.get('expost') : '';
+    exPost = exPost.trim();
+
+    separator = (exPost && exCurPost) ? (',') : '';
+
+    if (!_.isEmpty(exCurPost) || !_.isEmpty(exPost)) {
+        output.push(`excludeposts="${exCurPost}${separator}${exPost}"`);
+    }
+    return output;
+}
+
+function lcpGetOffset(FD) {
+    let output = [];
+
+    if (FD.has('offset')) {
+        const offset = FD.get('offset');
+        if ( ! _.isEmpty( offset ) ) {
+            output.push(`offset="${offset}"`);
+        }
+    }
+    return output;
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -187,43 +235,13 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetDateRanges(FD));
 
     // Search
-    if (FD.has('search')) {
-        const search = FD.get('search');
-        if ( ! _.isEmpty( search ) ) {
-            parameters.push(`search="${search}"`);
-        }
-
-    }
+    parameters = parameters.concat(lcpGetSearch(FD));
 
     // Exclude posts
-    if (FD.has('lcp-exclude-posts')) {
-        let exCurPost;
-        let exPost;
-        let separator;
-
-        if (FD.has('excurpost') && '1' === FD.get('excurpost')) {
-            exCurPost = 'this';
-        } else {
-            exCurPost = '';
-        }
-        exPost = FD.has('expost') ? FD.get('expost') : '';
-        exPost = exPost.trim();
-
-        separator = (exPost && exCurPost) ? (',') : '';
-
-        if (!_.isEmpty(exCurPost) || !_.isEmpty(exPost)) {
-            parameters.push(`excludeposts="${exCurPost}${separator}${exPost}"`);
-        }
-    }
+    parameters = parameters.concat(lcpGetExcludedPosts(FD));
 
     // Offset
-    if (FD.has('offset')) {
-        const offset = FD.get('offset');
-        if ( ! _.isEmpty( offset ) ) {
-            parameters.push(`offset="${offset}"`);
-        }
-
-    }
+    parameters = parameters.concat(lcpGetOffset(FD));
 
     // Post type
     if (FD.has('post-type-mode')) {

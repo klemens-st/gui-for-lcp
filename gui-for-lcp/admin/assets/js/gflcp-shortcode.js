@@ -258,6 +258,18 @@ function lcpGetPostStatus(FD) {
     return output;
 }
 
+function lcpGetShowProtected(FD) {
+    let output = [];
+
+    if (FD.has('show-protected')) {
+        const showProtected = FD.get('show-protected');
+        if ('1' === showProtected) {
+            output.push('show_protected="yes"');
+        }
+    }
+    return output;
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -298,13 +310,7 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetPostStatus(FD));
 
     // Show protected
-    if (FD.has('show-protected')) {
-        const showProtected = FD.get('show-protected');
-        if ('1' === showProtected) {
-            parameters.push('show_protected="yes"');
-        }
-
-    }
+    parameters = parameters.concat(lcpGetShowProtected(FD));
 
     // Parent post
     if (FD.has('parent-post')) {

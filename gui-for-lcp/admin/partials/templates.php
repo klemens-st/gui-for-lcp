@@ -306,7 +306,6 @@
 </script>
 
 <script type="text/html" id="tmpl-taxonomy-terms">
-  Jacek
   <# 
     _.each(data, function(terms, taxonomy) {
     #>

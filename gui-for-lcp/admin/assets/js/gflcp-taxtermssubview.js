@@ -1,4 +1,5 @@
-/* exported TaxTermsSubview */
+import mainModel from './gflcp-mainmodel.js';
+
 const TaxTermsSubview = wp.Backbone.View.extend({
     template: wp.template( 'taxonomy-terms' ),
 
@@ -11,3 +12,5 @@ const TaxTermsSubview = wp.Backbone.View.extend({
         return this;
     }
 });
+
+export default TaxTermsSubview;

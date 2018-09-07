@@ -1,6 +1,6 @@
 node_modules/
-admin/assets/css/
-admin/assets/js/*.min.js
+gui-for-lcp/admin/assets/css/
+gui-for-lcp/admin/assets/js/dist/
 
 # Numerous always-ignore extensions
 *.diff
@@ -49,5 +49,3 @@ wordpress/
 wp-cli.yml
 wp-cli/
 playbook.retry
-
-admin.min.js*

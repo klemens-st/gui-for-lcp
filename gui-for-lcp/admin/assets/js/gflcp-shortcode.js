@@ -1,4 +1,3 @@
-/* exported lcpCreateShortcode */
 function lcpGetCategories(FD) {
     if (!FD.has('lcp-categories')) return null;
 
@@ -269,3 +268,5 @@ function lcpCreateShortcode(FD) {
 
     return '[catlist ' + parameters.join(' ') + ']';
 }
+
+export default lcpCreateShortcode;

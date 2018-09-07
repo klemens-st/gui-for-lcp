@@ -1,4 +1,7 @@
-/* exported ModalContentView */
+import mainModel from './gflcp-mainmodel.js';
+import TaxTermsSubview from './gflcp-taxtermssubview.js';
+import lcpCreateShortcode from './gflcp-shortcode.js';
+
 const ModalContentView = wp.Backbone.View.extend({
     initialize() {
         this.model = mainModel;
@@ -115,3 +118,5 @@ const ModalContentView = wp.Backbone.View.extend({
         wp.media.editor.insert(lcpCreateShortcode(FD));
     }
 });
+
+export default ModalContentView;

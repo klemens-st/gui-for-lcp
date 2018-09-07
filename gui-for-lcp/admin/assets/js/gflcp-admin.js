@@ -1,3 +1,5 @@
+import ModalContentView from './gflcp-modalcontentview.js';
+
 $(document).ready(function(){
 
     $('.insert-lcp').click(lcpOpenMediaWindow);

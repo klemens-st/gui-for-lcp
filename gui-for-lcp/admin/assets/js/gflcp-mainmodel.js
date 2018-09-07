@@ -1,4 +1,3 @@
-/* exported mainModel */
 // wp.Backbone.Model does not exist so I'm using wp.media.controller.State
 // because it extends directly from Backbone.Model
 'use strict';
@@ -48,3 +47,5 @@ const MainModel = wp.media.controller.State.extend({
 });
 
 const mainModel = new MainModel();
+
+export default mainModel;

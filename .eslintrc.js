@@ -4,6 +4,9 @@ module.exports = {
         "es6": true
     },
     "extends": "eslint:recommended",
+    "parserOptions": {
+        "sourceType": "module"
+    },
     "rules": {
         "indent": [
             "error",
@@ -25,13 +28,8 @@ module.exports = {
     },
     "globals": {
         "$": false,
-        "mainModel": false,
-        "MainModel": false,
-        "ModalContentView": false,
         "wp": false,
         "_": false,
-        "lcpCreateShortcode": false,
-        "TaxTermsSubview": false,
         "ajax_object": false
     }
 };

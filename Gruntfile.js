@@ -51,23 +51,34 @@ module.exports = function( grunt ) {
       ]
     },
 
+    browserify: {
+      dist: {
+        src: '<%= dirs.admin.js %>/*.js',
+        dest: '<%= dirs.admin.js %>/dist/admin.js',
+        options: {
+          transform: [
+            ['babelify', {
+              sourceMaps: true,
+              presets: ['babel-preset-env'],
+            }]
+          ],
+          browserifyOptions: {debug: true}
+        }
+      }
+    },
+
     // uglify to concat and minify
     uglify: {
       dist: {
         options: {
           sourceMap: {
-            url: 'inline'
+            content: 'inline',
+            root: '/'
           },
-          wrap: 'gflcp'
         },
         files: {
           '<%= dirs.admin.js %>/dist/admin.min.js': [
-            '<%= dirs.admin.js %>/gflcp-mainmodel.js',
-            '<%= dirs.admin.js %>/gflcp-taxtermssubview.js',
-            '<%= dirs.admin.js %>/gflcp-modalcontentview.js',
-            '<%= dirs.admin.js %>/gflcp-shortcode.js',
-            '<%= dirs.admin.js %>/gflcp-admin.js',
-
+            '<%= dirs.admin.js %>/dist/admin.js',
           ],
         }
       }
@@ -103,7 +114,7 @@ module.exports = function( grunt ) {
       },
       js: {
         files: '<%= eslint.target %>',
-        tasks: ['eslint', 'uglify']
+        tasks: ['eslint', 'browserify', 'uglify']
       }
     },
 
@@ -202,6 +213,7 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'default', [
     'eslint',
     'compass',
+    'browserify',
     'uglify'
   ] );
 

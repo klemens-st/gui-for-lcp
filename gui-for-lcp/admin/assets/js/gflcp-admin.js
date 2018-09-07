@@ -35,7 +35,7 @@ jQuery(function($) {
             'taxonomies': []
         },
 
-        initialize() {
+        getInit() {
             // Use the Backbone fetch method to get state value.
             // This will trigger a 'change' event on completion.
             this.fetch({
@@ -72,6 +72,8 @@ jQuery(function($) {
     const ModalContentView = wp.Backbone.View.extend({
         initialize() {
             this.model = mainModel;
+            // Get init data from the server
+            this.model.getInit();
 
             // The 'change' event is fired on the model whenever state changes.
             this.listenTo(this.model, 'change:init', this.render);
@@ -184,8 +186,6 @@ jQuery(function($) {
         }
     });
 
-    const modalContentView = new ModalContentView();
-
     function lcpOpenMediaWindow() {
         if (this.window === undefined) {
 
@@ -197,7 +197,7 @@ jQuery(function($) {
                 controller: { trigger: function() {} }
             });
 
-            this.window.content(modalContentView);
+            this.window.content(new ModalContentView());
         }
 
         this.window.open();

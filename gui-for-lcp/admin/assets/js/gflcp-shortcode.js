@@ -124,6 +124,25 @@ function lcpGetStartingWith(FD) {
     return output;
 }
 
+function lcpGetDate(FD) {
+    let output = [];
+
+    if (FD.has('month')) {
+        const month = FD.get('month');
+        if ( ! _.isEmpty( month ) ) {
+            output.push(`monthnum="${month}"`);
+        }
+    }
+
+    if (FD.has('year')) {
+        const year = FD.get('year');
+        if ( ! _.isEmpty( year ) ) {
+            output.push(`year="${year}"`);
+        }
+    }
+    return output;
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -143,20 +162,7 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetStartingWith(FD));
 
     // Date
-    if (FD.has('month')) {
-        const month = FD.get('month');
-        if ( ! _.isEmpty( month ) ) {
-            parameters.push(`monthnum="${month}"`);
-        }
-
-    }
-    if (FD.has('year')) {
-        const year = FD.get('year');
-        if ( ! _.isEmpty( year ) ) {
-            parameters.push(`year="${year}"`);
-        }
-
-    }
+    parameters = parameters.concat(lcpGetDate(FD));
 
     // Date ranges
     if (FD.has('after')) {

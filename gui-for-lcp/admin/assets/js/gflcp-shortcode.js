@@ -63,8 +63,8 @@ function lcpGetTags(FD) {
     if (!_.isEmpty(exTags)) output.push(`exclude_tags="${exTags.join(',')}"`);
 
     if (!_.isEmpty(output)) {
-        return output.join(' ');
-    } else return null;
+        return output;
+    } else return [];
 }
 
 function lcpCreateShortcode(FD) {
@@ -84,8 +84,7 @@ function lcpCreateShortcode(FD) {
     }
 
     // Tags
-    const tagString = lcpGetTags(FD);
-    if (tagString) parameters.push(tagString);
+    parameters = parameters.concat(lcpGetTags(FD));
 
     // Custom taxonomies
     if (FD.has('lcp-taxonomies') && FD.has('taxonomy') && FD.has('taxrel')) {

@@ -47,7 +47,7 @@ module.exports = function( grunt ) {
     eslint: {
       target: [
         'Gruntfile.js',
-        '<%= dirs.admin.js %>/**',
+        '<%= dirs.admin.js %>/*.js',
       ]
     },
 
@@ -61,7 +61,7 @@ module.exports = function( grunt ) {
           wrap: 'gflcp'
         },
         files: {
-          '<%= dirs.admin.js %>/admin.min.js': [
+          '<%= dirs.admin.js %>/dist/admin.min.js': [
             '<%= dirs.admin.js %>/gflcp-mainmodel.js',
             '<%= dirs.admin.js %>/gflcp-taxtermssubview.js',
             '<%= dirs.admin.js %>/gflcp-modalcontentview.js',

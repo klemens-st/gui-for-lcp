@@ -1,3 +1,4 @@
+/* exported TaxTermsSubview */
 const TaxTermsSubview = wp.Backbone.View.extend({
     template: wp.template( 'taxonomy-terms' ),
 

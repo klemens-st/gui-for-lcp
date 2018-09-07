@@ -68,7 +68,7 @@ class Gflcp_Admin {
                       'all' );
 
     wp_enqueue_script( $this->plugin_name,
-                       plugin_dir_url( __FILE__ ) . 'assets/js/admin.min.js',
+                       plugin_dir_url( __FILE__ ) . 'assets/js/dist/admin.min.js',
                        array( 'jquery', 'jquery-ui-datepicker' ),
                        $this->version,
                        true );

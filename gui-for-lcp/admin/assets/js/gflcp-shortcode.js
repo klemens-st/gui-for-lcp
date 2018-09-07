@@ -1,3 +1,4 @@
+/* exported lcpCreateShortcode */
 function lcpGetCategories(FD) {
     if (!FD.has('lcp-categories')) return null;
 

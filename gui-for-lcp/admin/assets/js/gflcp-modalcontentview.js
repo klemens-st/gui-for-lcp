@@ -1,3 +1,4 @@
+/* exported ModalContentView */
 const ModalContentView = wp.Backbone.View.extend({
     initialize() {
         this.model = mainModel;

@@ -1,10 +1,7 @@
-/* global jQuery, _, wp, ajax_object */
 $(document).ready(function(){
 
     $('.insert-lcp').click(lcpOpenMediaWindow);
 });
-
-const mainModel = new MainModel();
 
 function lcpOpenMediaWindow() {
     if (this.window === undefined) {

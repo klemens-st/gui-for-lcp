@@ -22,5 +22,16 @@ module.exports = {
             "error",
             "always"
         ]
+    },
+    "globals": {
+        "$": false,
+        "mainModel": false,
+        "MainModel": false,
+        "ModalContentView": false,
+        "wp": false,
+        "_": false,
+        "lcpCreateShortcode": false,
+        "TaxTermsSubview": false,
+        "ajax_object": false
     }
 };

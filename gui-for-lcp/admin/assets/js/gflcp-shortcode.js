@@ -67,6 +67,15 @@ function lcpGetTags(FD) {
     } else return [];
 }
 
+function lcpGetAuthor(FD) {
+    if (!FD.has('author')) return [];
+
+    const author = FD.get('author');
+    if ( ! _.isEmpty( author ) ) {
+        return [`author_posts="${author}"`];
+    } else return [];
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -74,13 +83,7 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetCategories(FD));
 
     // Author
-    if (FD.has('author')) {
-        const author = FD.get('author');
-        if ( ! _.isEmpty( author ) ) {
-            parameters.push(`author_posts="${author}"`);
-        }
-
-    }
+    parameters = parameters.concat(lcpGetAuthor(FD));
 
     // Tags
     parameters = parameters.concat(lcpGetTags(FD));

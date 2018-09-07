@@ -270,6 +270,18 @@ function lcpGetShowProtected(FD) {
     return output;
 }
 
+function lcpGetParentPost(FD) {
+    let output = [];
+
+    if (FD.has('parent-post')) {
+        const parentPost = FD.get('parent-post');
+        if (!_.isEmpty(parentPost)) {
+            output.push(`post_parent="${parentPost}"`);
+        }
+    }
+    return output;
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -313,13 +325,7 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetShowProtected(FD));
 
     // Parent post
-    if (FD.has('parent-post')) {
-        const parentPost = FD.get('parent-post');
-        if (!_.isEmpty(parentPost)) {
-            parameters.push(`post_parent="${parentPost}"`);
-        }
-
-    }
+    parameters = parameters.concat(lcpGetParentPost(FD));
 
     // Custom fields
     if (FD.has('lcp-custom-fields')) {

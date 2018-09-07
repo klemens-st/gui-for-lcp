@@ -282,6 +282,19 @@ function lcpGetParentPost(FD) {
     return output;
 }
 
+function lcpGetCustomFields(FD) {
+    if (!FD.has('lcp-custom-fields')) return [];
+
+    const customfieldName = FD.get('customfield-name');
+    const customfieldValue = FD.get('customfield-value');
+    let output = [];
+
+    if (!_.isEmpty(customfieldName) && !_.isEmpty(customfieldValue)) {
+        output.push(`customfield_name="${customfieldName}" customfield_value="${customfieldValue}"`);
+    }
+    return output;
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -328,15 +341,7 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetParentPost(FD));
 
     // Custom fields
-    if (FD.has('lcp-custom-fields')) {
-        const customfieldName = FD.get('customfield-name');
-        const customfieldValue = FD.get('customfield-value');
-
-        if (!_.isEmpty(customfieldName) && !_.isEmpty(customfieldValue)) {
-            parameters.push(`customfield_name="${customfieldName}" customfield_value="${customfieldValue}"`);
-        }
-    }
-
+    parameters = parameters.concat(lcpGetCustomFields(FD));
 
     return '[catlist ' + parameters.join(' ') + ']';
 }

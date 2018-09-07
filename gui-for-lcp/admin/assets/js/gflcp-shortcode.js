@@ -210,6 +210,30 @@ function lcpGetOffset(FD) {
     return output;
 }
 
+function lcpGetPostType(FD) {
+    if (!FD.has('post-type-mode')) return [];
+
+    const postTypeMode = FD.get('post-type-mode');
+    let postType = [];
+    let output = [];
+
+    if ('default' === postTypeMode)
+        ; // Empty statement
+    else if ('any' === postTypeMode) {
+        postType = postTypeMode;
+    } else if ('select' === postTypeMode) {
+        _.each(FD.getAll('post-type'), function(value) {
+            postType.push(value);
+        });
+        postType = postType.join(',');
+    }
+
+    if (!_.isEmpty(postType)) {
+        output.push(`post_type="${postType}"`);
+    }
+    return output;
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -244,22 +268,7 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetOffset(FD));
 
     // Post type
-    if (FD.has('post-type-mode')) {
-        const postTypeMode = FD.get('post-type-mode');
-        let postType = [];
-
-        if ('default' === postTypeMode)
-            ; // Empty statement
-        else if ('any' === postTypeMode) {
-            postType = postTypeMode;
-        } else if ('select' === postTypeMode) {
-            _.each(FD.getAll('post-type'), function(value) {
-                postType.push(value);
-            });
-            postType = postType.join(',');
-        }
-        if (!_.isEmpty(postType)) parameters.push(`post_type="${postType}"`);
-    }
+    parameters = parameters.concat(lcpGetPostType(FD));
 
     // Post status
     if (FD.has('post-status-mode')) {

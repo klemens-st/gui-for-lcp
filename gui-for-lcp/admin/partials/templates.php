@@ -306,8 +306,9 @@
 </script>
 
 <script type="text/html" id="tmpl-taxonomy-terms">
+  Jacek
   <# 
-    _.each(data.taxonomies, function(terms, taxonomy) {
+    _.each(data, function(terms, taxonomy) {
     #>
     <div id="{{{taxonomy}}}-terms">
     <h3>{{{taxonomy}}}</h3>

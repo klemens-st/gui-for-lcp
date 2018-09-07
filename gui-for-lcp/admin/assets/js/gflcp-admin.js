@@ -10,19 +10,30 @@ jQuery(function($) {
     // wp.Backbone.Model does not exist so I'm using wp.media.controller.State
     // because it extends directly from Backbone.Model
     const MainModel = wp.media.controller.State.extend({
+        // Initial state, with proper data types for reference
+        defaults: {
+            init: {
+                categories: [],
+                users: [],
+                tags: [],
+                taxonomies: [],
+                post_types: {}
+            },
+            // Used by TaxTermsSubview
+            taxonomies: {}
+        },
+
         ajaxData: {
             'action': 'gflcp_setup',
             'security': ajax_object.nonce,
         },
 
-        // Initial state, with proper data types for reference
-        defaults: {'init': {
-            categories: [],
-            users: [],
-            tags: [],
-            taxonomies: [],
-            post_types: {}
-        }},
+        taxTermsAjaxData:  {
+            'action': 'gflcp_load_terms',
+            'security': ajax_object.nonce,
+            // Placeholder, will be filled dynamically by the update method.
+            'taxonomies': []
+        },
 
         initialize() {
             // Use the Backbone fetch method to get state value.
@@ -32,19 +43,48 @@ jQuery(function($) {
                 url: ajax_object.ajax_url,
                 data: this.ajaxData,
             });
+        },
+
+        updateTaxonomies(taxonomies) {
+            this.fetch({
+                method: 'POST',
+                url: ajax_object.ajax_url,
+                data: _.extend(this.taxTermsAjaxData, {taxonomies}),
+            });
         }
     });
 
-    var ModalContentView = wp.Backbone.View.extend({
+    const mainModel = new MainModel();
+
+    const TaxTermsSubview = wp.Backbone.View.extend({
+        template: wp.template( 'taxonomy-terms' ),
+
         initialize() {
+            this.model = mainModel;
+
             // The 'change' event is fired on the model whenever state changes.
-            this.listenTo(this.model, 'change', this.render);
+            // this.listenTo(this.model, 'change', this.render);
+        },
+
+        render: function() {
+            this.$el.html(this.template(this.model.get('taxonomies')));
+            return this;
+        }
+    });
+
+    const ModalContentView = wp.Backbone.View.extend({
+        initialize() {
+            this.model = mainModel;
+
+            // The 'change' event is fired on the model whenever state changes.
+            this.listenTo(this.model, 'change:init', this.render);
+            this.listenTo(this.model, 'change:taxonomies', this.renderSubviews);
         },
 
         template: wp.template( 'modal-content' ),
 
         events: {
-            'click #load-terms': 'loadTerms',
+            'click #load-terms': 'onTaxSelect',
             'submit #lcp-insert-form': 'insertShortcode',
             'change .lcp-swtich-checkbox': 'toggleFieldset',
             'change .lcp-categorypage, .lcp-currenttags': 'toggleCurrent',
@@ -60,8 +100,13 @@ jQuery(function($) {
             return this;
         },
 
-        loadTerms: function() {
-            this.views.set('.taxonomy-terms', new ModalContentSubview);
+        renderSubviews: function() {
+            this.views.set('.taxonomy-terms', new TaxTermsSubview());
+        },
+
+        onTaxSelect: function() {
+            const taxonomies = $('select[name="taxonomy"]').val();
+            this.model.updateTaxonomies(taxonomies);
         },
 
         toggleFieldset: function(e) {
@@ -142,11 +187,7 @@ jQuery(function($) {
         }
     });
 
-    var ModalContentSubview = wp.Backbone.View.extend({
-        template: wp.template( 'taxonomy-terms' ),
-
-        render: loadTaxonomyTerms
-    });
+    const modalContentView = new ModalContentView();
 
     function lcpOpenMediaWindow() {
         if (this.window === undefined) {
@@ -158,28 +199,12 @@ jQuery(function($) {
                 // getting console errors.
                 controller: { trigger: function() {} }
             });
-            this.window.content( new ModalContentView({
-                model: new MainModel()
-            }));
+
+            this.window.content(modalContentView);
         }
 
         this.window.open();
         return false;
-    }
-
-    function loadTaxonomyTerms() {
-        const taxonomies = $('select[name="taxonomy"]').val();
-
-        const data = {
-            'action': 'gflcp_load_terms',
-            'security': ajax_object.nonce,
-            'taxonomies': taxonomies
-        };
-        const self = this;
-        $.post(ajax_object.ajax_url, data, function(r) {
-            self.$el.html(self.template(JSON.parse(r)));
-            return self;
-        });
     }
 
     function lcpGetCategories(FD) {

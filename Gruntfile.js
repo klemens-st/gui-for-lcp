@@ -54,8 +54,21 @@ module.exports = function( grunt ) {
     // uglify to concat and minify
     uglify: {
       dist: {
+        options: {
+          sourceMap: {
+            url: 'inline'
+          },
+          wrap: 'gflcp'
+        },
         files: {
-          '<%= dirs.admin.js %>/admin.min.js': ['<%= dirs.admin.js %>/admin.js'],
+          '<%= dirs.admin.js %>/admin.min.js': [
+            '<%= dirs.admin.js %>/gflcp-mainmodel.js',
+            '<%= dirs.admin.js %>/gflcp-taxtermssubview.js',
+            '<%= dirs.admin.js %>/gflcp-modalcontentview.js',
+            '<%= dirs.admin.js %>/gflcp-shortcode.js',
+            '<%= dirs.admin.js %>/gflcp-admin.js',
+
+          ],
         }
       }
     },
@@ -89,10 +102,8 @@ module.exports = function( grunt ) {
         tasks: ['compass:admin']
       },
       js: {
-        files: [
-          '<%= jshint.all %>'
-        ],
-        tasks: ['jshint', 'uglify']
+        files: '<%= eslint.target %>',
+        tasks: ['eslint', 'uglify']
       }
     },
 

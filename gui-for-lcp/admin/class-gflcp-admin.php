@@ -68,10 +68,10 @@ class Gflcp_Admin {
                       'all' );
 
     wp_enqueue_script( $this->plugin_name,
-                       plugin_dir_url( __FILE__ ) . 'assets/js/gflcp-admin.js',
+                       plugin_dir_url( __FILE__ ) . 'assets/js/admin.min.js',
                        array( 'jquery', 'jquery-ui-datepicker' ),
                        $this->version,
-                       false );
+                       true );
 
     wp_localize_script( $this->plugin_name,
                         'ajax_object',

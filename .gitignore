@@ -49,3 +49,5 @@ wordpress/
 wp-cli.yml
 wp-cli/
 playbook.retry
+
+admin.min.js*

@@ -33,8 +33,8 @@ function lcpGetCategories(FD) {
     }
     if (!_.isEmpty(ids)) {
         output.push(`id="${ids}"`);
-        return output.join(' ');
-    } else return null;
+        return output;
+    } else return [];
 }
 
 function lcpGetTags(FD) {
@@ -71,8 +71,7 @@ function lcpCreateShortcode(FD) {
     let parameters = [];
 
     // Categories
-    const categoryString = lcpGetCategories(FD);
-    if (categoryString) parameters.push(categoryString);
+    parameters = parameters.concat(lcpGetCategories(FD));
 
     // Author
     if (FD.has('author')) {

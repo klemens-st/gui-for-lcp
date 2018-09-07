@@ -234,6 +234,30 @@ function lcpGetPostType(FD) {
     return output;
 }
 
+function lcpGetPostStatus(FD) {
+    if (!FD.has('post-status-mode')) return [];
+
+    const postStatusMode = FD.get('post-status-mode');
+    let postStatus = [];
+    let output = [];
+
+    if ('default' === postStatusMode)
+        ; // Empty statement
+    else if ('any' === postStatusMode) {
+        postStatus = postStatusMode;
+    } else if ('select' === postStatusMode) {
+        _.each(FD.getAll('post-status'), function(value) {
+            postStatus.push(value);
+        });
+        postStatus = postStatus.join(',');
+    }
+
+    if (!_.isEmpty(postStatus)) {
+        output.push(`post_status="${postStatus}"`);
+    }
+    return output;
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -271,22 +295,7 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetPostType(FD));
 
     // Post status
-    if (FD.has('post-status-mode')) {
-        const postStatusMode = FD.get('post-status-mode');
-        let postStatus = [];
-
-        if ('default' === postStatusMode)
-            ; // Empty statement
-        else if ('any' === postStatusMode) {
-            postStatus = postStatusMode;
-        } else if ('select' === postStatusMode) {
-            _.each(FD.getAll('post-status'), function(value) {
-                postStatus.push(value);
-            });
-            postStatus = postStatus.join(',');
-        }
-        if (!_.isEmpty(postStatus)) parameters.push(`post_status="${postStatus}"`);
-    }
+    parameters = parameters.concat(lcpGetPostStatus(FD));
 
     // Show protected
     if (FD.has('show-protected')) {

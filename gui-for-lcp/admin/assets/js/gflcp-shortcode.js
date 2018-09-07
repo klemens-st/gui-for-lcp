@@ -143,6 +143,25 @@ function lcpGetDate(FD) {
     return output;
 }
 
+function lcpGetDateRanges(FD) {
+    let output = [];
+
+    if (FD.has('after')) {
+        const after = FD.get('after');
+        if ( ! _.isEmpty( after ) ) {
+            output.push(`after="${after}"`);
+        }
+    }
+
+    if (FD.has('before')) {
+        const before = FD.get('before');
+        if ( ! _.isEmpty( before ) ) {
+            output.push(`before="${before}"`);
+        }
+    }
+    return output;
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -165,20 +184,7 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetDate(FD));
 
     // Date ranges
-    if (FD.has('after')) {
-        const after = FD.get('after');
-        if ( ! _.isEmpty( after ) ) {
-            parameters.push(`after="${after}"`);
-        }
-
-    }
-    if (FD.has('before')) {
-        const before = FD.get('before');
-        if ( ! _.isEmpty( before ) ) {
-            parameters.push(`before="${before}"`);
-        }
-
-    }
+    parameters = parameters.concat(lcpGetDateRanges(FD));
 
     // Search
     if (FD.has('search')) {

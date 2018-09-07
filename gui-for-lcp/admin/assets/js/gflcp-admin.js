@@ -61,9 +61,6 @@ jQuery(function($) {
 
         initialize() {
             this.model = mainModel;
-
-            // The 'change' event is fired on the model whenever state changes.
-            // this.listenTo(this.model, 'change', this.render);
         },
 
         render: function() {

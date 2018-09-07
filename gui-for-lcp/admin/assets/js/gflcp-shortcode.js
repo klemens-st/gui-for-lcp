@@ -76,6 +76,42 @@ function lcpGetAuthor(FD) {
     } else return [];
 }
 
+function lcpGetCustomTaxonomies(FD) {
+    if (!FD.has('lcp-taxonomies') || !FD.has('taxonomy') || !FD.has('taxrel')) {
+        return [];
+    }
+    const taxonomies = FD.getAll('taxonomy');
+    const taxRel = FD.get('taxrel');
+
+    let taxonomy;
+    let singleTaxTerms;
+    let output = [];
+
+    if (1 === taxonomies.length) {
+        const separator = ( 'and' === taxRel) ? ('+') : (',');
+
+        taxonomy = taxonomies[0];
+        singleTaxTerms = (FD.has(`${taxonomy}-term`)) ? (FD.getAll(`${taxonomy}-term`)) : null;
+
+        if (_.isArray(singleTaxTerms)) {
+            output.push(`taxonomy="${taxonomy}" terms="${singleTaxTerms.join(separator)}"`);
+        }
+    } else if (taxonomies.length > 1) {
+        let taxonomyQueries = [];
+        _.each(taxonomies, function(taxonomy) {
+            singleTaxTerms = (FD.has(`${taxonomy}-term`)) ? (FD.getAll(`${taxonomy}-term`)) : null;
+
+            if (_.isArray(singleTaxTerms)) {
+                taxonomyQueries.push(`${taxonomy}:{${singleTaxTerms.join(',')}}`);
+            }
+        });
+        if (taxonomyQueries.length > 1) {
+            output.push(`taxonomies_${taxRel}="${taxonomyQueries.join(';')}"`);
+        }
+    }
+    return output;
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -89,38 +125,7 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetTags(FD));
 
     // Custom taxonomies
-    if (FD.has('lcp-taxonomies') && FD.has('taxonomy') && FD.has('taxrel')) {
-        const taxonomies = FD.getAll('taxonomy');
-        const taxRel = FD.get('taxrel');
-
-        let taxonomy;
-        let singleTaxTerms;
-        let shortcode = '';
-
-        if (1 === taxonomies.length) {
-            const separator = ( 'and' === taxRel) ? ('+') : (',');
-
-            taxonomy = taxonomies[0];
-            singleTaxTerms = (FD.has(`${taxonomy}-term`)) ? (FD.getAll(`${taxonomy}-term`)) : null;
-
-            if (_.isArray(singleTaxTerms)) {
-                shortcode = `taxonomy="${taxonomy}" terms="${singleTaxTerms.join(separator)}"`;
-            }
-        } else if (taxonomies.length > 1) {
-            let taxonomyQueries = [];
-            _.each(taxonomies, function(taxonomy) {
-                singleTaxTerms = (FD.has(`${taxonomy}-term`)) ? (FD.getAll(`${taxonomy}-term`)) : null;
-
-                if (_.isArray(singleTaxTerms)) {
-                    taxonomyQueries.push(`${taxonomy}:{${singleTaxTerms.join(',')}}`);
-                }
-            });
-            if (taxonomyQueries.length > 1) {
-                shortcode = `taxonomies_${taxRel}="${taxonomyQueries.join(';')}"`;
-            }
-        }
-        parameters.push(shortcode);
-    }
+    parameters = parameters.concat(lcpGetCustomTaxonomies(FD));
 
     // Starting with
     if (FD.has('starting-with')) {

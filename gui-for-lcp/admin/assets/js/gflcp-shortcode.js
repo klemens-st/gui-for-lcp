@@ -1,5 +1,5 @@
 function lcpGetCategories(FD) {
-    if (!FD.has('lcp-categories')) return null;
+    if (!FD.has('lcp-categories')) return [];
 
     const catRel = (FD.has('catrel')) ? (FD.get('catrel')) : null;
 
@@ -15,7 +15,7 @@ function lcpGetCategories(FD) {
 
     if (FD.has('categorypage') && '1' === FD.get('categorypage')) {
         output.push('categorypage="yes"');
-        return output.join(' ');
+        return output;
     }
 
     categories = (FD.has('cat')) ? (FD.getAll('cat')) : [];
@@ -38,7 +38,7 @@ function lcpGetCategories(FD) {
 }
 
 function lcpGetTags(FD) {
-    if (!FD.has('lcp-tags')) return null;
+    if (!FD.has('lcp-tags')) return [];
 
     const tagRel = (FD.has('tagrel')) ? (FD.get('tagrel')) : null;
 
@@ -47,7 +47,7 @@ function lcpGetTags(FD) {
     let exTags;
 
     if (FD.has('currenttags') && '1' === FD.get('currenttags')) {
-        return 'currenttags="yes"';
+        return ['currenttags="yes"'];
     }
 
     tags = (FD.has('tag')) ? (FD.getAll('tag')) : [];

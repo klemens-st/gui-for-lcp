@@ -37,14 +37,14 @@ const ModalContentView = wp.Backbone.View.extend({
     },
 
     onTaxSelect: function() {
-        const taxonomies = $('select[name="taxonomy"]').val();
+        const taxonomies = this.$('select[name="taxonomy"]').val();
         this.model.updateTaxonomies(taxonomies);
     },
 
     toggleFieldset: function(e) {
-        const el = $(e.currentTarget);
+        const el = this.$(e.currentTarget);
         const checked = el.prop('checked');
-        const targetEl = $('.' + el.attr('name'));
+        const targetEl = this.$('.' + el.attr('name'));
 
         if (true === checked) {
             targetEl.prop('disabled', false);
@@ -54,7 +54,7 @@ const ModalContentView = wp.Backbone.View.extend({
     },
 
     toggleCurrent: function(e) {
-        const el = $(e.currentTarget);
+        const el = this.$(e.currentTarget);
         const value = el.val();
         const cssClass = el.attr('class');
         let target;
@@ -64,12 +64,12 @@ const ModalContentView = wp.Backbone.View.extend({
         if ('lcp-categorypage' === cssClass) target = '#lcp-cat-select';
         else if ('lcp-currenttags' === cssClass) target = '#lcp-tag-select';
 
-        if ('1' === value) $(target).prop('disabled', true);
-        else if ('0' === value) $(target).prop('disabled', false);
+        if ('1' === value) this.$(target).prop('disabled', true);
+        else if ('0' === value) this.$(target).prop('disabled', false);
     },
 
     toggleSelection: function(e) {
-        const el = $(e.currentTarget);
+        const el = this.$(e.currentTarget);
         const name = el.attr('name');
 
         let targetEl;
@@ -78,13 +78,13 @@ const ModalContentView = wp.Backbone.View.extend({
         else if ('pt-mode' === name) targetEl = '#lcp-pt-select';
 
         if (true === el.prop('checked') && 'select' === el.val()) {
-            $(targetEl).prop('disabled', false);
+            this.$(targetEl).prop('disabled', false);
         }
-        else $(targetEl).prop('disabled', true);
+        else this.$(targetEl).prop('disabled', true);
     },
 
     handleExcludes: function(e) {
-        const el = $(e.currentTarget);
+        const el = this.$(e.currentTarget);
 
         let targetName;
 
@@ -102,7 +102,7 @@ const ModalContentView = wp.Backbone.View.extend({
                 targetName = 'tag';
                 break;
         }
-        const targetEl = $(`[name="${targetName}"][value="${el.val()}"]`);
+        const targetEl = this.$(`[name="${targetName}"][value="${el.val()}"]`);
 
         if (true === el.prop('checked')) {
             targetEl.prop('disabled', true);

@@ -27,7 +27,7 @@ module.exports = {
         ]
     },
     "globals": {
-        "$": false,
+        "jQuery": false,
         "wp": false,
         "_": false,
         "ajax_object": false

@@ -112,6 +112,18 @@ function lcpGetCustomTaxonomies(FD) {
     return output;
 }
 
+function lcpGetStartingWith(FD) {
+    if (!FD.has('starting-with')) return [];
+
+    const startingWith = FD.get('starting-with');
+    let output = [];
+
+    if ( ! _.isEmpty( startingWith ) ) {
+        output.push(`starting_with="${startingWith}"`);
+    }
+    return output;
+}
+
 function lcpCreateShortcode(FD) {
     let parameters = [];
 
@@ -128,13 +140,7 @@ function lcpCreateShortcode(FD) {
     parameters = parameters.concat(lcpGetCustomTaxonomies(FD));
 
     // Starting with
-    if (FD.has('starting-with')) {
-        const startingWith = FD.get('starting-with');
-        if ( ! _.isEmpty( startingWith ) ) {
-            parameters.push(`starting_with="${startingWith}"`);
-        }
-
-    }
+    parameters = parameters.concat(lcpGetStartingWith(FD));
 
     // Date
     if (FD.has('month')) {

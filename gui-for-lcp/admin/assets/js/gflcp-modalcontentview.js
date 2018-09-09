@@ -20,7 +20,7 @@ const ModalContentView = wp.Backbone.View.extend({
         'submit #lcp-insert-form': 'insertShortcode',
         'change .lcp-swtich-checkbox': 'toggleFieldset',
         'change .lcp-categorypage, .lcp-currenttags': 'toggleCurrent',
-        'change .tag, .extag, .cat, .excat': 'handleExcludes',
+        'change .tag, .extag, .category-checklist input, .excategory-checklist input': 'handleExcludes',
         'change [name="ps-mode"], [name="pt-mode"]': 'toggleSelection'
     },
 
@@ -30,6 +30,10 @@ const ModalContentView = wp.Backbone.View.extend({
             dateFormat: 'yy/mm/dd'
         });
         this.$('#lcp-insert-form').tabs();
+        // To avoid fetching categories html twice
+        // we will copy the 'select' checklist and modify it to use
+        // as 'exclude'
+        this.$('.excategory-checklist input').attr('name', 'excat');
         return this;
     },
 

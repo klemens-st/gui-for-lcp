@@ -108,6 +108,11 @@ class Gflcp {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-gflcp-ajax.php';
 
+		/**
+		 * Custom Walker class for category checklists.
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-gflcp-walker-category-checklist.php';
+
 		$this->loader = new Gflcp_Loader();
 
 	}

@@ -17,7 +17,10 @@ class Gflcp_Ajax {
   public function gui_setup() {
     check_ajax_referer( 'gui-for-lcp', 'security' );
 
-    $categories = $this->prepare_categories();
+    $categories = wp_terms_checklist(0, [
+      'echo' => false,
+      'walker' => new Gflcp_Walker_Category_Checklist()
+    ]);
     $tags = $this->prepare_tags();
     $taxonomies = $this->prepare_taxonomies();
     $users = get_users( [ 'fields' => [

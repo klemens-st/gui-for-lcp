@@ -57,23 +57,13 @@
       </div>
       <fieldset id="lcp-cat-select">
         <h3>Select</h3>
-        <#
-          _.each(data.categories, function(cat) {
-              let catField = '<label>' + cat.cat_name + '<input type="checkbox" class="cat" name="cat" value="' +
-                             cat.cat_ID + '"></label>';
-              print(catField);
-          });
-        #>
-
-
+        <ul class="cat-checklist category-checklist">
+          {{{data.categories}}}
+        </ul>
         <h3>Exclude</h3>
-        <#
-          _.each(data.categories, function(cat) {
-              let catField = '<label>' + cat.cat_name + '<input type="checkbox" class="excat" name="excat" value="' +
-                             cat.cat_ID + '"></label>';
-              print(catField);
-          });
-        #>
+        <ul class="cat-checklist excategory-checklist">
+          {{{data.categories}}}
+        </ul>
 
         <div>
           <h3>Relationship</h3>

@@ -116,6 +116,10 @@ const ModalContentView = wp.Backbone.View.extend({
         e.preventDefault();
         const FD = new FormData(e.currentTarget);
         wp.media.editor.insert(lcpCreateShortcode(FD));
+        // This view is a subview of wp.media.view.Modal
+        // so in order to close the modal on shortcode insertion
+        // we can use the reference at this.views.parent
+        this.views.parent.close();
     }
 });
 

@@ -13,7 +13,7 @@
             <#
         }
     }
-    
+
     function printSwitchCheckbox(label, name, checked) {
         const printChecked = checked ? ' checked' : '';
       #>
@@ -25,7 +25,7 @@
   #>
   <div>
   <h1>FORM</h1>
-  
+
   <form id="lcp-insert-form">
     <# printSwitchCheckbox('Categories', 'lcp-categories', true) #>
     <fieldset class="lcp-categories">
@@ -48,8 +48,8 @@
               print(catField);
           });
         #>
-      
-      
+
+
         <h3>Exclude</h3>
         <#
           _.each(data.categories, function(cat) {
@@ -58,7 +58,7 @@
               print(catField);
           });
         #>
-      
+
         <div>
           <h3>Relationship</h3>
           <# printRelationship('catrel', 'and'); #>
@@ -253,7 +253,7 @@
         </label>
       </div>
       <fieldset id="lcp-ps-select" disabled>
-        <# 
+        <#
           const statuses = ['publish', 'pending', 'draft', 'auto-draft',
                             'future', 'private', 'inherit', 'trash'];
           _.each(statuses, function(status, key) {
@@ -299,19 +299,19 @@
         </label>
       </div>
     </fieldset>
-    
+
     <button type="submit" class="button media-button button-primary button-large media-button-insert">Insert into page</button>
-  </form>  
+  </form>
   </div>
 </script>
 
 <script type="text/html" id="tmpl-taxonomy-terms">
-  <# 
+  <#
     _.each(data, function(terms, taxonomy) {
     #>
     <div id="{{{taxonomy}}}-terms">
     <h3>{{{taxonomy}}}</h3>
-    <# 
+    <#
       _.each(terms, function(term) {
       #>
       <label>{{{term.name}}}
@@ -324,5 +324,5 @@
     <#
     });
   #>
-  
+
 </script>

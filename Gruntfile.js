@@ -85,32 +85,23 @@ module.exports = function( grunt ) {
     },
 
     // compass and scss
-    compass: {
-      options: {
-        httpPath: '',
-        environment: 'production',
-        relativeAssets: true,
-        noLineComments: true,
-        outputStyle: 'compressed'
-      },
-      admin: {
+    sass: {
+      dist: {
         options: {
-          sassDir: '<%= dirs.admin.sass %>',
-          cssDir: '<%= dirs.admin.css %>',
-          imagesDir: '<%= dirs.admin.images %>',
-          javascriptsDir: '<%= dirs.admin.js %>',
-          fontsDir: '<%= dirs.admin.fonts %>'
-        }
-      },
+          style: 'compressed'
+        },
+        src: '<%= dirs.admin.sass %>/admin.scss',
+        dest: '<%= dirs.admin.css %>/admin.css'
+      }
     },
 
     // watch for changes and trigger compass, jshint and uglify
     watch: {
-      compass: {
+      sass: {
         files: [
-          '<%= compass.admin.options.sassDir %>/**',
+          '<%= dirs.admin.sass %>/**',
         ],
-        tasks: ['compass:admin']
+        tasks: ['sass']
       },
       js: {
         files: '<%= eslint.target %>',
@@ -212,7 +203,7 @@ module.exports = function( grunt ) {
   // default task
   grunt.registerTask( 'default', [
     'eslint',
-    'compass',
+    'sass',
     'browserify',
     'uglify'
   ] );

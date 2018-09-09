@@ -48,7 +48,11 @@ class Gflcp_Admin {
 	 */
 	public function enqueue_styles() {
 
-
+    wp_enqueue_style( $this->plugin_name . '-admin',
+                      plugin_dir_url( __FILE__ ) . 'assets/css/admin.css',
+                      array(),
+                      $this->version,
+                      'all' );
 
 	}
 

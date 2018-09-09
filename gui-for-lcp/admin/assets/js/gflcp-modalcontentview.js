@@ -29,6 +29,7 @@ const ModalContentView = wp.Backbone.View.extend({
         this.$('.lcp-datepicker').datepicker({
             dateFormat: 'yy/mm/dd'
         });
+        this.$('#lcp-insert-form').tabs();
         return this;
     },
 

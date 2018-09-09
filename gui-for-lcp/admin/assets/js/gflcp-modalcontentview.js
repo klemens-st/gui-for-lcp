@@ -1,10 +1,10 @@
-import mainModel from './gflcp-mainmodel.js';
+import MainModel from './gflcp-mainmodel.js';
 import TaxTermsSubview from './gflcp-taxtermssubview.js';
 import lcpCreateShortcode from './gflcp-shortcode.js';
 
 const ModalContentView = wp.Backbone.View.extend({
     initialize() {
-        this.model = mainModel;
+        this.model = new MainModel();
         // Get init data from the server
         this.model.getInit();
 

@@ -46,6 +46,4 @@ const MainModel = wp.media.controller.State.extend({
     }
 });
 
-const mainModel = new MainModel();
-
-export default mainModel;
+export default MainModel;

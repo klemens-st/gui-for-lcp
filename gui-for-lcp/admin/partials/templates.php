@@ -135,15 +135,16 @@
         <h2>Custom tax</h2>
         <div>
           <h3>Choose one or more taxonomies</h3>
-          <select id="lcp-tax-select" name="taxonomy" multiple>
-            <#
-              _.each(data.taxonomies, function(tax) {
-                  let taxField = '<option value="' + tax.slug + '">' +
-                                 tax.name + '</option>';
-                  print(taxField);
-              });
-            #>
-          </select>
+          <ul class="cat-checklist tax-checklist">
+            <# _.each(data.taxonomies, function(tax) { #>
+              <li>
+                <label>
+                  <input type="checkbox" name="taxonomy" value="{{tax.slug}}">
+                  {{tax.name}}
+                </label>
+              </li>
+            <# }); #>
+          </ul>
           <button type="button" id="load-terms">Load taxonomy terms</button>
         </div>
         <div class="taxonomy-terms"></div>

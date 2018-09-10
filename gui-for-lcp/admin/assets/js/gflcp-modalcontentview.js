@@ -45,7 +45,11 @@ const ModalContentView = wp.Backbone.View.extend({
     },
 
     onTaxSelect: function() {
-        const taxonomies = this.$('select[name="taxonomy"]').val();
+        const self = this;
+        let taxonomies = [];
+        this.$('input[name="taxonomy"]:checked').each(function() {
+            taxonomies.push(self.$(this).val());
+        });
         this.model.updateTaxonomies(taxonomies);
     },
 

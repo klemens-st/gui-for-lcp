@@ -21,7 +21,12 @@ class Gflcp_Ajax {
       'echo' => false,
       'walker' => new Gflcp_Walker_Category_Checklist()
     ]);
-    $tags = $this->prepare_tags();
+    $tags = wp_terms_checklist(0, [
+      'echo' => false,
+      'taxonomy' => 'post_tag',
+      'input_name' => 'tag',
+      'walker' => new Gflcp_Walker_Category_Checklist('tag')
+    ]);
     $taxonomies = $this->prepare_taxonomies();
     $users = get_users( [ 'fields' => [
                'display_name',

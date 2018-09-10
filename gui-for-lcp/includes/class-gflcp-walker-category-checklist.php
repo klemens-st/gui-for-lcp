@@ -3,12 +3,16 @@
 require_once ABSPATH . '/wp-admin/includes/class-walker-category-checklist.php';
 
 class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
+  public function __construct($input_name='cat') {
+    $this->input_name = $input_name;
+  }
+
   /**
    * Start the element output.
    *
    * @see Walker::start_el()
    *
-   * @since 2.5.1
+   * @since 1.0.0
    *
    * @param string $output   Used to append additional content (passed by reference).
    * @param object $category The current term object.
@@ -23,12 +27,6 @@ class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
         $taxonomy = $args['taxonomy'];
       }
 
-      if ( $taxonomy == 'category' ) {
-        $name = 'post_category';
-      } else {
-        $name = 'tax_input[' . $taxonomy . ']';
-      }
-
       $args['popular_cats'] = empty( $args['popular_cats'] ) ? array() : $args['popular_cats'];
       $class = in_array( $category->term_id, $args['popular_cats'] ) ? ' class="popular-category"' : '';
 
@@ -37,10 +35,10 @@ class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
 
       /** This filter is documented in wp-includes/category-template.php */
       $output .= "\n<li$class>" .
-        '<label class="selectit"><input value="' . $category->term_id . '" type="checkbox" name="cat"' .
+        '<label class="selectit"><input value="' . $category->term_id . '" type="checkbox" name="'. $this->input_name . '"' .
         checked( in_array( $category->term_id, $args['selected_cats'] ), true, false ) .
         disabled( empty( $args['disabled'] ), false, false ) . ' /> ' .
-        esc_html( apply_filters( 'the_category', $category->name, '', '' ) ) . '</label>';
+        esc_html( $category->name ) . '</label>';
 
   }
 }

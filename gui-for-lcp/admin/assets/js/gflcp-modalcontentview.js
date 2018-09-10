@@ -20,7 +20,8 @@ const ModalContentView = wp.Backbone.View.extend({
         'submit #lcp-insert-form': 'insertShortcode',
         'change .lcp-swtich-checkbox': 'toggleFieldset',
         'change .lcp-categorypage, .lcp-currenttags': 'toggleCurrent',
-        'change .tag, .extag, .category-checklist input, .excategory-checklist input': 'handleExcludes',
+        'change .category-checklist input, .excategory-checklist input': 'handleExcludes',
+        'change .tag-checklist input, .extag-checklist input': 'handleExcludes',
         'change [name="ps-mode"], [name="pt-mode"]': 'toggleSelection'
     },
 
@@ -34,6 +35,8 @@ const ModalContentView = wp.Backbone.View.extend({
         // we will copy the 'select' checklist and modify it to use
         // as 'exclude'
         this.$('.excategory-checklist input').attr('name', 'excat');
+        // Do the same for tags
+        this.$('.extag-checklist input').attr('name', 'extag');
         return this;
     },
 

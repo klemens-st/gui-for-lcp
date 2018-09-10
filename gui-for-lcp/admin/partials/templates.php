@@ -113,22 +113,14 @@
         </div>
         <fieldset id="lcp-tag-select">
           <h3>Select</h3>
-            <#
-              _.each(data.tags, function(tag) {
-                  let tagField = '<label>' + tag.name + '<input type="checkbox" class="tag" name="tag" value="' +
-                                 tag.slug + '"></label>';
-                  print(tagField);
-              });
-            #>
+          <ul class="tag-checklist cat-checklist">
+            {{{data.tags}}}
+          </ul>
           <div id="lcp-tags-exclude">
             <h3>Exclude</h3>
-              <#
-                _.each(data.tags, function(tag) {
-                    let tagField = '<label>' + tag.name + '<input type="checkbox" class="extag" name="extag" value="' +
-                                   tag.slug + '"></label>';
-                    print(tagField);
-                });
-              #>
+            <ul class="extag-checklist cat-checklist">
+              {{{data.tags}}}
+            </ul>
           </div>
           <div>
             <h3>Relationship</h3>

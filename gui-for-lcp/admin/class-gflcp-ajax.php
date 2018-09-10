@@ -65,46 +65,6 @@ class Gflcp_Ajax {
   }
 
   /**
-	 * Get all categories from the database and limit the properties
-   * to name and id only.
-	 *
-	 * @since    1.0.0
-   * @access   private
-   * @return   array    The collection of objects.
-	 */
-  private function prepare_categories() {
-    $categories = get_categories( [ 'hide_empty' => false ] );
-    $output = [];
-
-    foreach ($categories as $cat) {
-      $newcat = ( object ) [ 'cat_name' => $cat->cat_name,
-                             'cat_ID' => $cat->cat_ID ];
-      $output[] = $newcat;
-    }
-    return $output;
-  }
-
-  /**
-	 * Get all tags from the database and limit the properties
-   * to name and slug only.
-	 *
-	 * @since    1.0.0
-   * @access   private
-   * @return   array    The collection of objects.
-	 */
-  private function prepare_tags() {
-    $tags = get_tags( [ 'hide_empty' => false ] );
-    $output = [];
-
-    foreach ( $tags as $tag ) {
-      $newtag = ( object ) [ 'name' => $tag->name,
-                             'slug' => $tag->slug ];
-      $output[] = $newtag;
-    }
-    return $output;
-  }
-
-  /**
 	 * Get all taxonomies from the database and limit the properties
    * to name and label only.
 	 *

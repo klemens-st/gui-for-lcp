@@ -24,7 +24,6 @@ class Gflcp_Ajax {
     $tags = wp_terms_checklist(0, [
       'echo' => false,
       'taxonomy' => 'post_tag',
-      'input_name' => 'tag',
       'walker' => new Gflcp_Walker_Category_Checklist('tag')
     ]);
     $taxonomies = $this->prepare_taxonomies();

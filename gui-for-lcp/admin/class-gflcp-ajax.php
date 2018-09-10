@@ -31,7 +31,10 @@ class Gflcp_Ajax {
                'display_name',
                'user_nicename'
              ] ] );
-    $post_types = get_post_types( array( 'public' => true ) );
+    $post_types = get_post_types(
+      array( 'public' => true ),
+      'objects'
+    );
 
     $response = json_encode( ['init' => [
       'categories' => $categories,

@@ -246,13 +246,14 @@
         </div>
         <fieldset id="lcp-pt-select" disabled>
           <h3>Select</h3>
+          <ul class="cat-checklist pt-checklist">
             <#
-              _.each(data.post_types, function(postType) {
-                  postTypeField = '<label>' + postType + '<input type="checkbox"' +
-                                  ' name="post-type" value="' + postType + '"></label>';
+              _.each(data.post_types, function(pt) {
+                  postTypeField = '<li><label><input type="checkbox" name="post-type" value="' + pt.name + '">' + pt.labels.name + '</label></li>';
                   print(postTypeField);
               });
             #>
+          </ul>
         </fieldset>
       </fieldset>
     </div>

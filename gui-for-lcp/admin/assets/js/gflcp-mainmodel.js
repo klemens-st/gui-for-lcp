@@ -5,8 +5,8 @@ const MainModel = wp.media.controller.State.extend({
     // Initial state, with proper data types for reference
     defaults: {
         init: {
-            categories: [],
-            users: [],
+            categories: '',
+            users: '',
             tags: [],
             taxonomies: [],
             post_types: {}

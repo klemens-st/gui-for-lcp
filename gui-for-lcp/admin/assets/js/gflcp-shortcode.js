@@ -212,9 +212,9 @@ const shortcodeHelpers = [
     },
 
     function lcpGetPostType(FD) {
-        if (!FD.has('post-type-mode')) return [];
+        if (!FD.has('pt-mode')) return [];
 
-        const postTypeMode = FD.get('post-type-mode');
+        const postTypeMode = FD.get('pt-mode');
         let postType = [];
         let output = [];
 
@@ -236,9 +236,9 @@ const shortcodeHelpers = [
     },
 
     function lcpGetPostStatus(FD) {
-        if (!FD.has('post-status-mode')) return [];
+        if (!FD.has('ps-mode')) return [];
 
-        const postStatusMode = FD.get('post-status-mode');
+        const postStatusMode = FD.get('ps-mode');
         let postStatus = [];
         let output = [];
 

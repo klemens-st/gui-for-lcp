@@ -272,18 +272,21 @@
           </label>
         </div>
         <fieldset id="lcp-ps-select" disabled>
+        <ul class="cat-checklist ps-checklist">
           <#
             const statuses = ['publish', 'pending', 'draft', 'auto-draft',
                               'future', 'private', 'inherit', 'trash'];
             _.each(statuses, function(status, key) {
               let checked = key === 0 ? ' checked' : '';
           #>
-            <label>{{status}}
+            <li><label>
               <input type="checkbox" name="post-status" value="{{status}}"{{checked}}>
-            </label>
+              {{status}}
+            </label></li>
           <#
             });
           #>
+        </ul>
         </fieldset>
       </fieldset>
     </div>

@@ -3,8 +3,9 @@
 require_once ABSPATH . '/wp-admin/includes/class-walker-category-checklist.php';
 
 class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
-  public function __construct($input_name='cat') {
+  public function __construct($input_name='cat', $value='term_id') {
     $this->input_name = $input_name;
+    $this->value = $value;
   }
 
   /**
@@ -35,7 +36,7 @@ class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
 
       /** This filter is documented in wp-includes/category-template.php */
       $output .= "\n<li$class>" .
-        '<label class="selectit"><input value="' . $category->term_id . '" type="checkbox" name="'. $this->input_name . '"' .
+        '<label class="selectit"><input value="' . $category->{$this->value} . '" type="checkbox" name="'. $this->input_name . '"' .
         checked( in_array( $category->term_id, $args['selected_cats'] ), true, false ) .
         disabled( empty( $args['disabled'] ), false, false ) . ' /> ' .
         esc_html( $category->name ) . '</label>';

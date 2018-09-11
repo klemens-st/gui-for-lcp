@@ -59,10 +59,15 @@ class Gflcp_Ajax {
     $taxonomies = $_POST[ 'taxonomies' ];
     $output = [];
 
-    $terms = $this->prepare_terms( $taxonomies );
+    foreach ( $taxonomies as $taxonomy ) {
+      $output[ $taxonomy ] = wp_terms_checklist(0, [
+        'echo' => false,
+        'taxonomy' => $taxonomy,
+        'walker' => new Gflcp_Walker_Category_Checklist("$taxonomy-term", 'slug')
+      ]);
+    }
 
-
-    echo json_encode( [ 'taxonomies' => $terms ] );
+    echo json_encode( [ 'taxonomies' => $output ] );
     wp_die();
   }
 
@@ -87,36 +92,6 @@ class Gflcp_Ajax {
       $newtax = (object) [ 'slug' => $tax->name,
                            'name' => $tax->label ];
       $output[] = $newtax;
-    }
-    return $output;
-  }
-
-  /**
-	 * Get all categories from the database and limit the properties
-   * to name and id only.
-	 *
-	 * @since    1.0.0
-   * @access   private
-   * @param    array  $taxonomies  An array of taxonomies submitted by the user.
-   * @return   array               Contains arrays of taxonomy terms.
-	 */
-  private function prepare_terms( $taxonomies ) {
-    $output = [];
-    $newterms = [];
-
-    foreach ( $taxonomies as $taxonomy ) {
-      $newterms = [];
-      $terms = get_terms( [
-        'taxonomy' => $taxonomy,
-        'hide_empty' => false,
-      ] );
-
-      foreach ( $terms as $term ) {
-        $newterm = ( object ) [ 'name' => $term->name,
-                                'slug' => $term->slug ];
-        $newterms[] = $newterm;
-      }
-      $output[ $taxonomy ] = $newterms;
     }
     return $output;
   }

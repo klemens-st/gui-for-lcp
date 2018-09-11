@@ -335,23 +335,12 @@
 </script>
 
 <script type="text/html" id="tmpl-taxonomy-terms">
-  <#
-    _.each(data, function(terms, taxonomy) {
-    #>
-    <div id="{{{taxonomy}}}-terms">
-    <h3>{{{taxonomy}}}</h3>
-    <#
-      _.each(terms, function(term) {
-      #>
-      <label>{{{term.name}}}
-        <input type="checkbox" name="{{{taxonomy}}}-term" value="{{{term.slug}}}">
-      </label>
-      <#
-      });
-    #>
+  <# _.each(data, function(terms, taxonomy) { #>
+    <div id="{{taxonomy}}-terms">
+      <h3>{{taxonomy}}</h3>
+      <ul class="cat-checklist term-checklist">
+        {{{terms}}}
+      </ul>
     </div>
-    <#
-    });
-  #>
-
+  <# }); #>
 </script>

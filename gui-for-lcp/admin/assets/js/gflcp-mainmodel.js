@@ -12,7 +12,7 @@ const MainModel = wp.media.controller.State.extend({
             post_types: {}
         },
         // Used by TaxTermsSubview
-        taxonomies: {}
+        taxonomies: []
     },
 
     ajaxData: {

@@ -87,13 +87,9 @@
         <h2>Author</h2>
         <div>
           <select id="lcp-author" name="author">
-            <#
-              _.each(data.users, function(user) {
-                  let userField = '<option value="' + user.user_nicename +
-                                  '">' + user.display_name + '</option>';
-                  print(userField);
-              });
-            #>
+            <# _.each(data.users, function(user) { #>
+              <option value="{{user.user_nicename}}">{{user.display_name}}</option>;
+            <# }); #>
           </select>
         </div>
       </fieldset>
@@ -248,12 +244,14 @@
         <fieldset id="lcp-pt-select" disabled>
           <h3>Select</h3>
           <ul class="cat-checklist pt-checklist">
-            <#
-              _.each(data.post_types, function(pt) {
-                  postTypeField = '<li><label><input type="checkbox" name="post-type" value="' + pt.name + '">' + pt.labels.name + '</label></li>';
-                  print(postTypeField);
-              });
-            #>
+            <# _.each(data.post_types, function(pt) { #>
+              <li>
+                <label>
+                  <input type="checkbox" name="post-type" value="{{pt.name}}">
+                  {{pt.labels.name}}
+                </label>
+              </li>
+            <# }); #>
           </ul>
         </fieldset>
       </fieldset>
@@ -284,9 +282,7 @@
               <input type="checkbox" name="post-status" value="{{status}}"{{checked}}>
               {{status}}
             </label></li>
-          <#
-            });
-          #>
+          <# }); #>
         </ul>
         </fieldset>
       </fieldset>

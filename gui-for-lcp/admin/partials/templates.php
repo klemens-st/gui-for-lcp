@@ -156,7 +156,12 @@
         <h2>Starting with</h2>
         <div>
           <label>Specify
-            <input type="text" name="starting-with">
+            <input
+              type="text"
+              name="starting-with"
+              title="comma separated single characters"
+              pattern="[^,](,[^,])*"
+            >
           </label>
         </div>
       </fieldset>
@@ -211,7 +216,7 @@
         <div>
           <h3>List</h3>
           <label>Post IDs, comma separated
-            <input type="text" name="expost">
+            <input type="text" name="expost" pattern="\d+(,\d)*" title="comma separated post IDs">
           </label>
         </div>
       </fieldset>
@@ -222,7 +227,7 @@
         <h2>Offset</h2>
         <div>
           <label>Specify
-            <input type="number" name="offset">
+            <input type="number" name="offset" min="0">
           </label>
         </div>
       </fieldset>
@@ -317,10 +322,10 @@
         <h2>Custom fields</h2>
         <div>
           <label>Customfield name
-            <input type="text" name="customfield-name">
+            <input type="text" name="customfield-name" required>
           </label>
           <label>Customfield value
-            <input type="text" name="customfield-value">
+            <input type="text" name="customfield-value" required>
           </label>
         </div>
       </fieldset>

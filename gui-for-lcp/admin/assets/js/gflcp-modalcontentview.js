@@ -30,7 +30,9 @@ const ModalContentView = wp.Backbone.View.extend({
         this.$('.lcp-datepicker').datepicker({
             dateFormat: 'yy/mm/dd'
         });
-        this.$('#lcp-insert-form').tabs();
+        this.$('#gflcp-select-accordion').accordion({
+            heightStyle: 'content'
+        });
         // To avoid fetching categories html twice
         // we will copy the 'select' checklist and modify it to use
         // as 'exclude'

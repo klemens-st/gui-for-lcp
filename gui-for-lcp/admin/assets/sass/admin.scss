@@ -1,3 +1,9 @@
 @import "mixins";
 
 // Your scss here!
+
+#lcp-cat-select {
+    display: grid;
+    grid: auto-flow / 1fr 1fr;
+    grid-gap: 10px;
+}

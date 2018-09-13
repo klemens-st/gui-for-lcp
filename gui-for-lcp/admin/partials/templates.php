@@ -41,15 +41,18 @@
           </label>
         </div>
         <fieldset id="lcp-cat-select">
-          <h3>Select</h3>
-          <ul class="cat-checklist category-checklist">
-            {{{data.categories}}}
-          </ul>
-          <h3>Exclude</h3>
-          <ul class="cat-checklist excategory-checklist">
-            {{{data.categories}}}
-          </ul>
-
+          <div>
+            <h3>Select</h3>
+            <ul class="cat-checklist category-checklist">
+              {{{data.categories}}}
+            </ul>
+          </div>
+          <div>
+            <h3>Exclude</h3>
+            <ul class="cat-checklist excategory-checklist">
+              {{{data.categories}}}
+            </ul>
+          </div>
           <div>
             <h3>Relationship</h3>
             <# printRelationship('catrel', 'and'); #>

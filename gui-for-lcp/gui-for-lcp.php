@@ -2,17 +2,17 @@
 
 /**
  * @package   gui_for_lcp
- * @author    Fundacja "Pro Novitate"
+ * @author    Klemens Starybrat
  * @license   GPL-2.0+
  * @link      [github URI here]
- * @copyright 2018 Fundacja "Pro Novitate"
+ * @copyright 2018 Klemens Starybrat
  *
  * @wordpress-plugin
  * Plugin Name:       GUI for List Category Posts
  * Plugin URI:        [github URI here]
  * Description:       This plugin adds an "Add LCP" button to post edit screen which opens a modal with a convenient GUI for creating List Category Posts shortcodes.
  * Version:           1.0.0
- * Author:            Fundacja "Pro Novitate"
+ * Author:            Klemens Starybrat
  * Author URI:        
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

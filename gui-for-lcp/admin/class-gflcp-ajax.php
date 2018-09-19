@@ -5,7 +5,7 @@
  *
  * @package    gui_for_lcp
  * @subpackage gui_for_lcp/includes
- * @author     Funcacja "Pro Novitate"
+ * @author     Klemens Starybrat
  */
 class Gflcp_Ajax {
 

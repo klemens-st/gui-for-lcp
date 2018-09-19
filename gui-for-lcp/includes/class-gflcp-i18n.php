@@ -9,7 +9,7 @@
  * @since      1.0.0
  * @package    gui_for_lcp
  * @subpackage gui_for_lcp/includes
- * @author     Fundacja "Pro Novitate"
+ * @author     Klemens Starybrat
  */
 class Gflcp_i18n {
 

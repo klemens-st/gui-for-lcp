@@ -96,10 +96,12 @@
             </label>
           </div>
           <fieldset id="lcp-tag-select">
-            <h3>Select</h3>
-            <ul class="tag-checklist cat-checklist">
-              {{{data.tags}}}
-            </ul>
+            <div>
+              <h3>Select</h3>
+              <ul class="tag-checklist cat-checklist">
+                {{{data.tags}}}
+              </ul>
+            </div>
             <div id="lcp-tags-exclude">
               <h3>Exclude</h3>
               <ul class="extag-checklist cat-checklist">

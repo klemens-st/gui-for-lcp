@@ -2,8 +2,17 @@
 
 // Your scss here!
 
-#lcp-cat-select {
+%two-column-grid {
     display: grid;
     grid: auto-flow / 1fr 1fr;
     grid-gap: 10px;
+}
+
+#lcp-cat-select,
+#lcp-tag-select {
+    @extend %two-column-grid;
+}
+
+.taxonomy-terms > div {
+    @extend %two-column-grid;
 }

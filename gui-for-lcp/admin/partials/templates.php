@@ -131,7 +131,7 @@
                 </li>
               <# }); #>
             </ul>
-            <button type="button" id="load-terms">Load taxonomy terms</button>
+            <button type="button" id="load-terms" class="button">Load taxonomy terms</button>
           </div>
           <div class="taxonomy-terms"></div>
           <div>

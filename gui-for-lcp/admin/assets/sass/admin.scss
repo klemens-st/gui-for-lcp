@@ -1,13 +1,21 @@
 @import "mixins";
 
-// Your scss here!
-
+// Placeholder classes
 %two-column-grid {
     display: grid;
     grid: auto-flow / 1fr 1fr;
     grid-gap: 10px;
 }
 
+// Overriden WP styles
+#lcp-insert-form {
+    .cat-checklist {
+        height: initial;
+        max-height: 12em;
+    }
+}
+
+// Form checklists
 #lcp-cat-select,
 #lcp-tag-select {
     @extend %two-column-grid;
@@ -15,4 +23,8 @@
 
 .taxonomy-terms > div {
     @extend %two-column-grid;
+}
+
+#load-terms {
+    margin: 10px 0;
 }

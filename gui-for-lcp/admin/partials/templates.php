@@ -23,7 +23,6 @@
       <#
     }
   #>
-  <div>
   <h1>FORM</h1>
   <form id="lcp-insert-form">
     <div id="gflcp-select-accordion">
@@ -321,8 +320,15 @@
         </fieldset>
       </div>
     </div>
-    <button type="submit" class="button media-button button-primary button-large media-button-insert">Insert into page</button>
   </form>
+  <div class="gflcp-footer">
+    <button
+      type="submit"
+      class="button media-button button-primary button-large media-button-insert"
+      form="lcp-insert-form"
+    >
+      Insert into page
+    </button>
   </div>
 </script>
 

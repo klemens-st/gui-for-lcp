@@ -19,7 +19,9 @@ function lcpOpenMediaWindow() {
             controller: { trigger: function() {} }
         });
 
-        this.window.content(new ModalContentView());
+        this.window.content(new ModalContentView(
+            {className: 'modal-form-view'}
+        ));
     }
 
     this.window.open();

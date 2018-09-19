@@ -66,7 +66,7 @@ class Gflcp_Admin {
     $ajax_nonce = wp_create_nonce( 'gui-for-lcp' );
 
     wp_enqueue_style( $this->plugin_name . '-jquery-ui',
-                      plugin_dir_url( __FILE__ ) . 'assets/css/jquery-ui.css',
+                      plugin_dir_url( __FILE__ ) . 'assets/vendors/jquery-ui/jquery-ui.css',
                       array(),
                       $this->version,
                       'all' );

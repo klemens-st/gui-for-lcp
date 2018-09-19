@@ -22,7 +22,27 @@ const ModalContentView = wp.Backbone.View.extend({
         'change .lcp-categorypage, .lcp-currenttags': 'toggleCurrent',
         'change .category-checklist input, .excategory-checklist input': 'handleExcludes',
         'change .tag-checklist input, .extag-checklist input': 'handleExcludes',
-        'change [name="ps-mode"], [name="pt-mode"]': 'toggleSelection'
+        'change [name="ps-mode"], [name="pt-mode"]': 'toggleSelection',
+        'click .gflcp-footer button': 'checkForm'
+    },
+
+    checkForm: function() {
+        const invalid = this.$(':invalid');
+
+        // Don't manipulate any panels if the form is ok
+        if (0 === invalid.length) return;
+
+        // Get a zero-based index of a panel.
+        const panel = invalid.last().parents('.ui-accordion-content').prevAll('div').length;
+
+        // Open the panel
+        this.$('#gflcp-select-accordion').accordion(
+            'option',
+            'active',
+            panel
+        );
+        // Re-trigger native validation
+        setTimeout(() => this.$('.hidden-submit-btn').click(), 500);
     },
 
     render: function() {

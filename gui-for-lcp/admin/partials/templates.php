@@ -320,6 +320,7 @@
         </fieldset>
       </div>
     </div>
+    <button type="submit" class="hidden-submit-btn">Submit</button>
   </form>
   <div class="gflcp-footer">
     <button

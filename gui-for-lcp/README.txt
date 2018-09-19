@@ -5,8 +5,8 @@ Tags: @TODO
 Requires at least: 4.8
 Tested up to: 4.9
 Stable tag: 1.0.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
 This plugin adds an "Add LCP" button to post edit screen which opens a modal with a convenient GUI for creating List Category Posts shortcodes.
 

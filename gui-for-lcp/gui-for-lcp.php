@@ -3,7 +3,7 @@
 /**
  * @package   gui_for_lcp
  * @author    Klemens Starybrat
- * @license   GPL-2.0+
+ * @license   GPL-3.0
  * @link      [github URI here]
  * @copyright 2018 Klemens Starybrat
  *

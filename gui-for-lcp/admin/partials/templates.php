@@ -324,7 +324,7 @@
     </div>
     <button type="submit" class="hidden-submit-btn">Submit</button>
   </form>
-  <div class="gflcp-footer">
+  <footer class="gflcp-footer">
     <button
       type="submit"
       class="button media-button button-primary button-large media-button-insert"
@@ -332,7 +332,7 @@
     >
       Insert into page
     </button>
-  </div>
+  </footer>
 </script>
 
 <script type="text/html" id="tmpl-taxonomy-terms">

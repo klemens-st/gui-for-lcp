@@ -1,5 +1,6 @@
 import MainModel from './gflcp-mainmodel.js';
 import TaxTermsSubview from './gflcp-taxtermssubview.js';
+import DisplayOptionsSubview from './gflcp-displayoptionssubview.js';
 import lcpCreateShortcode from './gflcp-shortcode.js';
 
 const ModalContentView = wp.Backbone.View.extend({
@@ -10,7 +11,7 @@ const ModalContentView = wp.Backbone.View.extend({
 
         // The 'change' event is fired on the model whenever state changes.
         this.listenTo(this.model, 'change:init', this.render);
-        this.listenTo(this.model, 'change:taxonomies', this.renderSubviews);
+        this.listenTo(this.model, 'change:taxonomies', this.renderTaxTerms);
     },
 
     template: wp.template( 'modal-content' ),
@@ -47,6 +48,8 @@ const ModalContentView = wp.Backbone.View.extend({
 
     render: function() {
         this.$el.html(this.template(this.model.get('init')));
+        this.views.set('#gflcp-display-options', new DisplayOptionsSubview());
+
         this.$('.lcp-datepicker').datepicker({
             dateFormat: 'yy/mm/dd'
         });
@@ -62,7 +65,7 @@ const ModalContentView = wp.Backbone.View.extend({
         return this;
     },
 
-    renderSubviews: function() {
+    renderTaxTerms: function() {
         this.views.set('.taxonomy-terms', new TaxTermsSubview());
     },
 

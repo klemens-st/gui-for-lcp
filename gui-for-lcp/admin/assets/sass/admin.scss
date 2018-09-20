@@ -64,3 +64,11 @@
 .hidden-submit-btn {
     display: none;
 }
+
+.gflcp-display-accordion {
+    fieldset[disabled] {
+        display: none;
+    }
+}
+
+.gflcp-display-details { @extend %two-column-grid; }

@@ -363,8 +363,12 @@
           Category description
         </label>
         <label>
-          <input type="checkbox" name="morelink">
+          <input type="checkbox" name="morelink" value="1">
           Morelink
+        </label>
+        <label>
+          <input type="checkbox" name="wrapper-class" value="1">
+          Specify wrapper class
         </label>
       </div>
       <div class="gflcp-display-details">
@@ -435,32 +439,278 @@
             </label>
           </div>
         </fieldset>
+        <fieldset class="gflcp-wrapper-class" disabled>
+          <h3>Wrapper's class</h3>
+          <div>
+            <label>
+              CSS class
+              <input type="text" name="class">
+            </label>
+          </div>
+        </fieldset>
       </div>
     </div>
     <h2>Post-specific options</h2>
     <div>
-      <h2>Date</h2>
-      <div></div>
-      <h2>Author</h2>
-      <div></div>
-      <h2>Excerpt</h2>
-      <div></div>
-      <h2>Content</h2>
-      <div></div>
-      <h2>Comments</h2>
-      <div></div>
-      <h2>Thumbnail</h2>
-      <div></div>
-      <h2>Post suffix</h2>
-      <div></div>
-      <h2>Post ID</h2>
-      <div></div>
-      <h2>Custom fields</h2>
-      <div></div>
-      <h2>Post's morelink</h2>
+      <div class="gflcp-display-checkboxes">
+        <label>
+          <input type="checkbox" name="display-author" value="1">
+          Author
+        </label>
+        <label>
+          <input type="checkbox" name="comments" value="1">
+          Comment count
+        </label>
+        <label>
+          <input type="checkbox" name="content" value="1">
+          Content
+        </label>
+        <label>
+          <input type="checkbox" name="customfield">
+          Custom fields
+        </label>
+        <label>
+          <input type="checkbox" name="display-date" value="1">
+          Date
+        </label>
+        <label>
+          <input type="checkbox" name="date-modified" value="1">
+          Date modified
+        </label>
+        <label>
+          <input type="checkbox" name="excerpt" value="1">
+          Excerpt
+        </label>
+        <label>
+          <input type="checkbox" name="posts-id" value="1">
+          Post's ID
+        </label>
+        <label>
+          <input type="checkbox" name="suffix">
+          Post's suffix
+        </label>
+        <label>
+          <input type="checkbox" name="posts-morelink" value="1">
+          Post's morelink
+        </label>
+        <label>
+          <input type="checkbox" name="tags-as-class" value="1">
+          Tags as class
+        </label>
+        <label>
+          <input type="checkbox" name="title" value="1" checked>
+          Title
+        </label>
+        <label>
+          <input type="checkbox" name="thumbnail" value="1">
+          Thumbnail
+        </label>
+      </div>
+      <div class="gflcp-display-details">
+        <fieldset class="gflcp-display-author" disabled>
+          <h3>Author</h3>
+          <div>
+            <label>
+              Author's class
+              <input type="text" name="author-class">
+            </label>
+            <label>
+              Author's HTML tag
+              <input type="text" name="author-tag">
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-comments" disabled>
+          <h3>Comment count</h3>
+          <div>
+            <label>
+              Comment count's class
+              <input type="text" name="comments-class">
+            </label>
+            <label>
+              Comment count's HTML tag
+              <input type="text" name="comments-tag">
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-content" disabled>
+          <h3>Content</h3>
+          <div>
+            <label>
+              <input type="checkbox" name="content-full" value="1">
+              Ignore post's 'more' tag
+            </label>
+          </div>
+          <div>
+            <label>
+              Content's class
+              <input type="text" name="content-class">
+            </label>
+            <label>
+              Comntent's HTML tag
+              <input type="text" name="content-tag">
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-customfield" disabled>
+          <h3>Custom fields</h3>
+          <div>
+            <label>
+              Custom fields' names, comma separated
+              <input type="text" name="customfield-display">
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" name="customfield-display-separately" value="1">
+              Display separately
+            </label>
+            <label>
+              Text to display between custom fields
+              <input type="text" name="customfield-display-glue">
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" name="customfield-display-name" value="1" checked>
+              Display each custom field's name
+            </label>
+            <label>
+              Text to display between name and value of each custom field
+              <input type="text" name="customfield-display-name-glue">
+            </label>
+          </div>
+          <div>
+            <label>
+               Custom fields' class
+              <input type="text" name="customfield-class">
+            </label>
+            <label>
+              Custom fields' HTML tag
+              <input type="text" name="customfield-tag">
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-display-date" disabled>
+          <h3>Date</h3>
+          <div>
+            <label>
+              Date's class
+              <input type="text" name="date-class">
+            </label>
+            <label>
+              Date's HTML tag
+              <input type="text" name="date-tag">
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-date-modified" disabled>
+          <h3>Date modified</h3>
+          <div>
+            <label>
+              Date modified's class
+              <input type="text" name="date-modified-class">
+            </label>
+            <label>
+              Date modified's HTML tag
+              <input type="text" name="date-modified-tag">
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-excerpt" disabled>
+          <h3>Excerpt</h3>
+          <div>
+            <label>
+              <input type="checkbox" name="excerpt-full" value="1">
+              Use full excerpt
+            </label>
+            <label>
+              <input type="checkbox" name="excerpt-overwrite" value="1">
+              Ignore post's explicit excerpt
+            </label>
+            <label>
+              <input type="checkbox" name="excerpt-strip" value="1" checked>
+              Strip HTML tags
+            </label>
+            <label>
+              Excerpt's size
+              <input type="number" name="excerpt-size" min="1">
+            </label>
+          </div>
+          <div>
+            <label>
+              Excerpt's class
+              <input type="text" name="excerpt-class">
+            </label>
+            <label>
+              Excerpt's HTML tag
+              <input type="text" name="excerpt-tag">
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-suffix" disabled>
+          <h3>Post's suffix</h3>
+          <div>
+            <label>
+              Text to display after the title
+              <input type="text" name="post-suffix">
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-posts-morelink" disabled>
+          <h3>Post's morelink</h3>
+          <div>
+            <label>
+              Post's morelink's class
+              <input type="text" name="posts-morelink-class">
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-title">
+          <h3>Title</h3>
+          <div>
+            <label>
+              Character limit
+              <input type="number" name="title-limit" min="1">
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" name="link-titles" value="1" checked>
+              Wrap titles in links
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-thumbnail" disabled>
+          <h3>Thumbnail</h3>
+          <div>
+            <label>
+              <input type="checkbox" name="force-thumbnail" value="1">
+              Force thumbnail
+            </label>
+          </div>
+          <div>
+            <label>
+              Thumbnail size
+              <input type="text" name="thumbnail-size">
+            </label>
+          </div>
+          <div>
+            <label>
+              Thumbnail's class
+              <input type="text" name="thumbnail-class">
+            </label>
+          </div>
+        </fieldset>
+      </div>
     </div>
     <h2>Template</h2>
-    <div></div>
+    <div>
+      <label>
+        Template's name
+        <input type="text" name="template">
+      </label>
+    </div>
   </div>
 </script>
 

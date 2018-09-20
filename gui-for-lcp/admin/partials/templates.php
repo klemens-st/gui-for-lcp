@@ -23,7 +23,9 @@
       <#
     }
   #>
-  <h1>FORM</h1>
+  <header>
+    <h1>List Category Posts shortcode creator</h1>
+  </header>
   <form id="lcp-insert-form">
     <div id="gflcp-select-accordion">
       <h2>Category</h2>

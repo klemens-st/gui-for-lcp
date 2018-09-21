@@ -426,16 +426,8 @@
           <h3>Category title</h3>
           <div>
             <label>
-              <input type="radio" name="catlink" value="0" checked>
-              No
-            </label>
-            <label>
-              <input type="radio" name="catlink" value="catname">
-              Yes
-            </label>
-            <label>
-              <input type="radio" name="catlink" value="catlink">
-              Yes, wrapped in a link to the category's archive
+              <input type="checkbox" name="catlink" value="1" checked>
+              Wrap in a link to the category's archive
             </label>
           </div>
           <div>

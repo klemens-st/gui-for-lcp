@@ -510,6 +510,25 @@ const shortcodeHelpers = [
             return [];
         }
     },
+
+    function getCategoryTitle(FD) {
+        if (FD.has('category-title')) {
+            const mode = FD.has('catlink') ? 'catlink' : 'catname';
+            const categoryCount = FD.has('category-count');
+
+            let output = [`${mode}="yes"`];
+            if (categoryCount) {
+                output.push('category_count="yes"');
+            }
+
+            return [
+                ...output,
+                ...getTagsAndClasses(FD, 'catlink', 'catlink')
+            ];
+        } else {
+            return [];
+        }
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

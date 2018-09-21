@@ -585,7 +585,17 @@ const shortcodeHelpers = [
         } else {
             return [];
         }
-    }
+    },
+
+    function getTemlate(FD) {
+        const template = FD.get('template');
+
+        if (! _.isEmpty(template)) {
+            return [`template="${template}"`];
+        } else {
+            return [];
+        }
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

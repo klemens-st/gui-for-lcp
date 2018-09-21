@@ -337,7 +337,7 @@ const shortcodeHelpers = [
         if (! FD.has('customfield')) {
             return [];
         }
-        const cfDisplay =           FD.get('customfiel-display');
+        const cfDisplay =           FD.get('customfield-display');
         const cfDisplaySeparately = FD.has('customfield-display-separately');
         const cfDisplayGlue =       FD.get('customfield-display-glue');
         const cfDisplayName =       FD.has('customfield-display-name');
@@ -348,7 +348,7 @@ const shortcodeHelpers = [
         if (cfDisplaySeparately) {
             output.push('customfield_display_separately="yes"');
         } else {
-            if (null !== cfDisplayGlue){
+            if (! _.isEmpty(cfDisplayGlue)) {
                 output.push(`customfield_display_glue="${cfDisplayGlue}"`);
             }
         }
@@ -356,7 +356,7 @@ const shortcodeHelpers = [
         if (false === cfDisplayName) {
             output.push('customfield_display_name="no"');
         } else {
-            if (null !== cfDisplayNameGlue){
+            if (! _.isEmpty(cfDisplayNameGlue)) {
                 output.push(`customfield_display_name_glue="${cfDisplayNameGlue}"`);
             }
         }
@@ -408,7 +408,7 @@ const shortcodeHelpers = [
             if (true === excerptStrip) {
                 output.push('excerpt_strip="yes"');
             }
-            if (null !== excerptSize) {
+            if (! _.isEmpty(excerptSize)) {
                 output.push(`excerpt_size="${excerptSize}"`);
             }
         }
@@ -431,7 +431,7 @@ const shortcodeHelpers = [
         if (FD.has('suffix')) {
             const postSuffix = FD.get('post-suffix');
 
-            if (null !== postSuffix) {
+            if (! _.isEmpty(postSuffix)) {
                 return [`post_suffix="${postSuffix}"`];
             } else {
                 return [];

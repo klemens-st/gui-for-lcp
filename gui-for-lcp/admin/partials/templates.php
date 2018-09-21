@@ -608,7 +608,12 @@
           </div>
           <div>
             <label>
-              <input type="checkbox" name="customfield-display-separately" value="1">
+              <input
+                type="checkbox"
+                name="customfield-display-separately"
+                value="1"
+                toggles="customfield-display-glue"
+              >
               Display separately
             </label>
             <label>
@@ -618,7 +623,13 @@
           </div>
           <div>
             <label>
-              <input type="checkbox" name="customfield-display-name" value="1" checked>
+              <input
+                type="checkbox"
+                name="customfield-display-name"
+                value="1"
+                checked
+                toggles="customfield-display-name-glue"
+              >
               Display each custom field's name
             </label>
             <label>
@@ -667,21 +678,23 @@
           <h3>Excerpt</h3>
           <div>
             <label>
-              <input type="checkbox" name="excerpt-full" value="1">
+              <input type="checkbox" name="excerpt-full" value="1" class="gflcp-toggles-fieldset">
               Use full excerpt
             </label>
-            <label>
-              <input type="checkbox" name="excerpt-overwrite" value="1">
-              Ignore post's explicit excerpt
-            </label>
-            <label>
-              <input type="checkbox" name="excerpt-strip" value="1" checked>
-              Strip HTML tags
-            </label>
-            <label>
-              Excerpt's size
-              <input type="number" name="excerpt-size" min="1">
-            </label>
+            <fieldset class="gflcp-excerpt-full">
+              <label>
+                <input type="checkbox" name="excerpt-overwrite" value="1">
+                Ignore post's explicit excerpt
+              </label>
+              <label>
+                <input type="checkbox" name="excerpt-strip" value="1" checked>
+                Strip HTML tags
+              </label>
+              <label>
+                Excerpt's size
+                <input type="number" name="excerpt-size" min="1">
+              </label>
+            </fieldset>
           </div>
           <div>
             <label>

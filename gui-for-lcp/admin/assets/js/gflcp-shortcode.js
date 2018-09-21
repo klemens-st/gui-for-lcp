@@ -449,6 +449,27 @@ const shortcodeHelpers = [
             return [];
         }
     },
+
+    function getTitle(FD) {
+        if (FD.has('title')) {
+            const titleLimit = FD.get('title-limit');
+            const linkTitles = FD.has('link-titles');
+
+            let output = [];
+
+            if (! linkTitles) {
+                output.push('link_titles="false"');
+            }
+
+            if (! _.isEmpty(titleLimit)) {
+                output.push(`title_limit=${titleLimit}`);
+            }
+
+            return output;
+        } else {
+            return ['no_post_titles="yes"'];
+        }
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

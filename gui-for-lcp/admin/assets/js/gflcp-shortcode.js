@@ -296,8 +296,93 @@ const shortcodeHelpers = [
             );
         }
         return output;
+    },
+
+    function getDisplayAuthor(FD) {
+        if (FD.has('display-author')) {
+            return [
+                'author="yes"',
+                ...getTagsAndClasses(FD, 'display-author', 'author')
+            ];
+        } else {
+            return [];
+        }
+    },
+
+    function getCommets(FD) {
+        if (FD.has('comments')) {
+            return [
+                'comments="yes"',
+                ...getTagsAndClasses(FD, 'comments', 'comments')
+            ];
+        } else {
+            return [];
+        }
+    },
+
+    function getContent(FD) {
+        if (FD.has('content')) {
+            const mode = FD.has('content-full') ? 'full' : 'yes';
+
+            return [
+                `content="${mode}"`,
+                ...getTagsAndClasses(FD, 'content', 'content')
+            ];
+        } else {
+            return [];
+        }
+    },
+
+    function getCustomfieldDisplay(FD) {
+        if (! FD.has('customfield')) {
+            return [];
+        }
+        const cfDisplay =           FD.get('customfiel-display');
+        const cfDisplaySeparately = FD.has('customfield-display-separately');
+        const cfDisplayGlue =       FD.get('customfield-display-glue');
+        const cfDisplayName =       FD.has('customfield-display-name');
+        const cfDisplayNameGlue =   FD.get('customfield-display-name-glue');
+
+        let output = [cfDisplay];
+
+        if (cfDisplaySeparately) {
+            output.push('customfield_display_separately="yes"');
+        } else {
+            if (null !== cfDisplayGlue){
+                output.push(`customfield_display_glue="${cfDisplayGlue}"`);
+            }
+        }
+
+        if (false === cfDisplayName) {
+            output.push('customfield_display_name="no"');
+        } else {
+            if (null !== cfDisplayNameGlue){
+                output.push(`customfield_display_name_glue="${cfDisplayNameGlue}"`);
+            }
+        }
+
+        return [
+            ...output,
+            ...getTagsAndClasses(FD, 'customfield', 'customfield')
+        ];
     }
 ];
+
+function getTagsAndClasses(FD, name, shortcodeParam) {
+
+    let output = [];
+    const tag = FD.get(`${name}-tag`);
+    const className = FD.get(`${name}-class`);
+
+    if (! _.isEmpty(tag)) {
+        output.push(`${shortcodeParam}_tag="${tag}"`);
+    }
+    if (! _.isEmpty(className)) {
+        output.push(`${shortcodeParam}_class="${className}"`);
+    }
+
+    return output;
+}
 
 function lcpCreateShortcode(FD) {
     // This will gather helper functions output.

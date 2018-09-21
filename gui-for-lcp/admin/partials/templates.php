@@ -512,7 +512,7 @@
           Content
         </label>
         <label>
-          <input type="checkbox" name="customfield">
+          <input type="checkbox" name="customfield" value="1">
           Custom fields
         </label>
         <label>
@@ -558,11 +558,11 @@
           <div>
             <label>
               Author's class
-              <input type="text" name="author-class">
+              <input type="text" name="display-author-class">
             </label>
             <label>
               Author's HTML tag
-              <input type="text" name="author-tag">
+              <input type="text" name="display-author-tag">
             </label>
           </div>
         </fieldset>

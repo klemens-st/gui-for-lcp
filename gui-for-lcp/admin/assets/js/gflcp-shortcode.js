@@ -450,6 +450,10 @@ const shortcodeHelpers = [
         }
     },
 
+    function getTagsAsClass(FD) {
+        return (FD.has('tags-as-class')) ? ['tags_as_class="yes"'] : [];
+    },
+
     function getTitle(FD) {
         if (FD.has('title')) {
             const titleLimit = FD.get('title-limit');

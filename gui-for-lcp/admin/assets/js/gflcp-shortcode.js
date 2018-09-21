@@ -343,7 +343,7 @@ const shortcodeHelpers = [
         const cfDisplayName =       FD.has('customfield-display-name');
         const cfDisplayNameGlue =   FD.get('customfield-display-name-glue');
 
-        let output = [cfDisplay];
+        let output = [`customfield_display="${cfDisplay}"`];
 
         if (cfDisplaySeparately) {
             output.push('customfield_display_separately="yes"');
@@ -387,6 +387,36 @@ const shortcodeHelpers = [
         } else {
             return [];
         }
+    },
+
+    function getExcerpt(FD) {
+        if (! FD.has('excerpt')) {
+            return [];
+        }
+        const mode = FD.has('excerpt-full') ? 'full' : 'yes';
+
+        let output = [`excerpt="${mode}"`];
+
+        if ('yes' === mode) {
+            const excerptOverwrite = FD.has('excerpt-overwrite');
+            const excerptStrip     = FD.has('excerpt-strip');
+            const excerptSize      = FD.get('excerpt-size');
+
+            if (true === excerptOverwrite) {
+                output.push('excerpt_overwrite="yes"');
+            }
+            if (true === excerptStrip) {
+                output.push('excerpt_strip="yes"');
+            }
+            if (null !== excerptSize) {
+                output.push(`excerpt_size="${excerptSize}"`);
+            }
+        }
+
+        return [
+            ...output,
+            ...getTagsAndClasses(FD, 'excerpt', 'excerpt')
+        ];
     },
 ];
 

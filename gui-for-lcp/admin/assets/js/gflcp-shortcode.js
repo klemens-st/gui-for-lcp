@@ -474,6 +474,29 @@ const shortcodeHelpers = [
             return ['no_post_titles="yes"'];
         }
     },
+
+    function getThumbnail(FD) {
+        if (! FD.has('thumbnail')) {
+            return [];
+        }
+        const forceThumbnail = FD.has('force-thumbnail');
+        const thumbnailSize  = FD.get('thumbnail-size');
+        const thumbnailClass = FD.get('thumbnail-class');
+
+        let output = ['thumbnail="yes"'];
+
+        if (forceThumbnail) {
+            output.push('force_thumbnail="yes"');
+        }
+        if (! _.isEmpty(thumbnailSize)) {
+            output.push(`thumbnail_size="${thumbnailSize}"`);
+        }
+        if (! _.isEmpty(thumbnailClass)) {
+            output.push(`thumbnail_class="${thumbnailClass}"`);
+        }
+
+        return output;
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

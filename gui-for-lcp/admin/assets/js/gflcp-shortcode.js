@@ -418,6 +418,18 @@ const shortcodeHelpers = [
             ...getTagsAndClasses(FD, 'excerpt', 'excerpt')
         ];
     },
+
+    function getPostSuffix(FD) {
+        if (FD.has('suffix')) {
+            const postSuffix = FD.get('post-suffix');
+
+            if (null !== postSuffix) {
+                return [`post_suffix="${postSuffix}"`];
+            } else {
+                return [];
+            }
+        }
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

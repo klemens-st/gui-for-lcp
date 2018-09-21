@@ -532,7 +532,7 @@
           Post's ID
         </label>
         <label>
-          <input type="checkbox" name="suffix">
+          <input type="checkbox" name="suffix" value="1">
           Post's suffix
         </label>
         <label>

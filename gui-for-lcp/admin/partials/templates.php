@@ -350,7 +350,53 @@
 <script type="text/html" id="tmpl-display-options">
   <div class="gflcp-display-accordion">
     <h2>Pagination, Number of posts & Order</h2>
-    <div></div>
+    <div>
+      <label>
+        <input type="checkbox" name="pagination">
+        Pagination
+      </label>
+      <label>
+        Number of posts (per page if pagination is on)
+        <input type="number" name="numberposts" min="1">
+      </label>
+      <label>
+        Order by
+        <select name="orderby">
+          <#
+            const orderbyOptions = {
+              author: 'Author ID',
+              category: 'Category ID',
+              content: 'Content',
+              date: 'Creation date',
+              ID: 'Post ID',
+              menu_order: 'Menu order',
+              mime_type: 'MIME type',
+              modified: 'Last modified date',
+              name: 'Stub',
+              parent: 'Parent ID',
+              password: 'Password',
+              rand: 'Random',
+              status: 'Status',
+              title: 'Title',
+              type: 'Type',
+            };
+
+            _.each(orderbyOptions, function(val, key) {
+          #>
+              <option value="{{key}}"<# 'date' === key ? print(' selected') : null #>>{{val}}</option>
+          <# }); #>
+        </select>
+      </label>
+      <p>Order:</p>
+      <label>
+        Descending
+        <input type="radio" name="order" value="desc" checked>
+      </label>
+      <label>
+        Ascending
+        <input type="radio" name="order" value="asc">
+      </label>
+    </div>
     <h2>List-specific options</h2>
     <div>
       <div class="gflcp-display-checkboxes">

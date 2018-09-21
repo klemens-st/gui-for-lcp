@@ -529,6 +529,10 @@ const shortcodeHelpers = [
             return [];
         }
     },
+
+    function getCategoryDescription(FD) {
+        return (FD.has('category-description')) ? ['category_description="yes"'] : [];
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

@@ -419,6 +419,14 @@ const shortcodeHelpers = [
         ];
     },
 
+    function getDisplayId(FD) {
+        if (FD.has('posts-id')) {
+            return ['display_id="yes"'];
+        } else {
+            return [];
+        }
+    },
+
     function getPostSuffix(FD) {
         if (FD.has('suffix')) {
             const postSuffix = FD.get('post-suffix');

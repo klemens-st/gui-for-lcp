@@ -642,11 +642,11 @@
           <div>
             <label>
               Date's class
-              <input type="text" name="date-class">
+              <input type="text" name="display-date-class">
             </label>
             <label>
               Date's HTML tag
-              <input type="text" name="date-tag">
+              <input type="text" name="display-date-tag">
             </label>
           </div>
         </fieldset>

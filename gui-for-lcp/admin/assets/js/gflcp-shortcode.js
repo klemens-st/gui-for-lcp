@@ -365,7 +365,19 @@ const shortcodeHelpers = [
             ...output,
             ...getTagsAndClasses(FD, 'customfield', 'customfield')
         ];
-    }
+    },
+
+    function getDisplayDate(FD) {
+        if (FD.has('display-date')) {
+
+            return [
+                'date="yes"',
+                ...getTagsAndClasses(FD, 'display-date', 'date')
+            ];
+        } else {
+            return [];
+        }
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

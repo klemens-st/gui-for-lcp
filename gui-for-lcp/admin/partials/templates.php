@@ -356,7 +356,7 @@
 <script type="text/html" id="tmpl-display-options">
   <div class="gflcp-display-accordion">
     <h2>Pagination, Number of posts & Order</h2>
-    <div>
+    <div class="gflcp-display-details">
       <label>
         <input type="checkbox" name="pagination">
         Pagination

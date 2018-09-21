@@ -71,4 +71,31 @@
     }
 }
 
-.gflcp-display-details { @extend %two-column-grid; }
+.gflcp-display-details {
+    @extend %two-column-grid;
+
+    select,
+    label,
+    input[type="text"],
+    input[type="number"] {
+        display: block;
+    }
+
+    label {
+        margin: 10px 0;
+    }
+}
+
+.gflcp-display-checkboxes {
+    label {
+        display: inline-block;
+        background-color: #f6f6f6;
+        border-radius: 5px;
+        color: black;
+        padding: 2px {
+            right: 8px;
+        }
+        margin: 2px;
+        box-shadow: 2px 2px 5px #007fff;
+    }
+}

@@ -466,7 +466,6 @@
             </label>
           </div>
         </fieldset>
-        </fieldset>
         <fieldset class="gflcp-morelink" disabled>
           <h3>Morelink</h3>
           <div>

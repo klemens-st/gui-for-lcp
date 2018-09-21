@@ -544,6 +544,16 @@ const shortcodeHelpers = [
             return [];
         }
     },
+
+    function getWrapperClass(FD) {
+        if (FD.has('wrapper-class')) {
+            const wrapperClass = FD.get('class');
+
+            return [`class="${wrapperClass}"`];
+        } else {
+            return [];
+        }
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

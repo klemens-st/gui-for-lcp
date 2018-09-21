@@ -554,6 +554,38 @@ const shortcodeHelpers = [
             return [];
         }
     },
+
+    function getPagination(FD) {
+        return (FD.has('pagination')) ? ['pagination="yes"'] : [];
+    },
+
+    function getNumberposts(FD) {
+        const numberposts = FD.get('numberposts');
+
+        return ! _.isEmpty(numberposts) ?
+            [`numberposts="${numberposts}"`] :
+            [];
+    },
+
+    function getOrderBy(FD) {
+        const orderBy = FD.get('orderby');
+
+        if ('date' !== orderBy) {
+            return [`orderby="${orderBy}"`];
+        } else {
+            return [];
+        }
+    },
+
+    function getOrder(FD) {
+        const order = FD.get('order');
+
+        if ('asc' === order) {
+            return ['order="ASC"'];
+        } else {
+            return [];
+        }
+    }
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

@@ -533,6 +533,17 @@ const shortcodeHelpers = [
     function getCategoryDescription(FD) {
         return (FD.has('category-description')) ? ['category_description="yes"'] : [];
     },
+
+    function getMorelink(FD) {
+        if (FD.has('morelink')) {
+            return [
+                'morelink="yes"',
+                ...getTagsAndClasses(FD, 'morelink', 'morelink')
+            ];
+        } else {
+            return [];
+        }
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

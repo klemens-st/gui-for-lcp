@@ -544,7 +544,7 @@
           Tags as class
         </label>
         <label>
-          <input type="checkbox" name="title" value="1" checked>
+          <input type="checkbox" name="post-title" value="1" checked>
           Title
         </label>
         <label>

@@ -455,7 +455,7 @@ const shortcodeHelpers = [
     },
 
     function getTitle(FD) {
-        if (FD.has('title')) {
+        if (FD.has('post-title')) {
             const titleLimit = FD.get('title-limit');
             const linkTitles = FD.has('link-titles');
 

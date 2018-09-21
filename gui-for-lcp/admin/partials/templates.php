@@ -401,7 +401,7 @@
     <div>
       <div class="gflcp-display-checkboxes">
         <label>
-          <input type="checkbox" name="conditional-title">
+          <input type="checkbox" name="show-conditional-title">
           Conditional title
         </label>
         <label>
@@ -455,7 +455,7 @@
             </label>
           </div>
         </fieldset>
-        <fieldset class="gflcp-conditional-title" disabled>
+        <fieldset class="gflcp-show-conditional-title" disabled>
           <h3>Conditional title</h3>
           <div>
             <label>
@@ -466,11 +466,11 @@
           <div>
             <label>
               Conditional title's class
-              <input type="text" name="catlink-class">
+              <input type="text" name="conditional-title-class">
             </label>
             <label>
               Conditional title's HTML tag
-              <input type="text" name="catlink-tag">
+              <input type="text" name="conditional-title-tag">
             </label>
           </div>
         </fieldset>

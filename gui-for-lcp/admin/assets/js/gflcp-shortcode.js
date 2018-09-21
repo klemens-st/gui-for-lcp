@@ -497,6 +497,19 @@ const shortcodeHelpers = [
 
         return output;
     },
+
+    function getConditionalTitle(FD) {
+        if (FD.has('show-conditional-title')) {
+            const conditionalTitle = FD.get('conditional-title');
+
+            return [
+                `conditional_title="${conditionalTitle}"`,
+                ...getTagsAndClasses(FD, 'conditional-title', 'conditional_title')
+            ];
+        } else {
+            return [];
+        }
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

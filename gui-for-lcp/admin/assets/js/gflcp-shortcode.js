@@ -369,10 +369,20 @@ const shortcodeHelpers = [
 
     function getDisplayDate(FD) {
         if (FD.has('display-date')) {
-
             return [
                 'date="yes"',
                 ...getTagsAndClasses(FD, 'display-date', 'date')
+            ];
+        } else {
+            return [];
+        }
+    },
+
+    function getDateModified(FD) {
+        if (FD.has('date-modified')) {
+            return [
+                'date_modified="yes"',
+                ...getTagsAndClasses(FD, 'date-modified', 'date_modified')
             ];
         } else {
             return [];

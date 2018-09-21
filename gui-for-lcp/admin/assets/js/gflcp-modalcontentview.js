@@ -33,8 +33,18 @@ const ModalContentView = wp.Backbone.View.extend({
         // Don't manipulate any panels if the form is ok
         if (0 === invalid.length) return;
 
+        // Get a zero-based index of a tab.
+        const tab = invalid.last().parents('.ui-tabs-panel').prevAll('div').length;
+
         // Get a zero-based index of a panel.
         const panel = invalid.last().parents('.ui-accordion-content').prevAll('div').length;
+
+        // Open the tab
+        this.$('#gflcp-tabs').tabs(
+            'option',
+            'active',
+            tab
+        );
 
         // Open the panel
         this.$('#gflcp-select-accordion').accordion(

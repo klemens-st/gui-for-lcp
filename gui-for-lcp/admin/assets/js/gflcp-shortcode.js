@@ -438,6 +438,17 @@ const shortcodeHelpers = [
             }
         }
     },
+
+    function getPostsMorelink(FD) {
+        if (FD.has('posts-morelink')) {
+            return [
+                'posts_morelink="yes"',
+                ...getTagsAndClasses(FD, 'posts-morelink', 'posts_morelink')
+            ];
+        } else {
+            return [];
+        }
+    },
 ];
 
 function getTagsAndClasses(FD, name, shortcodeParam) {

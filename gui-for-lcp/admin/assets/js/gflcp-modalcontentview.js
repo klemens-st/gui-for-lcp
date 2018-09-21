@@ -56,6 +56,7 @@ const ModalContentView = wp.Backbone.View.extend({
         this.$('#gflcp-select-accordion').accordion({
             heightStyle: 'content'
         });
+        this.$('#gflcp-tabs').tabs();
         // To avoid fetching categories html twice
         // we will copy the 'select' checklist and modify it to use
         // as 'exclude'

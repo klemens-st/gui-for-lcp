@@ -401,8 +401,12 @@
     <div>
       <div class="gflcp-display-checkboxes">
         <label>
-          <input type="checkbox" name="title">
-          Title
+          <input type="checkbox" name="conditional-title">
+          Conditional title
+        </label>
+        <label>
+          <input type="checkbox" name="category-title">
+          Category title
         </label>
         <label>
           <input type="checkbox" name="category-description" value="1">
@@ -418,59 +422,58 @@
         </label>
       </div>
       <div class="gflcp-display-details">
-        <fieldset class="gflcp-title" disabled>
-          <section>
-            <h3>Category title</h3>
-            <div>
-              <label>
-                <input type="radio" name="catlink" value="0" checked>
-                No
-              </label>
-              <label>
-                <input type="radio" name="catlink" value="catname">
-                Yes
-              </label>
-              <label>
-                <input type="radio" name="catlink" value="catlink">
-                Yes, wrapped in a link to the category's archive
-              </label>
-            </div>
-            <div>
-              <label>
-                <input type="checkbox" name="category-count" value="1">
-                Display number of posts next to the title
-              </label>
-            </div>
-            <div>
-              <label>
-                Category title's class
-                <input type="text" name="catlink-class">
-              </label>
-              <label>
-                Category title's HTML tag
-                <input type="text" name="catlink-tag">
-              </label>
-            </div>
-          </section>
-          <section>
-            <h3>Conditional title</h3>
-            <div>
-              <label>
-                A custom title before the posts list. Only displayed if the list is not empty
-                <input type="text" name="conditional-title">
-              </label>
-            </div>
-            <div>
-              <label>
-                Conditional title's class
-                <input type="text" name="catlink-class">
-              </label>
-              <label>
-                Conditional title's HTML tag
-                <input type="text" name="catlink-tag">
-              </label>
-            </div>
-          </section>
+        <fieldset class="gflcp-category-title" disabled>
+          <h3>Category title</h3>
+          <div>
+            <label>
+              <input type="radio" name="catlink" value="0" checked>
+              No
+            </label>
+            <label>
+              <input type="radio" name="catlink" value="catname">
+              Yes
+            </label>
+            <label>
+              <input type="radio" name="catlink" value="catlink">
+              Yes, wrapped in a link to the category's archive
+            </label>
+          </div>
+          <div>
+            <label>
+              <input type="checkbox" name="category-count" value="1">
+              Display number of posts next to the title
+            </label>
+          </div>
+          <div>
+            <label>
+              Category title's class
+              <input type="text" name="catlink-class">
+            </label>
+            <label>
+              Category title's HTML tag
+              <input type="text" name="catlink-tag">
+            </label>
+          </div>
+        </fieldset>
+        <fieldset class="gflcp-conditional-title" disabled>
+          <h3>Conditional title</h3>
+          <div>
+            <label>
+              A custom title before the posts list. Only displayed if the list is not empty
+              <input type="text" name="conditional-title">
+            </label>
+          </div>
+          <div>
+            <label>
+              Conditional title's class
+              <input type="text" name="catlink-class">
+            </label>
+            <label>
+              Conditional title's HTML tag
+              <input type="text" name="catlink-tag">
+            </label>
+          </div>
+        </fieldset>
         </fieldset>
         <fieldset class="gflcp-morelink" disabled>
           <h3>Morelink</h3>

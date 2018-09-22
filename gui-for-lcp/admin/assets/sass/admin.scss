@@ -99,3 +99,7 @@
         box-shadow: 2px 2px 5px #007fff;
     }
 }
+
+.gflcp-row-span-2 {
+    grid-row: auto / span 2;
+}

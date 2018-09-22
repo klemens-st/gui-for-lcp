@@ -599,7 +599,7 @@
             </label>
           </div>
         </fieldset>
-        <fieldset class="gflcp-customfield" disabled>
+        <fieldset class="gflcp-customfield gflcp-row-span-2" disabled>
           <h3>Custom fields</h3>
           <div>
             <label>
@@ -677,7 +677,7 @@
             </label>
           </div>
         </fieldset>
-        <fieldset class="gflcp-excerpt" disabled>
+        <fieldset class="gflcp-excerpt gflcp-row-span-2" disabled>
           <h3>Excerpt</h3>
           <div>
             <label>

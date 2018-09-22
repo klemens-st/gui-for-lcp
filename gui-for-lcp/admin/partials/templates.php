@@ -364,6 +364,7 @@
       <label>
         Number of posts (per page if pagination is on)
         <input type="number" name="numberposts" min="1">
+        <small>Default: 10</small>
       </label>
       <label>
         Order by
@@ -619,6 +620,7 @@
             <label>
               Text to display between custom fields
               <input type="text" name="customfield-display-glue">
+              <small>Default: empty string</small>
             </label>
           </div>
           <div>
@@ -635,6 +637,7 @@
             <label>
               Text to display between name and value of each custom field
               <input type="text" name="customfield-display-name-glue">
+              <small>Default: ' : '</small>
             </label>
           </div>
           <div>
@@ -691,8 +694,9 @@
                 Strip HTML tags
               </label>
               <label>
-                Excerpt's size
+                Excerpt's size (word count)
                 <input type="number" name="excerpt-size" min="1">
+                <small>Default: 55</small>
               </label>
             </fieldset>
           </div>
@@ -713,6 +717,7 @@
             <label>
               Text to display after the title
               <input type="text" name="post-suffix">
+              <small>Default: empty string</small>
             </label>
           </div>
         </fieldset>
@@ -731,6 +736,7 @@
             <label>
               Character limit
               <input type="number" name="title-limit" min="1">
+              <small>Default: unlimited</small>
             </label>
           </div>
           <div>

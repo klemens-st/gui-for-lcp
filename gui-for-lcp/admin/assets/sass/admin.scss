@@ -1,5 +1,8 @@
 @import "mixins";
 
+$main-theme-color: #007fff;
+$main-bg-color: #f6f6f6;
+
 // Placeholder classes
 %two-column-grid {
     display: grid;
@@ -84,19 +87,33 @@
     label {
         margin: 10px 0;
     }
+
+    fieldset {
+        border: 1px solid $main-theme-color {
+            radius: 5px;
+        }
+        padding: 10px;
+        background-color: $main-bg-color;
+
+        h3 {
+            margin-top: 0;
+        }
+    }
 }
 
 .gflcp-display-checkboxes {
+    margin-bottom: 10px;
+
     label {
         display: inline-block;
-        background-color: #f6f6f6;
+        background-color: $main-bg-color;
         border-radius: 5px;
         color: black;
         padding: 2px {
             right: 8px;
         }
         margin: 2px;
-        box-shadow: 2px 2px 5px #007fff;
+        box-shadow: 2px 2px 5px $main-theme-color;
     }
 }
 

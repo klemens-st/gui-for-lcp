@@ -121,7 +121,7 @@
             </fieldset>
           </fieldset>
         </div>
-        <h2>Custom tax</h2>
+        <h2>Custom taxonomies</h2>
         <div id="gflcp-taxonomies">
           <# printSwitchCheckbox('Custom taxonomies', 'lcp-taxonomies', false) #>
           <fieldset class="lcp-taxonomies" disabled>
@@ -151,7 +151,7 @@
           <# printSwitchCheckbox('Starting with', 'lcp-starting-with', false) #>
           <fieldset class="lcp-starting-with" disabled>
             <div>
-              <label>Specify
+              <label>Comma separated characters
                 <input
                   type="text"
                   name="starting-with"
@@ -190,7 +190,7 @@
           <# printSwitchCheckbox('Search', 'lcp-search', false) #>
           <fieldset class="lcp-search" disabled>
             <div>
-              <label>Specify
+              <label>Search terms
                 <input type="text" name="search">
               </label>
             </div>
@@ -222,7 +222,7 @@
           <# printSwitchCheckbox('Offset', 'lcp-offset', false) #>
           <fieldset class="lcp-offset" disabled>
             <div>
-              <label>Specify
+              <label>Offset value
                 <input type="number" name="offset" min="0">
               </label>
             </div>

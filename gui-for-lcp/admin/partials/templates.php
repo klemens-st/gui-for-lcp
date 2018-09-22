@@ -730,7 +730,7 @@
             </label>
           </div>
         </fieldset>
-        <fieldset class="gflcp-title">
+        <fieldset class="gflcp-post-title">
           <h3>Title</h3>
           <div>
             <label>

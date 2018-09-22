@@ -16,7 +16,8 @@ function lcpOpenMediaWindow() {
             // A controller object is expected, but let's just pass
             // a fake one to illustrate this proof of concept without
             // getting console errors.
-            controller: { trigger: function() {} }
+            controller: { trigger: function() {} },
+            className: 'gflcp-modal'
         });
 
         this.window.content(new ModalContentView(

@@ -22,6 +22,14 @@ $main-bg-color: #f6f6f6;
     }
 }
 
+// Root modal wrapper
+.gflcp-modal {
+    .media-modal {
+        max-width: 720px;
+        margin: auto;
+    }
+}
+
 // Modal header
 .modal-form-view {
     header { padding-left: 10px; }

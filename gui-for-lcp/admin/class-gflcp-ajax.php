@@ -16,6 +16,9 @@ class Gflcp_Ajax {
 	 */
   public function gui_setup() {
     check_ajax_referer( 'gui-for-lcp', 'security' );
+    if (!current_user_can('edit_posts')) {
+      die();
+    }
 
     $categories = wp_terms_checklist(0, [
       'echo' => false,
@@ -55,11 +58,20 @@ class Gflcp_Ajax {
 	 */
   public function load_terms() {
     check_ajax_referer( 'gui-for-lcp', 'security' );
+    if (!current_user_can('edit_posts')) {
+      die();
+    }
+
 
     $taxonomies = $_POST[ 'taxonomies' ];
     $output = [];
 
     foreach ( $taxonomies as $taxonomy ) {
+      // Validate the taxonomy
+      if (! taxonomy_exists($taxonomy)) {
+        continue;
+      }
+
       $output[ $taxonomy ] = wp_terms_checklist(0, [
         'echo' => false,
         'taxonomy' => $taxonomy,

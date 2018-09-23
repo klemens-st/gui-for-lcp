@@ -7,8 +7,8 @@
             let printValue = value.toUpperCase();
             let printChecked = value === checked ? ' checked' : '';
             #>
-            <label>{{{printValue}}}
-              <input type="radio" name="{{{name}}}" value="{{{value}}}"{{{printChecked}}}>
+            <label>{{printValue}}
+              <input type="radio" name="{{name}}" value="{{value}}"{{{printChecked}}}>
             </label>
             <#
         }
@@ -18,8 +18,8 @@
         const printChecked = checked ? ' checked' : '';
       #>
         <label>
-          <input type="checkbox" name="{{{name}}}" class="lcp-swtich-checkbox"{{{printChecked}}}>
-        {{{label}}}</label>
+          <input type="checkbox" name="{{name}}" class="lcp-swtich-checkbox"{{{printChecked}}}>
+        {{label}}</label>
       <#
     }
   #>

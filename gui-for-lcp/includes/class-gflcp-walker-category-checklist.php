@@ -36,7 +36,7 @@ class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
 
       /** This filter is documented in wp-includes/category-template.php */
       $output .= "\n<li$class>" .
-        '<label class="selectit"><input value="' . $category->{$this->value} . '" type="checkbox" name="'. $this->input_name . '"' .
+        '<label class="selectit"><input value="' . esc_attr($category->{$this->value}) . '" type="checkbox" name="'. esc_attr($this->input_name) . '"' .
         checked( in_array( $category->term_id, $args['selected_cats'] ), true, false ) .
         disabled( empty( $args['disabled'] ), false, false ) . ' /> ' .
         esc_html( $category->name ) . '</label>';

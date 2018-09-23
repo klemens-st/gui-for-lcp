@@ -339,6 +339,14 @@
     >
       Insert into page
     </button>
+    <button
+      type="reset"
+      form="lcp-insert-form"
+      id="gflcp-reset"
+      class="button"
+    >
+      Reset
+    </button>
   </footer>
 </script>
 

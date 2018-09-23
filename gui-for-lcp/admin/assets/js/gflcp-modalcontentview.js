@@ -24,7 +24,8 @@ const ModalContentView = wp.Backbone.View.extend({
         'change .category-checklist input, .excategory-checklist input': 'handleExcludes',
         'change .tag-checklist input, .extag-checklist input': 'handleExcludes',
         'change [name="ps-mode"], [name="pt-mode"]': 'toggleSelection',
-        'click .gflcp-footer button': 'checkForm'
+        'click .gflcp-footer button': 'checkForm',
+        'reset #lcp-insert-form': 'render'
     },
 
     checkForm: function() {

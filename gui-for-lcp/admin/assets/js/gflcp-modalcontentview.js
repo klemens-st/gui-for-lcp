@@ -10,7 +10,7 @@ const ModalContentView = wp.Backbone.View.extend({
         this.model.getInit();
 
         // The 'change' event is fired on the model whenever state changes.
-        this.listenTo(this.model, 'change:init', this.render);
+        this.listenTo(this.model, 'change:hasData', this.render);
         this.listenTo(this.model, 'change:taxonomies', this.renderTaxTerms);
     },
 
@@ -58,6 +58,11 @@ const ModalContentView = wp.Backbone.View.extend({
     },
 
     render: function() {
+        if (! this.model.get('hasData')) {
+            this.$el.html(this.template());
+            return this;
+        }
+
         this.$el.html(this.template(this.model.get('init')));
         this.views.set('#gflcp-display-options', new DisplayOptionsSubview());
 

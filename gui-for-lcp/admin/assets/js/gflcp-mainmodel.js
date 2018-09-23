@@ -12,7 +12,9 @@ const MainModel = wp.media.controller.State.extend({
             post_types: {}
         },
         // Used by TaxTermsSubview
-        taxonomies: []
+        taxonomies: [],
+        // Is display-relevant data present
+        hasData: false
     },
 
     ajaxData: {
@@ -34,6 +36,7 @@ const MainModel = wp.media.controller.State.extend({
             method: 'POST',
             url: ajax_object.ajax_url,
             data: this.ajaxData,
+            success: () => this.set('hasData', true)
         });
     },
 

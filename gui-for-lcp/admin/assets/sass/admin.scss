@@ -132,3 +132,9 @@ $main-bg-color: #f6f6f6;
 .gflcp-row-span-2 {
     grid-row: auto / span 2;
 }
+
+// Ajax spinner SVG
+.gflcp-spinner {
+    grid-row: 2 / 3;
+    place-self: center;
+}

@@ -23,6 +23,16 @@
       <#
     }
   #>
+
+  <#
+    if (_.isEmpty(data)) {
+  #>
+      <img
+        src="<?php echo plugin_dir_url(__FILE__) ?>../assets/img/Spinner-1s-200px.svg"
+        alt="Loading"
+        class="gflcp-spinner"
+      />
+  <# } else { #>
   <header>
     <h1>List Category Posts: Shortcode Creator</h1>
   </header>
@@ -348,6 +358,7 @@
       Reset
     </button>
   </footer>
+  <# } #>
 </script>
 
 <script type="text/html" id="tmpl-taxonomy-terms">

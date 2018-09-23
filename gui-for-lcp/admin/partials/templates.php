@@ -24,7 +24,7 @@
     }
   #>
   <header>
-    <h1>List Category Posts shortcode creator</h1>
+    <h1>List Category Posts: Shortcode Creator</h1>
   </header>
   <form id="lcp-insert-form">
     <div id="gflcp-tabs">

@@ -12,6 +12,8 @@ $main-bg-color: #f6f6f6;
 
 // Overriden WP styles
 #lcp-insert-form {
+    overflow: auto;
+
     .cat-checklist {
         height: initial;
         max-height: 12em;
@@ -30,11 +32,6 @@ $main-bg-color: #f6f6f6;
     }
 }
 
-// Modal header
-.modal-form-view {
-    header { padding-left: 10px; }
-}
-
 // Form checklists
 #lcp-cat-select,
 #lcp-tag-select {
@@ -51,18 +48,24 @@ $main-bg-color: #f6f6f6;
 
 // Modal form container
 .modal-form-view {
-    height: calc(100% - 56px);
-    margin-bottom: 54px;
-    overflow: auto;
+    display: grid;
+    grid: 50px 1fr 56px / 1fr;
+    height: 100%;
+
+    // Modal header
+    header {
+        padding-left: 10px;
+        align-self: center;
+    }
+
+    h1 {
+        margin: 0;
+    }
 }
 
 // Modal footer
 .gflcp-footer {
-    position: absolute;
-    bottom: 0px;
     border-top: 1px solid #e3e3e3;
-    width: 100%;
-    height: 54px;
     background-color: #f0f0f0;
 
     .button {

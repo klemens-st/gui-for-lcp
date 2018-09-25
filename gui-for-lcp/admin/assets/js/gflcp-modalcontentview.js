@@ -7,8 +7,11 @@ const ModalContentView = wp.Backbone.View.extend({
     initialize() {
         this.model = new MainModel();
 
+        this.model.getData();
+
         // The 'change' event is fired on the model whenever state changes.
         this.listenTo(this.model, 'change:hasData', this.render);
+        this.listenTo(this.model, 'change:errored', this.render);
     },
 
     template: wp.template( 'modal-content' ),
@@ -16,7 +19,13 @@ const ModalContentView = wp.Backbone.View.extend({
     events: {
         'submit #lcp-insert-form': 'insertShortcode',
         'click .gflcp-footer button': 'checkForm',
-        'reset #lcp-insert-form': 'render'
+        'reset #lcp-insert-form': 'render',
+        'click .gflcp-alert button': 'onTryAgain',
+    },
+
+    onTryAgain() {
+        this.model.set('errored', false);
+        this.model.getData();
     },
 
     checkForm: function() {
@@ -49,7 +58,7 @@ const ModalContentView = wp.Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(this.template({hasData: this.model.get('hasData')}));
+        this.$el.html(this.template(_.clone(this.model.attributes)));
         this.views.set('#gflcp-display-options', new DisplayOptionsSubview());
         this.views.set('#gflcp-select-options', new SelectOptionsSubview({
             // Use parent's model in the subview

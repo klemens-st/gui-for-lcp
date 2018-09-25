@@ -14,6 +14,11 @@
     </div>
     <button type="submit" class="hidden-submit-btn">Submit</button>
   </form>
+  <# } else if (data.errored) { #>
+  <div class="gflcp-alert">
+    <p>Failed fetching data from the server!</p>
+    <button  type="button" class="button">Try again</button>
+  </div>
   <# } else { #>
   <img
       src="<?php echo plugin_dir_url(__FILE__) ?>../assets/img/Spinner-1s-200px.svg"

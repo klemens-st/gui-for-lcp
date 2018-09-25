@@ -1,10 +1,6 @@
 import TaxTermsSubview from './gflcp-taxtermssubview.js';
 
 const SelectOptionsSubview = wp.Backbone.View.extend({
-    initialize() {
-        this.model.getData();
-    },
-
     template: wp.template( 'select-options' ),
 
     events: {

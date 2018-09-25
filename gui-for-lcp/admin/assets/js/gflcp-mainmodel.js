@@ -1,10 +1,9 @@
 // wp.Backbone.Model does not exist so I'm using wp.media.controller.State
 // because it extends directly from Backbone.Model
-'use strict';
 const MainModel = wp.media.controller.State.extend({
     // Initial state, with proper data types for reference
     defaults: {
-        init: {
+        data: {
             categories: '',
             users: '',
             tags: [],
@@ -29,7 +28,7 @@ const MainModel = wp.media.controller.State.extend({
         'taxonomies': []
     },
 
-    getInit() {
+    getData() {
         // Use the Backbone fetch method to get state value.
         // This will trigger a 'change' event on completion.
         this.fetch({

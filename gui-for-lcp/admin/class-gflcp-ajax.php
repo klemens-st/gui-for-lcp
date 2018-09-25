@@ -39,7 +39,7 @@ class Gflcp_Ajax {
       'objects'
     );
 
-    $response = json_encode( ['init' => [
+    $response = json_encode( ['data' => [
       'categories' => $categories,
       'users' => $users,
       'tags' => $tags,

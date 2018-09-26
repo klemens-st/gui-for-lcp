@@ -62,7 +62,6 @@ class Gflcp {
 		$this->plugin_name = 'gui-for-lcp';
 
 		$this->load_dependencies();
-		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_ajax_hooks();
 
@@ -74,7 +73,6 @@ class Gflcp {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Gflcp_Loader. Orchestrates the hooks of the plugin.
-	 * - Gflcp_i18n. Defines internationalization functionality.
 	 * - Gflcp_Admin. Defines all hooks for the admin area.
    * - Gflcp_Ajax. Defines all ajax handlers.
 	 *
@@ -93,12 +91,6 @@ class Gflcp {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-gflcp-loader.php';
 
 		/**
-		 * The class responsible for defining internationalization functionality
-		 * of the plugin.
-		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-gflcp-i18n.php';
-
-		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-gflcp-admin.php';
@@ -114,23 +106,6 @@ class Gflcp {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-gflcp-walker-category-checklist.php';
 
 		$this->loader = new Gflcp_Loader();
-
-	}
-
-	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * Uses the Gflcp_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function set_locale() {
-
-		$plugin_i18n = new Gflcp_i18n();
-
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
 	}
 

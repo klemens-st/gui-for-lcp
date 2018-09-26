@@ -13,11 +13,10 @@
  * Description:       This plugin adds an "Add LCP" button to post edit screen which opens a modal with a convenient GUI for creating List Category Posts shortcodes.
  * Version:           1.0.0
  * Author:            Klemens Starybrat
- * Author URI:        
+ * Author URI:
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       gui-for-lcp
- * Domain Path:       /languages
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

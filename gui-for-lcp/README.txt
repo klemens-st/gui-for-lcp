@@ -2,7 +2,7 @@
 Contributors: zymeth25
 Donate link: @TODO
 Tags: @TODO
-Requires at least: 4.8
+Requires at least: 4.6
 Tested up to: 4.9
 Stable tag: 1.0.0
 License: GPLv3

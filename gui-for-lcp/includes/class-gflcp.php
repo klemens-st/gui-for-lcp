@@ -147,7 +147,6 @@ class Gflcp {
 
 		$this->loader->add_action( 'wp_enqueue_media', $plugin_admin, 'enqueue_media' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'media_buttons', $plugin_admin, 'add_media_button' );
 		$this->loader->add_action( 'print_media_templates', $plugin_admin, 'print_media_templates' );
 
 	}

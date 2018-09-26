@@ -84,17 +84,6 @@ class Gflcp_Admin {
 	}
 
   /**
-	 * Register the media button.
-	 *
-	 * @since    1.0.0
-	 */
-	public function add_media_button() {
-
-    echo '<a href="#" class="insert-lcp button">Add LCP</a>';
-
-  }
-
-  /**
 	 * Register media templates.
 	 *
 	 * @since    1.0.0

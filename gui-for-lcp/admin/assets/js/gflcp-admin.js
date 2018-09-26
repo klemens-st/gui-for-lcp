@@ -2,28 +2,42 @@ import ModalContentView from './gflcp-modalcontentview.js';
 
 // Just to be safe
 const $ = jQuery;
+let modal;
 
 $(document).ready(function(){
 
     $('.insert-lcp').click(lcpOpenMediaWindow);
 });
 
+//https://core.trac.wordpress.org/ticket/35243#comment:65
+$( document ).on( 'tinymce-editor-setup', function( event, editor ) {
+    editor.settings.toolbar1 += ',gflcp';
+    editor.addButton( 'gflcp', {
+        text: 'LCP',
+        icon: false,
+        onclick() {
+            lcpOpenMediaWindow();
+        }
+    });
+});
+
+
 function lcpOpenMediaWindow() {
-    if (this.window === undefined) {
+    if (modal === undefined) {
 
         // Create a modal view.
-        this.window = new wp.media.view.Modal({
+        modal = new wp.media.view.Modal({
             // A controller object is expected, but let's just pass
             // a fake one avoid console errors.
             controller: { trigger: function() {} },
             className: 'gflcp-modal'
         });
 
-        this.window.content(new ModalContentView(
+        modal.content(new ModalContentView(
             {className: 'modal-form-view'}
         ));
     }
 
-    this.window.open();
+    modal.open();
     return false;
 }

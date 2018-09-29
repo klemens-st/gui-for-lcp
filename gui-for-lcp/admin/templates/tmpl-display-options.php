@@ -1,36 +1,40 @@
 <script type="text/html" id="tmpl-display-options">
   <div class="gflcp-display-accordion">
-    <h2>Pagination, Number of posts & Order</h2>
+    <h2><?php _e('Pagination, Number of posts & Order'); ?></h2>
     <div class="gflcp-display-details">
       <label>
         <input type="checkbox" name="pagination">
-        Pagination
+        <?php _e('Pagination', 'gui-for-lcp') ?>
       </label>
       <label>
-        Number of posts (per page if pagination is on)
+        <?php _e('Number of posts (per page if pagination is on)', 'gui-for lcp') ?>
         <input type="number" name="numberposts" min="1">
-        <small>Default: 10</small>
+        <small><?php printf(
+          /* translators: %s: Default form field value */
+          __('Default: %s', 'gui-for-lcp'),
+          '10'
+        ) ?></small>
       </label>
       <label>
-        Order by
+        <?php _e('Order by', 'gui-for-lcp') ?>
         <select name="orderby">
           <#
             const orderbyOptions = {
-              author: 'Author ID',
-              category: 'Category ID',
-              content: 'Content',
-              date: 'Creation date',
-              ID: 'Post ID',
-              menu_order: 'Menu order',
-              mime_type: 'MIME type',
-              modified: 'Last modified date',
-              name: 'Stub',
-              parent: 'Parent ID',
-              password: 'Password',
-              rand: 'Random',
-              status: 'Status',
-              title: 'Title',
-              type: 'Type',
+              author:     '<?php _e('Author ID', 'gui-for-lcp') ?>',
+              category:   '<?php _e('Category ID', 'gui-for-lcp') ?>',
+              content:    '<?php _e('Content', 'gui-for-lcp') ?>',
+              date:       '<?php _e('Creation date', 'gui-for-lcp') ?>',
+              ID:         '<?php _e('Post ID', 'gui-for-lcp') ?>',
+              menu_order: '<?php _e('Menu order', 'gui-for-lcp') ?>',
+              mime_type:  '<?php _e('MIME type', 'gui-for-lcp') ?>',
+              modified:   '<?php _e('Last modified date', 'gui-for-lcp') ?>',
+              name:       '<?php _e('Slug', 'gui-for-lcp') ?>',
+              parent:     '<?php _e('Parent ID', 'gui-for-lcp') ?>',
+              password:   '<?php _e('Password', 'gui-for-lcp') ?>',
+              rand:       '<?php _e('Random', 'gui-for-lcp') ?>',
+              status:     '<?php _e('Status', 'gui-for-lcp') ?>',
+              title:      '<?php _e('Title', 'gui-for-lcp') ?>',
+              type:       '<?php _e('Type', 'gui-for-lcp') ?>',
             };
 
             _.each(orderbyOptions, function(val, key) {
@@ -39,216 +43,216 @@
           <# }); #>
         </select>
       </label>
-      <p>Order:</p>
+      <p><?php _e('Order', 'gui-for-lcp') ?>:</p>
       <label>
-        Descending
+        <?php _e('Descending', 'gui-for-lcp') ?>
         <input type="radio" name="order" value="desc" checked>
       </label>
       <label>
-        Ascending
+        <?php _e('Ascending', 'gui-for-lcp') ?>
         <input type="radio" name="order" value="asc">
       </label>
     </div>
-    <h2>List-specific options</h2>
+    <h2><?php _e('List-specific options', 'gui-for-lcp') ?></h2>
     <div>
       <div class="gflcp-display-checkboxes">
         <label>
           <input type="checkbox" name="show-conditional-title">
-          Conditional title
+          <?php _e('Conditional title', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="category-title">
-          Category title
+          <?php _e('Category title', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="category-description" value="1">
-          Category description
+          <?php _e('Category description', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="morelink" value="1">
-          Morelink
+          <?php _e('Morelink', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="wrapper-class" value="1">
-          Specify wrapper class
+          <?php _e('Specify wrapper class', 'gui-for-lcp') ?>
         </label>
       </div>
       <div class="gflcp-display-details">
         <fieldset class="gflcp-category-title" disabled>
-          <h3>Category title</h3>
+          <h3><?php _e('Category title', 'gui-for-lcp') ?></h3>
           <div>
             <label>
               <input type="checkbox" name="catlink" value="1" checked>
-              Wrap in a link to the category's archive
+              <?php _e("Wrap in a link to the category's archive", 'gui-for-lcp') ?>
             </label>
           </div>
           <div>
             <label>
               <input type="checkbox" name="category-count" value="1">
-              Display number of posts next to the title
+              <?php _e('Display number of posts next to the title', 'gui-for-lcp') ?>
             </label>
           </div>
           <div>
             <label>
-              Category title's class
+              <?php _e("CSS class", 'gui-for-lcp') ?>
               <input type="text" name="catlink-class">
             </label>
             <label>
-              Category title's HTML tag
+              <?php _e('HTML tag', 'gui-for-lcp') ?>
               <input type="text" name="catlink-tag">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-show-conditional-title" disabled>
-          <h3>Conditional title</h3>
+          <h3><?php _e('Conditional title', 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              A custom title before the posts list. Only displayed if the list is not empty
+              <?php _e('A custom title before the posts list. Only displayed if the list is not empty.', 'gui-for-lcp') ?>
               <input type="text" name="conditional-title">
             </label>
           </div>
           <div>
             <label>
-              Conditional title's class
+              <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="conditional-title-class">
             </label>
             <label>
-              Conditional title's HTML tag
+              <?php _e('HTML tag', 'gui-for-lcp') ?>
               <input type="text" name="conditional-title-tag">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-morelink" disabled>
-          <h3>Morelink</h3>
+          <h3><?php _e('Morelink', 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              Morelink's class
+              <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="morelink-class">
             </label>
             <label>
-              Morelink's HTML tag
+              <?php _e('HTML tag', 'gui-for-lcp') ?>
               <input type="text" name="morelink-tag">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-wrapper-class" disabled>
-          <h3>Wrapper's class</h3>
+          <h3><?php _e("Wrapper's class", 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              CSS class
+              <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="class">
             </label>
           </div>
         </fieldset>
       </div>
     </div>
-    <h2>Post-specific options</h2>
+    <h2><?php _e('Post-specific options', 'gui-for-lcp') ?></h2>
     <div>
       <div class="gflcp-display-checkboxes">
         <label>
           <input type="checkbox" name="display-author" value="1">
-          Author
+          <?php _e('Author', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="comments" value="1">
-          Comment count
+          <?php _e('Comment count', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="content" value="1">
-          Content
+          <?php _e('Content', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="customfield" value="1">
-          Custom fields
+          <?php _e('Custom fields', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="display-date" value="1">
-          Date
+          <?php _e('Date', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="date-modified" value="1">
-          Date modified
+          <?php _e('Date modified', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="excerpt" value="1">
-          Excerpt
+          <?php _e('Excerpt', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="posts-id" value="1">
-          Post's ID
+          <?php _e('Post ID', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="suffix" value="1">
-          Post's suffix
+          <?php _e("Post's suffix", 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="posts-morelink" value="1">
-          Post's morelink
+          <?php _e("Post's morelink", 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="tags-as-class" value="1">
-          Tags as class
+          <?php _e('Tags as class', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="post-title" value="1" checked>
-          Title
+          <?php _e('Title', 'gui-for-lcp') ?>
         </label>
         <label>
           <input type="checkbox" name="thumbnail" value="1">
-          Thumbnail
+          <?php _e('Thumbnail', 'gui-for-lcp') ?>
         </label>
       </div>
       <div class="gflcp-display-details">
         <fieldset class="gflcp-display-author" disabled>
-          <h3>Author</h3>
+          <h3><?php _e('Author', 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              Author's class
+              <?php _e("Author's CSS class", 'gui-for-lcp') ?>
               <input type="text" name="display-author-class">
             </label>
             <label>
-              Author's HTML tag
+              <?php _e('HTML tag', 'gui-for-lcp') ?>
               <input type="text" name="display-author-tag">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-comments" disabled>
-          <h3>Comment count</h3>
+          <h3><?php _e('Comment count', 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              Comment count's class
+              <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="comments-class">
             </label>
             <label>
-              Comment count's HTML tag
+              <?php _e('HTML tag', 'gui-for-lcp') ?>
               <input type="text" name="comments-tag">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-content" disabled>
-          <h3>Content</h3>
+          <h3><?php _e('Content', 'gui-for-lcp') ?></h3>
           <div>
             <label>
               <input type="checkbox" name="content-full" value="1">
-              Ignore post's 'more' tag
+              <?php _e("Ignore post's 'more' tag", 'gui-for-lcp') ?>
             </label>
           </div>
           <div>
             <label>
-              Content's class
+              <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="content-class">
             </label>
             <label>
-              Comntent's HTML tag
+              <?php _e('HTML tag', 'gui-for-lcp') ?>
               <input type="text" name="content-tag">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-customfield gflcp-row-span-2" disabled>
-          <h3>Custom fields</h3>
+          <h3><?php _e('Custom fields', 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              Custom fields' names, comma separated
+              <?php _e("Custom fields' names, comma separated", 'gui-for-lcp') ?>
               <input type="text" name="customfield-display">
             </label>
           </div>
@@ -260,12 +264,16 @@
                 value="1"
                 toggles="customfield-display-glue"
               >
-              Display separately
+              <?php _e('Display separately', 'gui-for-lcp') ?>
             </label>
             <label>
-              Text to display between custom fields
+              <?php _e('Text to display between custom fields', 'gui-for-lcp') ?>
               <input type="text" name="customfield-display-glue">
-              <small>Default: empty string</small>
+              <small><?php printf(
+                /* translators: %s: Default form field value */
+                __('Default: %s', 'gui-for-lcp'),
+                __('empty string', 'gui-for-lcp')
+              ) ?></small>
             </label>
           </div>
           <div>
@@ -277,147 +285,163 @@
                 checked
                 toggles="customfield-display-name-glue"
               >
-              Display each custom field's name
+              <?php _e("Display each custom field's name", 'gui-for-lcp') ?>
             </label>
             <label>
-              Text to display between name and value of each custom field
+              <?php _e('Text to display between name and value of each custom field', 'gui-for-lcp') ?>
               <input type="text" name="customfield-display-name-glue">
-              <small>Default: ' : '</small>
+              <small><?php printf(
+                /* translators: %s: Default form field value */
+                __('Default: %s', 'gui-for-lcp'),
+                ' : '
+              ) ?></small>
             </label>
           </div>
           <div>
             <label>
-               Custom fields' class
+               <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="customfield-class">
             </label>
             <label>
-              Custom fields' HTML tag
+              <?php _e('HTML tag', 'gui-for-lcp') ?>
               <input type="text" name="customfield-tag">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-display-date" disabled>
-          <h3>Date</h3>
+          <h3><?php _e('Date', 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              Date's class
+              <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="display-date-class">
             </label>
             <label>
-              Date's HTML tag
+              <?php _e('HTML tag', 'gui-for-lcp') ?>
               <input type="text" name="display-date-tag">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-date-modified" disabled>
-          <h3>Date modified</h3>
+          <h3><?php _e('Date modified', 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              Date modified's class
+              <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="date-modified-class">
             </label>
             <label>
-              Date modified's HTML tag
+              <?php _e('HTML tag', 'gui-for-lcp') ?>
               <input type="text" name="date-modified-tag">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-excerpt gflcp-row-span-2" disabled>
-          <h3>Excerpt</h3>
+          <h3><?php _e('Excerpt', 'gui-for-lcp') ?></h3>
           <div>
             <label>
               <input type="checkbox" name="excerpt-full" value="1" class="gflcp-toggles-fieldset">
-              Use full excerpt
+              <?php _e('Use full excerpt', 'gui-for-lcp') ?>
             </label>
             <fieldset class="gflcp-excerpt-full">
               <label>
                 <input type="checkbox" name="excerpt-overwrite" value="1">
-                Ignore post's explicit excerpt
+                <?php _e("Ignore post's explicit excerpt", 'gui-for-lcp') ?>
               </label>
               <label>
                 <input type="checkbox" name="excerpt-strip" value="1" checked>
-                Strip HTML tags
+                <?php _e('Strip HTML tags', 'gui-for-lcp') ?>
               </label>
               <label>
-                Excerpt's size (word count)
+                <?php _e("Excerpt's size (word count)", 'gui-for-lcp') ?>
                 <input type="number" name="excerpt-size" min="1">
-                <small>Default: 55</small>
+                <small><?php printf(
+                  /* translators: %s: Default form field value */
+                  __('Default: %s', 'gui-for-lcp'),
+                  '55'
+                ) ?></small>
               </label>
             </fieldset>
           </div>
           <div>
             <label>
-              Excerpt's class
+              <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="excerpt-class">
             </label>
             <label>
-              Excerpt's HTML tag
+              <?php _e('HTML tag', 'gui-for-lcp') ?>
               <input type="text" name="excerpt-tag">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-suffix" disabled>
-          <h3>Post's suffix</h3>
+          <h3><?php _e("Post's suffix", 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              Text to display after the title
+              <?php _e('Text to display after the title', 'gui-for-lcp') ?>
               <input type="text" name="post-suffix">
-              <small>Default: empty string</small>
+              <small><?php printf(
+                /* translators: %s: Default form field value */
+                __('Default: %s', 'gui-for-lcp'),
+                __('empty string', 'gui-for-lcp')
+              ) ?></small>
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-posts-morelink" disabled>
-          <h3>Post's morelink</h3>
+          <h3><?php _e("Post's morelink", 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              Post's morelink's class
+              <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="posts-morelink-class">
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-post-title">
-          <h3>Title</h3>
+          <h3><?php _e('Title', 'gui-for-lcp') ?></h3>
           <div>
             <label>
-              Character limit
+              <?php _e('Character limit', 'gui-for-lcp') ?>
               <input type="number" name="title-limit" min="1">
-              <small>Default: unlimited</small>
+              <small><?php printf(
+                /* translators: %s: Default form field value */
+                __('Default: %s', 'gui-for-lcp'),
+                __('no limit', 'gui-for-lcp')
+              ) ?></small>
             </label>
           </div>
           <div>
             <label>
               <input type="checkbox" name="link-titles" value="1" checked>
-              Wrap titles in links
+              <?php _e('Wrap titles in links', 'gui-for-lcp') ?>
             </label>
           </div>
         </fieldset>
         <fieldset class="gflcp-thumbnail" disabled>
-          <h3>Thumbnail</h3>
+          <h3><?php _e('Thumbnail', 'gui-for-lcp') ?></h3>
           <div>
             <label>
               <input type="checkbox" name="force-thumbnail" value="1">
-              Force thumbnail
+              <?php _e('Force thumbnail', 'gui-for-lcp') ?>
             </label>
           </div>
           <div>
             <label>
-              Thumbnail size
+              <?php _e("Thumbnail's size", 'gui-for-lcp') ?>
               <input type="text" name="thumbnail-size">
             </label>
           </div>
           <div>
             <label>
-              Thumbnail's class
+              <?php _e('CSS class', 'gui-for-lcp') ?>
               <input type="text" name="thumbnail-class">
             </label>
           </div>
         </fieldset>
       </div>
     </div>
-    <h2>Template</h2>
+    <h2><?php _e('Template', 'gui-for-lcp') ?></h2>
     <div>
       <label>
-        Template's name
+        <?php _e("Template's name", 'gui-for-lcp') ?>
         <input type="text" name="template">
       </label>
     </div>

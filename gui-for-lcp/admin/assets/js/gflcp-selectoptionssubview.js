@@ -5,7 +5,7 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
 
     events: {
         'change .lcp-swtich-checkbox': 'toggleFieldset',
-        'change .lcp-categorypage, .lcp-currenttags': 'toggleCurrent',
+        'change .gflcp-categorypage, .gflcp-currenttags': 'toggleCurrent',
         'change .category-checklist input, .excategory-checklist input': 'handleExcludes',
         'change .tag-checklist input, .extag-checklist input': 'handleExcludes',
         'change [name="ps-mode"], [name="pt-mode"]': 'toggleSelection',
@@ -14,12 +14,12 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
 
     render: function() {
         this.$el.html(this.template(this.model.get('data')));
-        this.views.set('.taxonomy-terms', new TaxTermsSubview({
+        this.views.set('#gflcp-taxonomy-terms', new TaxTermsSubview({
             // Use parent's model in the subview
             model: this.model
         }));
 
-        this.$('.lcp-datepicker').datepicker({
+        this.$('.gflcp-datepicker').datepicker({
             dateFormat: 'yy/mm/dd'
         });
 
@@ -64,8 +64,8 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
 
         if (false === el.prop('checked')) return null;
 
-        if ('lcp-categorypage' === cssClass) target = '#lcp-cat-select';
-        else if ('lcp-currenttags' === cssClass) target = '#lcp-tag-select';
+        if ('gflcp-categorypage' === cssClass) target = '#gflcp-cat-select';
+        else if ('gflcp-currenttags' === cssClass) target = '#gflcp-tag-select';
 
         if ('1' === value) this.$(target).prop('disabled', true);
         else if ('0' === value) this.$(target).prop('disabled', false);
@@ -77,8 +77,8 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
 
         let targetEl;
 
-        if ('ps-mode' === name) targetEl = '#lcp-ps-select';
-        else if ('pt-mode' === name) targetEl = '#lcp-pt-select';
+        if ('ps-mode' === name) targetEl = '#gflcp-ps-select';
+        else if ('pt-mode' === name) targetEl = '#gflcp-pt-select';
 
         if (true === el.prop('checked') && 'select' === el.val()) {
             this.$(targetEl).prop('disabled', false);

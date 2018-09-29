@@ -17,9 +17,9 @@ const ModalContentView = wp.Backbone.View.extend({
     template: wp.template( 'modal-content' ),
 
     events: {
-        'submit #lcp-insert-form': 'insertShortcode',
+        'submit #gflcp-form': 'insertShortcode',
         'click .gflcp-footer button': 'checkForm',
-        'reset #lcp-insert-form': 'render',
+        'reset #gflcp-form': 'render',
         'click .gflcp-alert button': 'onTryAgain',
     },
 
@@ -54,7 +54,7 @@ const ModalContentView = wp.Backbone.View.extend({
             panel
         );
         // Re-trigger native validation
-        setTimeout(() => this.$('.hidden-submit-btn').click(), 500);
+        setTimeout(() => this.$('.gflcp-hidden-btn').click(), 500);
     },
 
     render: function() {

@@ -1,6 +1,6 @@
 const shortcodeHelpers = [
     function lcpGetCategories(FD) {
-        if (!FD.has('lcp-categories')) return [];
+        if (!FD.has('gflcp-categories')) return [];
 
         const catRel = (FD.has('catrel')) ? (FD.get('catrel')) : null;
 
@@ -39,7 +39,7 @@ const shortcodeHelpers = [
     },
 
     function lcpGetTags(FD) {
-        if (!FD.has('lcp-tags')) return [];
+        if (!FD.has('gflcp-tags')) return [];
 
         const tagRel = (FD.has('tagrel')) ? (FD.get('tagrel')) : null;
 
@@ -78,7 +78,7 @@ const shortcodeHelpers = [
     },
 
     function lcpGetCustomTaxonomies(FD) {
-        if (!FD.has('lcp-taxonomies') || !FD.has('taxonomy') || !FD.has('taxrel')) {
+        if (!FD.has('gflcp-taxonomies') || !FD.has('taxonomy') || !FD.has('taxrel')) {
             return [];
         }
         const taxonomies = FD.getAll('taxonomy');
@@ -176,7 +176,7 @@ const shortcodeHelpers = [
     },
 
     function lcpGetExcludedPosts(FD) {
-        if (!FD.has('lcp-exclude-posts')) return [];
+        if (!FD.has('gflcp-exclude-posts')) return [];
 
         let exCurPost;
         let exPost;
@@ -284,7 +284,7 @@ const shortcodeHelpers = [
     },
 
     function lcpGetCustomFields(FD) {
-        if (!FD.has('lcp-custom-fields')) return [];
+        if (!FD.has('gflcp-custom-fields')) return [];
 
         const customfieldName = FD.get('customfield-name');
         const customfieldValue = FD.get('customfield-value');

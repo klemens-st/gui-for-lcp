@@ -3,7 +3,7 @@
     <h1>List Category Posts: <?php _e('Shortcode Creator', 'gui-for-lcp') ?></h1>
   </header>
   <# if (data.hasData) { #>
-  <form id="lcp-insert-form">
+  <form id="gflcp-form">
     <div id="gflcp-tabs">
       <ul>
         <li><a href="#gflcp-select-options"><?php _e('Selection', 'gui-for-lcp') ?></a></li>
@@ -12,7 +12,7 @@
       <div id="gflcp-select-options"></div>
       <div id="gflcp-display-options"></div>
     </div>
-    <button type="submit" class="hidden-submit-btn">Submit</button>
+    <button type="submit" class="gflcp-hidden-btn">Submit</button>
   </form>
   <# } else if (data.errored) { #>
   <div class="gflcp-alert">
@@ -30,13 +30,13 @@
     <button
       type="submit"
       class="button media-button button-primary button-large media-button-insert"
-      form="lcp-insert-form"
+      form="gflcp-form"
     >
       <?php _e('Insert into editor', 'gui-for-lcp') ?>
     </button>
     <button
       type="reset"
-      form="lcp-insert-form"
+      form="gflcp-form"
       id="gflcp-reset"
       class="button"
     >

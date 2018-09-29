@@ -11,7 +11,7 @@ $main-bg-color: #f6f6f6;
 }
 
 // Overriden WP styles
-#lcp-insert-form {
+#gflcp-form {
     overflow: auto;
 
     .cat-checklist {
@@ -33,12 +33,12 @@ $main-bg-color: #f6f6f6;
 }
 
 // Form checklists
-#lcp-cat-select,
-#lcp-tag-select {
+#gflcp-cat-select,
+#gflcp-tag-select {
     @extend %two-column-grid;
 }
 
-.taxonomy-terms > div {
+#gflcp-taxonomy-terms > div {
     @extend %two-column-grid;
 }
 
@@ -76,7 +76,7 @@ $main-bg-color: #f6f6f6;
 }
 
 // Form elements
-.hidden-submit-btn {
+.gflcp-hidden-btn {
     display: none;
 }
 

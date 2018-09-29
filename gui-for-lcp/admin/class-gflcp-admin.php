@@ -90,7 +90,9 @@ class Gflcp_Admin {
 	 */
 	public function print_media_templates() {
 
-    require_once 'partials/templates.php';
-
+    require_once 'templates/tmpl-modal-content.php';
+    require_once 'templates/tmpl-select-options.php';
+    require_once 'templates/tmpl-display-options.php';
+    require_once 'templates/tmpl-taxonomy-terms.php';
   }
 }

@@ -260,10 +260,7 @@ const shortcodeHelpers = [
         let output = [];
 
         if (FD.has('show-protected')) {
-            const showProtected = FD.get('show-protected');
-            if ('1' === showProtected) {
-                output.push('show_protected="yes"');
-            }
+            output.push('show_protected="yes"');
         }
         return output;
     },

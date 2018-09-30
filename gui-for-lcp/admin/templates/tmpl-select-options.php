@@ -204,6 +204,10 @@
           </ul>
         </fieldset>
       </section>
+      <label>
+        <input type="checkbox" name="show-protected">
+        Include password protected posts
+      </label>
     </div>
     <h2><?php _e('Custom fields', 'gui-for-lcp') ?></h2>
     <div>
@@ -311,19 +315,6 @@
         <div>
           <label><?php _e('Offset value', 'gui-for-lcp') ?>
             <input type="number" name="offset" min="0">
-          </label>
-        </div>
-      </fieldset>
-    </div>
-    <h2><?php _e('Show protected', 'gui-for-lcp') ?></h2>
-    <div>
-      <fieldset class="gflcp-show-protected">
-        <div>
-          <label><?php _e('Yes', 'gui-for-lcp') ?>
-            <input type="radio" name="show-protected" value="1">
-          </label>
-          <label><?php _e('No', 'gui-for-lcp') ?>
-            <input type="radio" name="show-protected" value="0" checked>
           </label>
         </div>
       </fieldset>

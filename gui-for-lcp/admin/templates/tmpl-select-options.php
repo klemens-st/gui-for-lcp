@@ -15,19 +15,23 @@
         });
     }
 
-    function printSwitchCheckbox(label, name, checked) {
+    function printSwitchCheckbox(name, checked) {
         const printChecked = checked ? ' checked' : '';
       #>
-        <label>
-          <input type="checkbox" name="{{name}}" class="gflcp-swtich-checkbox"{{{printChecked}}}>
-          {{label}}</label>
+        <div class="gflcp-switch-block">
+          <label>
+            <input type="checkbox" name="{{name}}" class="gflcp-swtich-checkbox"{{{printChecked}}}>
+            <span class="gflcp-slider"></span>
+            <span class="gflcp-switch-label"><?php _e('Enable', 'gui-for-lcp') ?></span>
+          </label>
+        </div>
       <#
     }
   #>
   <div id="gflcp-select-accordion">
     <h2><?php _e('Category', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Categories', 'gui-for-lcp') ?>', 'gflcp-categories', true) #>
+      <# printSwitchCheckbox('gflcp-categories', true) #>
       <fieldset class="gflcp-categories">
         <div>
           <label>
@@ -66,7 +70,7 @@
     </div>
     <h2><?php _e('Tags', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Tags', 'gui-for-lcp') ?>', 'gflcp-tags', false) #>
+      <# printSwitchCheckbox('gflcp-tags', false) #>
       <fieldset class="gflcp-tags" disabled>
         <div>
           <label>
@@ -96,7 +100,7 @@
     </div>
     <h2><?php _e('Custom taxonomies', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Custom taxonomies', 'gui-for-lcp') ?>', 'gflcp-taxonomies', false) #>
+      <# printSwitchCheckbox('gflcp-taxonomies', false) #>
       <fieldset class="gflcp-taxonomies" disabled>
         <div>
           <h3><?php _e('Choose one or more taxonomies', 'gui-for-lcp') ?></h3>
@@ -211,7 +215,7 @@
     </div>
     <h2><?php _e('Custom fields', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Custom fields', 'gui-for-lcp') ?>', 'gflcp-custom-fields', false) #>
+      <# printSwitchCheckbox('gflcp-custom-fields', false) #>
       <fieldset class="gflcp-custom-fields" disabled>
         <div>
           <label><?php _e('Customfield name', 'gui-for-lcp') ?>
@@ -225,7 +229,7 @@
     </div>
     <h2><?php _e('Exclude posts', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Exclude posts', 'gui-for-lcp') ?>', 'gflcp-exclude-posts', false) #>
+      <# printSwitchCheckbox('gflcp-exclude-posts', false) #>
       <fieldset class="gflcp-exclude-posts" disabled>
         <div>
           <label>
@@ -247,7 +251,7 @@
     </div>
     <h2><?php _e('Author', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Author', 'gui-for-lcp') ?>', 'gflcp-author', false) #>
+      <# printSwitchCheckbox('gflcp-author', false) #>
       <fieldset class="gflcp-author" disabled>
         <div>
           <select id="gflcp-author" name="author">
@@ -260,7 +264,7 @@
     </div>
     <h2><?php _e('Date', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Date', 'gui-for-lcp') ?>', 'gflcp-date', false) #>
+      <# printSwitchCheckbox('gflcp-date', false) #>
       <fieldset class="gflcp-date" disabled>
         <div>
           <label><?php _e('Year', 'gui-for-lcp') ?>
@@ -283,7 +287,7 @@
     </div>
     <h2><?php _e('Search', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Search', 'gui-for-lcp') ?>', 'gflcp-search', false) #>
+      <# printSwitchCheckbox('gflcp-search', false) #>
       <fieldset class="gflcp-search" disabled>
         <div>
           <label><?php _e('Search terms', 'gui-for-lcp') ?>
@@ -294,7 +298,7 @@
     </div>
     <h2><?php _e('Starting with', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Starting with', 'gui-for-lcp') ?>', 'gflcp-starting-with', false) #>
+      <# printSwitchCheckbox('gflcp-starting-with', false) #>
       <fieldset class="gflcp-starting-with" disabled>
         <div>
           <label><?php _e('Comma separated characters', 'gui-for-lcp') ?>
@@ -310,7 +314,7 @@
     </div>
     <h2><?php _e('Offset', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Offset', 'gui-for-lcp') ?>', 'gflcp-offset', false) #>
+      <# printSwitchCheckbox('gflcp-offset', false) #>
       <fieldset class="gflcp-offset" disabled>
         <div>
           <label><?php _e('Offset value', 'gui-for-lcp') ?>
@@ -321,7 +325,7 @@
     </div>
     <h2><?php _e('Parent post', 'gui-for-lcp') ?></h2>
     <div>
-      <# printSwitchCheckbox('<?php _e('Parent post', 'gui-for-lcp') ?>', 'gflcp-parent-post', false) #>
+      <# printSwitchCheckbox('gflcp-parent-post', false) #>
       <fieldset class="gflcp-parent-post" disabled>
         <div>
           <label><?php _e('Disply only children of this parent post', 'gui-for-lcp') ?>

@@ -13,55 +13,57 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(this.template(this.model.get('data')));
-        this.views.set('#gflcp-taxonomy-terms', new TaxTermsSubview({
+        this.$el.html( this.template( this.model.get( 'data' ) ) );
+        this.views.set( '#gflcp-taxonomy-terms', new TaxTermsSubview({
             // Use parent's model in the subview
             model: this.model
         }));
 
-        this.$('.gflcp-datepicker').datepicker({
+        this.$( '.gflcp-datepicker' ).datepicker({
             dateFormat: 'yy/mm/dd'
         });
 
-        this.$('#gflcp-select-accordion').accordion({
+        this.$( '#gflcp-select-accordion' ).accordion({
             heightStyle: 'content'
         });
         // To avoid fetching categories html twice
         // we will copy the 'select' checklist and modify it to use
         // as 'exclude'
-        this.$('.excategory-checklist input').attr('name', 'excat');
+        this.$( '.excategory-checklist input' ).attr( 'name', 'excat' );
         // Do the same for tags
-        this.$('.extag-checklist input').attr('name', 'extag');
+        this.$( '.extag-checklist input' ).attr( 'name', 'extag' );
         return this;
     },
 
-    onTaxSelect: function() {
+    onTaxSelect() {
         const self = this;
         let taxonomies = [];
-        this.$('input[name="taxonomy"]:checked').each(function() {
-            taxonomies.push(self.$(this).val());
+
+        this.$( 'input[name="taxonomy"]:checked' ).each( function() {
+            taxonomies.push( self.$( this ).val() );
         });
-        this.model.updateTaxonomies(taxonomies);
+
+        this.model.updateTaxonomies( taxonomies );
     },
 
-    toggleFieldset: function(e) {
-        const el = this.$(e.currentTarget);
-        const checked = el.prop('checked');
-        const targetEl = this.$('.' + el.attr('name'));
+    toggleFieldset( e ) {
+        const el = this.$( e.currentTarget );
+        const checked = el.prop( 'checked' );
+        const targetEl = this.$( '.' + el.attr( 'name' ) );
 
-        if (true === checked) {
-            targetEl.prop('disabled', false);
+        if ( true === checked ) {
+            targetEl.prop( 'disabled', false );
         } else {
-            targetEl.prop('disabled', true);
+            targetEl.prop( 'disabled', true );
         }
     },
 
-    toggleCurrent: function(e) {
-        const el = this.$(e.target);
-        const cssClass = el.attr('class');
+    toggleCurrent( e ) {
+        const el = this.$( e.target );
+        const cssClass = el.attr( 'class' );
         let targetEl;
 
-        switch (cssClass) {
+        switch ( cssClass ) {
             case 'gflcp-categorypage':
                 targetEl = '.gflcp-cat-select';
                 break;
@@ -70,30 +72,33 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
                 break;
         }
 
-        this.$(targetEl).prop('disabled', el.prop('checked'));
+        this.$( targetEl ).prop( 'disabled', el.prop( 'checked' ) );
     },
 
-    toggleSelection: function(e) {
-        const el = this.$(e.currentTarget);
-        const name = el.attr('name');
+    toggleSelection( e ) {
+        const el = this.$( e.currentTarget );
+        const name = el.attr( 'name' );
 
         let targetEl;
 
-        if ('ps-mode' === name) targetEl = '#gflcp-ps-select';
-        else if ('pt-mode' === name) targetEl = '#gflcp-pt-select';
-
-        if (true === el.prop('checked') && 'select' === el.val()) {
-            this.$(targetEl).prop('disabled', false);
+        if ( 'ps-mode' === name ) {
+            targetEl = '#gflcp-ps-select';
+        } else if ( 'pt-mode' === name ) {
+            targetEl = '#gflcp-pt-select';
         }
-        else this.$(targetEl).prop('disabled', true);
+
+        if ( true === el.prop( 'checked' ) && 'select' === el.val() ) {
+            this.$( targetEl ).prop( 'disabled', false );
+        }
+        else this.$( targetEl ).prop( 'disabled', true );
     },
 
-    handleExcludes: function(e) {
-        const el = this.$(e.currentTarget);
+    handleExcludes( e ) {
+        const el = this.$( e.currentTarget );
 
         let targetName;
 
-        switch (el.attr('name')) {
+        switch ( el.attr('name') ) {
             case 'cat':
                 targetName = 'excat';
                 break;
@@ -107,14 +112,13 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
                 targetName = 'tag';
                 break;
         }
-        const targetEl = this.$(`[name="${targetName}"][value="${el.val()}"]`);
+        const targetEl = this.$( `[name="${targetName}"][value="${el.val()}"]` );
 
-        if (true === el.prop('checked')) {
-            targetEl.prop('disabled', true);
+        if ( true === el.prop( 'checked' ) ) {
+            targetEl.prop( 'disabled', true );
         } else {
-            targetEl.prop('disabled', false);
+            targetEl.prop( 'disabled', false );
         }
-
     },
 });
 

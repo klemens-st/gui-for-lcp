@@ -36,16 +36,16 @@ const MainModel = wp.media.controller.State.extend({
             method: 'POST',
             url: ajax_object.ajax_url,
             data: this.ajaxData,
-            success: () => this.set('hasData', true),
-            error: () => this.set('errored', true),
+            success: () => this.set( 'hasData', true ),
+            error: () => this.set( 'errored', true ),
         });
     },
 
-    updateTaxonomies(taxonomies) {
+    updateTaxonomies( taxonomies ) {
         this.fetch({
             method: 'POST',
             url: ajax_object.ajax_url,
-            data: _.extend(this.taxTermsAjaxData, {taxonomies}),
+            data: _.extend( this.taxTermsAjaxData, { taxonomies } ),
         });
     }
 });

@@ -4,7 +4,7 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
     template: wp.template( 'select-options' ),
 
     events: {
-        'change .lcp-swtich-checkbox': 'toggleFieldset',
+        'change .gflcp-swtich-checkbox': 'toggleFieldset',
         'change .gflcp-categorypage, .gflcp-currenttags': 'toggleCurrent',
         'change .category-checklist input, .excategory-checklist input': 'handleExcludes',
         'change .tag-checklist input, .extag-checklist input': 'handleExcludes',

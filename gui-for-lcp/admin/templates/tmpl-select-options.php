@@ -19,7 +19,7 @@
         const printChecked = checked ? ' checked' : '';
       #>
         <label>
-          <input type="checkbox" name="{{name}}" class="lcp-swtich-checkbox"{{{printChecked}}}>
+          <input type="checkbox" name="{{name}}" class="gflcp-swtich-checkbox"{{{printChecked}}}>
           {{label}}</label>
       <#
     }

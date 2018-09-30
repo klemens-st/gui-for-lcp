@@ -189,12 +189,9 @@
       <# printSwitchCheckbox('<?php _e('Exclude posts', 'gui-for-lcp') ?>', 'gflcp-exclude-posts', false) #>
       <fieldset class="gflcp-exclude-posts" disabled>
         <div>
-          <h3><?php _e('Current post', 'gui-for-lcp') ?></h3>
-          <label><?php _e('Yes', 'gui-for-lcp') ?>
-            <input type="radio" name="excurpost" value="1">
-          </label>
-          <label><?php _e('No', 'gui-for-lcp') ?>
-            <input type="radio" name="excurpost" value="0" checked>
+          <label>
+            <input type="checkbox" name="excurpost">
+            <?php _e('Exclude current post', 'gui-for-lcp') ?>
           </label>
         </div>
         <div>

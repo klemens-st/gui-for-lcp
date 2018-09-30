@@ -178,23 +178,20 @@ const shortcodeHelpers = [
     function lcpGetExcludedPosts(FD) {
         if (!FD.has('gflcp-exclude-posts')) return [];
 
-        let exCurPost;
-        let exPost;
-        let separator;
+        let excludePosts = [];
         let output = [];
+        let exPost = FD.get('expost');
 
-        if (FD.has('excurpost') && '1' === FD.get('excurpost')) {
-            exCurPost = 'this';
-        } else {
-            exCurPost = '';
+        if (FD.has('excurpost')) {
+            excludePosts.push('this');
         }
-        exPost = FD.has('expost') ? FD.get('expost') : '';
-        exPost = exPost.trim();
 
-        separator = (exPost && exCurPost) ? (',') : '';
+        if (! _.isEmpty(exPost)) {
+            excludePosts.push(exPost.trim());
+        }
 
-        if (!_.isEmpty(exCurPost) || !_.isEmpty(exPost)) {
-            output.push(`excludeposts="${exCurPost}${separator}${exPost}"`);
+        if (! _.isEmpty(excludePosts)) {
+            output.push(`excludeposts="${excludePosts.join(',')}"`);
         }
         return output;
     },

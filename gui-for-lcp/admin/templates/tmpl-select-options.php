@@ -217,22 +217,35 @@
         </div>
       </fieldset>
     </div>
-    <h2><?php _e('Post type', 'gui-for-lcp') ?></h2>
-    <div>
-      <fieldset class="gflcp-post-types">
-        <div>
-          <label><?php _e('Default', 'gui-for-lcp') ?> - 'post'
-            <input type="radio" name="pt-mode" value="default" checked>
-          </label>
-          <label><?php _e('Any', 'gui-for-lcp') ?>
-            <input type="radio" name="pt-mode" value="any">
-          </label>
-          <label><?php _e('Select', 'gui-for-lcp') ?>
-            <input type="radio" name="pt-mode" value="select">
-          </label>
-        </div>
+    <h2><?php _e('Post type & status', 'gui-for-lcp') ?></h2>
+    <div class="gflcp-type-status">
+      <section class="gflcp-post-types">
+        <h3>Post type</h3>
+        <fieldset>
+          <legend>Mode</legend>
+          <ul>
+            <li>
+              <label>
+                <input type="radio" name="pt-mode" value="default" checked>
+                <?php _e('Default', 'gui-for-lcp') ?> - 'post'
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="pt-mode" value="any">
+                <?php _e('Any', 'gui-for-lcp') ?>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="pt-mode" value="select">
+                <?php _e('Select', 'gui-for-lcp') ?>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
         <fieldset id="gflcp-pt-select" disabled>
-          <h3><?php _e('Select', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Post types', 'gui-for-lcp') ?></legend>
           <ul class="cat-checklist pt-checklist">
             <# _.each(data.post_types, function(pt) { #>
               <li>
@@ -244,38 +257,49 @@
             <# }); #>
           </ul>
         </fieldset>
-      </fieldset>
-    </div>
-    <h2><?php _e('Post status', 'gui-for-lcp') ?></h2>
-    <div>
-      <fieldset class="gflcp-post-status">
-        <div>
-          <label><?php _e('Default', 'gui-for-lcp') ?> - 'publish'
-            <input type="radio" name="ps-mode" value="default" checked>
-          </label>
-          <label><?php _e('Any', 'gui-for-lcp') ?>
-            <input type="radio" name="ps-mode" value="any">
-          </label>
-          <label><?php _e('Select', 'gui-for-lcp') ?>
-            <input type="radio" name="ps-mode" value="select">
-          </label>
-        </div>
-        <fieldset id="gflcp-ps-select" disabled>
-        <ul class="cat-checklist ps-checklist">
-          <#
-            const statuses = ['publish', 'pending', 'draft', 'auto-draft',
-                              'future', 'private', 'inherit', 'trash'];
-            _.each(statuses, function(status, key) {
-              let checked = key === 0 ? ' checked' : '';
-          #>
-            <li><label>
-              <input type="checkbox" name="post-status" value="{{status}}"{{checked}}>
-              {{status}}
-            </label></li>
-          <# }); #>
-        </ul>
+      </section>
+      <section class="gflcp-post-status">
+        <h3>Post status</h3>
+        <fieldset>
+          <legend>Mode</legend>
+          <ul>
+            <li>
+              <label>
+                <input type="radio" name="ps-mode" value="default" checked>
+                <?php _e('Default', 'gui-for-lcp') ?> - 'publish'
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="ps-mode" value="any">
+                <?php _e('Any', 'gui-for-lcp') ?>
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="ps-mode" value="select">
+                <?php _e('Select', 'gui-for-lcp') ?>
+              </label>
+            </li>
+          </ul>
         </fieldset>
-      </fieldset>
+        <fieldset id="gflcp-ps-select" disabled>
+          <legend><?php _e('Post statuses', 'gui-for-lcp') ?></legend>
+          <ul class="cat-checklist ps-checklist">
+            <#
+              const statuses = ['publish', 'pending', 'draft', 'auto-draft',
+                                'future', 'private', 'inherit', 'trash'];
+              _.each(statuses, function(status, key) {
+                let checked = key === 0 ? ' checked' : '';
+            #>
+              <li><label>
+                <input type="checkbox" name="post-status" value="{{status}}"{{checked}}>
+                {{status}}
+              </label></li>
+            <# }); #>
+          </ul>
+        </fieldset>
+      </section>
     </div>
     <h2><?php _e('Show protected', 'gui-for-lcp') ?></h2>
     <div>

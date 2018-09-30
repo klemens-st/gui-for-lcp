@@ -80,6 +80,10 @@ $main-bg-color: #f6f6f6;
     display: none;
 }
 
+.gflcp-type-status {
+    @extend %two-column-grid;
+}
+
 .gflcp-display-accordion {
     fieldset[disabled] {
         display: none;

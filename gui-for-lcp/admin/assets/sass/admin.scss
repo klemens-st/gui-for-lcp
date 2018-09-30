@@ -7,7 +7,15 @@ $main-bg-color: #f6f6f6;
 %two-column-grid {
     display: grid;
     grid: auto-flow / 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 15px;
+}
+
+%fieldset {
+    border: 1px solid $main-theme-color {
+        radius: 5px;
+    }
+    padding: 10px;
+    background-color: $main-bg-color;
 }
 
 // Overriden WP styles
@@ -33,13 +41,22 @@ $main-bg-color: #f6f6f6;
 }
 
 // Form checklists
-#gflcp-cat-select,
-#gflcp-tag-select {
+#gflcp-tag-grid,
+#gflcp-cat-grid,
+#gflcp-tax-grid,
+.gflcp-date {
     @extend %two-column-grid;
+
+    fieldset {
+        @extend %fieldset;
+    }
 }
 
 #gflcp-taxonomy-terms > div {
     @extend %two-column-grid;
+    fieldset {
+        @extend %fieldset;
+    }
 }
 
 #load-terms {
@@ -60,6 +77,10 @@ $main-bg-color: #f6f6f6;
 
     h1 {
         margin: 0;
+    }
+
+    legend {
+        font-size: 1.5em;
     }
 }
 
@@ -82,6 +103,17 @@ $main-bg-color: #f6f6f6;
 
 .gflcp-type-status {
     @extend %two-column-grid;
+
+    fieldset {
+        @extend %fieldset;
+    }
+}
+
+#gflcp-select-accordion {
+    input[type="text"],
+    input[type="number"] {
+        display: block;
+    }
 }
 
 .gflcp-display-accordion {
@@ -105,11 +137,7 @@ $main-bg-color: #f6f6f6;
     }
 
     fieldset {
-        border: 1px solid $main-theme-color {
-            radius: 5px;
-        }
-        padding: 10px;
-        background-color: $main-bg-color;
+        @extend %fieldset;
 
         h3 {
             margin-top: 0;
@@ -207,4 +235,9 @@ $switch-sq-size: $switch-height - 2 * $switch-padding;
         position: relative;
         left: $switch-width + 10px;
     }
+}
+
+// Utility classes
+.gflcp-vmargin-10 {
+    margin: 10px 0;
 }

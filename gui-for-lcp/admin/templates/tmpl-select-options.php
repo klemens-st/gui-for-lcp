@@ -5,14 +5,23 @@
             and: '<?php _e('AND', 'gui-for-lcp') ?>',
             or:  '<?php _e('OR', 'gui-for-lcp') ?>'
         };
+        #>
+        <ul>
+        <#
         _.each(values, (label, value) => {
             let printChecked = value === checked ? ' checked' : '';
             #>
-            <label>{{label}}
-              <input type="radio" name="{{name}}" value="{{value}}"{{{printChecked}}}>
-            </label>
+            <li>
+              <label>
+                <input type="radio" name="{{name}}" value="{{value}}"{{{printChecked}}}>
+                {{label}}
+              </label>
+            </li>
             <#
         });
+        #>
+        </ul>
+        <#
     }
 
     function printSwitchCheckbox(name, checked) {
@@ -33,38 +42,46 @@
     <div>
       <# printSwitchCheckbox('gflcp-categories', true) #>
       <fieldset class="gflcp-categories">
-        <div>
+        <div class="gflcp-vmargin-10">
           <label>
             <input type="checkbox" class="gflcp-categorypage" name="categorypage">
             <?php _e('Current category', 'gui-for-lcp') ?>
           </label>
         </div>
-        <fieldset id="gflcp-cat-select">
-          <div>
-            <h3><?php _e('Select', 'gui-for-lcp') ?></h3>
+        <div id="gflcp-cat-grid">
+          <fieldset class="gflcp-cat-select">
+            <legend><?php _e('Select', 'gui-for-lcp') ?></legend>
             <ul class="cat-checklist category-checklist">
               {{{data.categories}}}
             </ul>
-          </div>
-          <div>
-            <h3><?php _e('Exclude', 'gui-for-lcp') ?></h3>
+          </fieldset>
+          <fieldset class="gflcp-cat-select">
+            <legend><?php _e('Exclude', 'gui-for-lcp') ?></legend>
             <ul class="cat-checklist excategory-checklist">
               {{{data.categories}}}
             </ul>
-          </div>
-          <div>
-            <h3><?php _e('Relationship', 'gui-for-lcp') ?></h3>
+          </fieldset>
+          <fieldset class="gflcp-cat-select">
+            <legend><?php _e('Relationship', 'gui-for-lcp') ?></legend>
             <# printRelationship('catrel', 'and'); #>
-          </div>
-        </fieldset>
-        <div>
-          <h3><?php _e('Child categories', 'gui-for-lcp') ?></h3>
-          <label><?php _e('Include', 'gui-for-lcp') ?>
-            <input type="radio" name="child-cat" value="1" checked>
-          </label>
-          <label><?php _e('Exclude', 'gui-for-lcp') ?>
-            <input type="radio" name="child-cat" value="0">
-          </label>
+          </fieldset>
+          <fieldset>
+            <legend><?php _e('Child categories', 'gui-for-lcp') ?></legend>
+            <ul>
+              <li>
+                <label>
+                  <input type="radio" name="child-cat" value="1" checked>
+                  <?php _e('Include', 'gui-for-lcp') ?>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="radio" name="child-cat" value="0">
+                  <?php _e('Exclude', 'gui-for-lcp') ?>
+                </label>
+              </li>
+            </ul>
+          </fieldset>
         </div>
       </fieldset>
     </div>
@@ -72,64 +89,66 @@
     <div>
       <# printSwitchCheckbox('gflcp-tags', false) #>
       <fieldset class="gflcp-tags" disabled>
-        <div>
+        <div class="gflcp-vmargin-10">
           <label>
             <input type="checkbox" class="gflcp-currenttags" name="currenttags">
             <?php _e('Current tags', 'gui-for-lcp') ?>
           </label>
         </div>
-        <fieldset id="gflcp-tag-select">
-          <div>
-            <h3><?php _e('Select', 'gui-for-lcp') ?></h3>
+        <div id="gflcp-tag-grid">
+          <fieldset class="gflcp-tag-select">
+            <legend><?php _e('Select', 'gui-for-lcp') ?></legend>
             <ul class="tag-checklist cat-checklist">
               {{{data.tags}}}
             </ul>
-          </div>
-          <div id="gflcp-tag-exclude">
-            <h3><?php _e('Exclude', 'gui-for-lcp') ?></h3>
+          </fieldset>
+          <fieldset class="gflcp-tag-select">
+            <legend><?php _e('Exclude', 'gui-for-lcp') ?></legend>
             <ul class="extag-checklist cat-checklist">
               {{{data.tags}}}
             </ul>
-          </div>
-          <div>
-            <h3><?php _e('Relationship', 'gui-for-lcp') ?></h3>
+          </fieldset>
+          <fieldset class="gflcp-tag-select">
+            <legend><?php _e('Relationship', 'gui-for-lcp') ?></legend>
             <# printRelationship('tagrel', 'and'); #>
-          </div>
-        </fieldset>
+          </fieldset>
+        </div>
       </fieldset>
     </div>
     <h2><?php _e('Custom taxonomies', 'gui-for-lcp') ?></h2>
     <div>
       <# printSwitchCheckbox('gflcp-taxonomies', false) #>
       <fieldset class="gflcp-taxonomies" disabled>
-        <div>
-          <h3><?php _e('Choose one or more taxonomies', 'gui-for-lcp') ?></h3>
-          <ul class="cat-checklist tax-checklist">
-            <# _.each(data.taxonomies, function(tax) { #>
-              <li>
-                <label>
-                  <input type="checkbox" name="taxonomy" value="{{tax.slug}}">
-                  {{tax.name}}
-                </label>
-              </li>
-            <# }); #>
-          </ul>
+        <div id="gflcp-tax-grid">
+          <fieldset>
+            <legend><?php _e('Choose one or more taxonomies', 'gui-for-lcp') ?></legend>
+            <ul class="cat-checklist tax-checklist">
+              <# _.each(data.taxonomies, function(tax) { #>
+                <li>
+                  <label>
+                    <input type="checkbox" name="taxonomy" value="{{tax.slug}}">
+                    {{tax.name}}
+                  </label>
+                </li>
+              <# }); #>
+            </ul>
+          </fieldset>
+          <fieldset>
+            <legend><?php _e('Relationship', 'gui-for-lcp') ?></legend>
+            <# printRelationship('taxrel', 'and'); #>
+          </fieldset>
+          <button type="button" id="load-terms" class="button">
+            <?php _e('Load taxonomy terms', 'gui-for-lcp') ?>
+          </button>
         </div>
-        <button type="button" id="load-terms" class="button">
-          <?php _e('Load taxonomy terms', 'gui-for-lcp') ?>
-        </button>
         <div id="gflcp-taxonomy-terms"></div>
-        <div>
-          <h3><?php _e('Relationship', 'gui-for-lcp') ?></h3>
-          <# printRelationship('taxrel', 'and'); #>
-        </div>
       </fieldset>
     </div>
     <h2><?php _e('Post type & status', 'gui-for-lcp') ?></h2>
     <div class="gflcp-type-status">
       <section class="gflcp-post-types">
         <h3>Post type</h3>
-        <fieldset>
+        <fieldset class="gflcp-vmargin-10">
           <legend>Mode</legend>
           <ul>
             <li>
@@ -168,7 +187,7 @@
       </section>
       <section class="gflcp-post-status">
         <h3>Post status</h3>
-        <fieldset>
+        <fieldset class="gflcp-vmargin-10">
           <legend>Mode</legend>
           <ul>
             <li>
@@ -221,6 +240,8 @@
           <label><?php _e('Customfield name', 'gui-for-lcp') ?>
             <input type="text" name="customfield-name" required>
           </label>
+        </div>
+        <div>
           <label><?php _e('Customfield value', 'gui-for-lcp') ?>
             <input type="text" name="customfield-value" required>
           </label>
@@ -231,14 +252,13 @@
     <div>
       <# printSwitchCheckbox('gflcp-exclude-posts', false) #>
       <fieldset class="gflcp-exclude-posts" disabled>
-        <div>
+        <div class="gflcp-vmargin-10">
           <label>
             <input type="checkbox" name="excurpost">
             <?php _e('Exclude current post', 'gui-for-lcp') ?>
           </label>
         </div>
         <div>
-          <h3><?php _e('List', 'gui-for-lcp') ?></h3>
           <label><?php _e('Post IDs, comma separated', 'gui-for-lcp') ?>
             <input
               type="text"
@@ -266,23 +286,24 @@
     <div>
       <# printSwitchCheckbox('gflcp-date', false) #>
       <fieldset class="gflcp-date" disabled>
-        <div>
+        <fieldset>
+          <legend>Date</legend>
           <label><?php _e('Year', 'gui-for-lcp') ?>
             <input name="year" type="number" min="1900" max="3000">
           </label>
           <label><?php _e('Month', 'gui-for-lcp') ?>
             <input name="month" type="number" min="1" max="12">
           </label>
-        </div>
-        <div>
-          <h3><?php _e('Range', 'gui-for-lcp') ?></h3>
+        </fieldset>
+        <fieldset>
+          <legend>Date range</legend>
           <label><?php _e('After', 'gui-for-lcp') ?>
             <input type="text" name="after" class="gflcp-datepicker">
           </label>
           <label><?php _e('Before', 'gui-for-lcp') ?>
             <input type="text" name="before" class="gflcp-datepicker">
           </label>
-        </div>
+        </fieldset>
       </fieldset>
     </div>
     <h2><?php _e('Search', 'gui-for-lcp') ?></h2>
@@ -296,12 +317,12 @@
         </div>
       </fieldset>
     </div>
-    <h2><?php _e('Starting with', 'gui-for-lcp') ?></h2>
+    <h2><?php _e('Post title first character', 'gui-for-lcp') ?></h2>
     <div>
       <# printSwitchCheckbox('gflcp-starting-with', false) #>
       <fieldset class="gflcp-starting-with" disabled>
         <div>
-          <label><?php _e('Comma separated characters', 'gui-for-lcp') ?>
+          <label><?php _e('Comma separated single characters', 'gui-for-lcp') ?>
             <input
               type="text"
               name="starting-with"
@@ -328,7 +349,7 @@
       <# printSwitchCheckbox('gflcp-parent-post', false) #>
       <fieldset class="gflcp-parent-post" disabled>
         <div>
-          <label><?php _e('Disply only children of this parent post', 'gui-for-lcp') ?>
+          <label><?php _e('Disply only children of this post ID', 'gui-for-lcp') ?>
             <input type="number" name="parent-post" min="0">
           </label>
         </div>

@@ -1,10 +1,10 @@
 <script type="text/html" id="tmpl-taxonomy-terms">
   <# _.each(data, function(terms, taxonomy) { #>
-    <div id="{{taxonomy}}-terms">
-      <h3>{{taxonomy}}</h3>
+    <fieldset id="{{taxonomy}}-terms">
+      <legend>{{taxonomy}}</legend>
       <ul class="cat-checklist term-checklist">
         {{{terms}}}
       </ul>
-    </div>
+    </fieldset>
   <# }); #>
 </script>

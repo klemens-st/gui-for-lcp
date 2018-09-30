@@ -45,12 +45,12 @@
       </label>
       <p><?php _e('Order', 'gui-for-lcp') ?>:</p>
       <label>
-        <?php _e('Descending', 'gui-for-lcp') ?>
         <input type="radio" name="order" value="desc" checked>
+        <?php _e('Descending', 'gui-for-lcp') ?>
       </label>
       <label>
-        <?php _e('Ascending', 'gui-for-lcp') ?>
         <input type="radio" name="order" value="asc">
+        <?php _e('Ascending', 'gui-for-lcp') ?>
       </label>
     </div>
     <h2><?php _e('List-specific options', 'gui-for-lcp') ?></h2>
@@ -79,7 +79,7 @@
       </div>
       <div class="gflcp-display-details">
         <fieldset class="gflcp-category-title" disabled>
-          <h3><?php _e('Category title', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Category title', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <input type="checkbox" name="catlink" value="1" checked>
@@ -104,7 +104,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-show-conditional-title" disabled>
-          <h3><?php _e('Conditional title', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Conditional title', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e('A custom title before the posts list. Only displayed if the list is not empty.', 'gui-for-lcp') ?>
@@ -123,7 +123,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-morelink" disabled>
-          <h3><?php _e('Morelink', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Morelink', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e('CSS class', 'gui-for-lcp') ?>
@@ -136,7 +136,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-wrapper-class" disabled>
-          <h3><?php _e("Wrapper's class", 'gui-for-lcp') ?></h3>
+          <legend><?php _e("Wrapper's class", 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e('CSS class', 'gui-for-lcp') ?>
@@ -204,7 +204,7 @@
       </div>
       <div class="gflcp-display-details">
         <fieldset class="gflcp-display-author" disabled>
-          <h3><?php _e('Author', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Author', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e("Author's CSS class", 'gui-for-lcp') ?>
@@ -217,7 +217,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-comments" disabled>
-          <h3><?php _e('Comment count', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Comment count', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e('CSS class', 'gui-for-lcp') ?>
@@ -230,7 +230,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-content" disabled>
-          <h3><?php _e('Content', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Content', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <input type="checkbox" name="content-full" value="1">
@@ -249,7 +249,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-customfield gflcp-row-span-2" disabled>
-          <h3><?php _e('Custom fields', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Custom fields', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e("Custom fields' names, comma separated", 'gui-for-lcp') ?>
@@ -309,7 +309,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-display-date" disabled>
-          <h3><?php _e('Date', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Date', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e('CSS class', 'gui-for-lcp') ?>
@@ -322,7 +322,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-date-modified" disabled>
-          <h3><?php _e('Date modified', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Date modified', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e('CSS class', 'gui-for-lcp') ?>
@@ -335,13 +335,14 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-excerpt gflcp-row-span-2" disabled>
-          <h3><?php _e('Excerpt', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Excerpt', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <input type="checkbox" name="excerpt-full" value="1" class="gflcp-toggles-fieldset">
               <?php _e('Use full excerpt', 'gui-for-lcp') ?>
             </label>
             <fieldset class="gflcp-excerpt-full">
+              <legend>Auto-generated excerpt</legend>
               <label>
                 <input type="checkbox" name="excerpt-overwrite" value="1">
                 <?php _e("Ignore post's explicit excerpt", 'gui-for-lcp') ?>
@@ -373,7 +374,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-suffix" disabled>
-          <h3><?php _e("Post's suffix", 'gui-for-lcp') ?></h3>
+          <legend><?php _e("Post's suffix", 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e('Text to display after the title', 'gui-for-lcp') ?>
@@ -387,7 +388,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-posts-morelink" disabled>
-          <h3><?php _e("Post's morelink", 'gui-for-lcp') ?></h3>
+          <legend><?php _e("Post's morelink", 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e('CSS class', 'gui-for-lcp') ?>
@@ -396,7 +397,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-post-title">
-          <h3><?php _e('Title', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Title', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <?php _e('Character limit', 'gui-for-lcp') ?>
@@ -416,7 +417,7 @@
           </div>
         </fieldset>
         <fieldset class="gflcp-thumbnail" disabled>
-          <h3><?php _e('Thumbnail', 'gui-for-lcp') ?></h3>
+          <legend><?php _e('Thumbnail', 'gui-for-lcp') ?></legend>
           <div>
             <label>
               <input type="checkbox" name="force-thumbnail" value="1">

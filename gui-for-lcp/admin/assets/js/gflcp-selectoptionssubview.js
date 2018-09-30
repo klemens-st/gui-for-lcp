@@ -63,10 +63,10 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
 
         switch (cssClass) {
             case 'gflcp-categorypage':
-                targetEl = '#gflcp-cat-select';
+                targetEl = '.gflcp-cat-select';
                 break;
             case 'gflcp-currenttags':
-                targetEl = '#gflcp-tag-select';
+                targetEl = '.gflcp-tag-select';
                 break;
         }
 

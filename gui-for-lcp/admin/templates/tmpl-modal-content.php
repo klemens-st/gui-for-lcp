@@ -6,8 +6,12 @@
   <form id="gflcp-form">
     <div id="gflcp-tabs">
       <ul>
-        <li><a href="#gflcp-select-options"><?php _e('Selection', 'gui-for-lcp') ?></a></li>
-        <li><a href="#gflcp-display-options"><?php _e('Display', 'gui-for-lcp') ?></a></li>
+        <li>
+          <a href="#gflcp-select-options"><?php _e('Selection options', 'gui-for-lcp') ?></a>
+        </li>
+        <li>
+          <a href="#gflcp-display-options"><?php _e('Display options', 'gui-for-lcp') ?></a>
+        </li>
       </ul>
       <div id="gflcp-select-options"></div>
       <div id="gflcp-display-options"></div>

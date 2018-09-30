@@ -14,7 +14,7 @@ const shortcodeHelpers = [
             output.push('child_categories="false"');
         }
 
-        if (FD.has('categorypage') && '1' === FD.get('categorypage')) {
+        if (FD.has('categorypage')) {
             output.push('categorypage="yes"');
             return output;
         }
@@ -47,7 +47,7 @@ const shortcodeHelpers = [
         let tags;
         let exTags;
 
-        if (FD.has('currenttags') && '1' === FD.get('currenttags')) {
+        if (FD.has('currenttags')) {
             return ['currenttags="yes"'];
         }
 

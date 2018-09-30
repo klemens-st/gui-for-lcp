@@ -29,42 +29,39 @@
     <div>
       <# printSwitchCheckbox('<?php _e('Categories', 'gui-for-lcp') ?>', 'gflcp-categories', true) #>
       <fieldset class="gflcp-categories">
-      <div>
-        <h3><?php _e('Current category', 'gui-for-lcp') ?></h3>
-        <label><?php _e('Yes', 'gui-for-lcp') ?>
-          <input type="radio" class="gflcp-categorypage" name="categorypage" value="1">
-        </label>
-        <label><?php _e('No', 'gui-for-lcp') ?>
-          <input type="radio" class="gflcp-categorypage" name="categorypage" value="0" checked>
-        </label>
-      </div>
-      <fieldset id="gflcp-cat-select">
         <div>
-          <h3><?php _e('Select', 'gui-for-lcp') ?></h3>
-          <ul class="cat-checklist category-checklist">
-            {{{data.categories}}}
-          </ul>
+          <label>
+            <input type="checkbox" class="gflcp-categorypage" name="categorypage">
+            <?php _e('Current category', 'gui-for-lcp') ?>
+          </label>
         </div>
+        <fieldset id="gflcp-cat-select">
+          <div>
+            <h3><?php _e('Select', 'gui-for-lcp') ?></h3>
+            <ul class="cat-checklist category-checklist">
+              {{{data.categories}}}
+            </ul>
+          </div>
+          <div>
+            <h3><?php _e('Exclude', 'gui-for-lcp') ?></h3>
+            <ul class="cat-checklist excategory-checklist">
+              {{{data.categories}}}
+            </ul>
+          </div>
+          <div>
+            <h3><?php _e('Relationship', 'gui-for-lcp') ?></h3>
+            <# printRelationship('catrel', 'and'); #>
+          </div>
+        </fieldset>
         <div>
-          <h3><?php _e('Exclude', 'gui-for-lcp') ?></h3>
-          <ul class="cat-checklist excategory-checklist">
-            {{{data.categories}}}
-          </ul>
+          <h3><?php _e('Child categories', 'gui-for-lcp') ?></h3>
+          <label><?php _e('Include', 'gui-for-lcp') ?>
+            <input type="radio" name="child-cat" value="1" checked>
+          </label>
+          <label><?php _e('Exclude', 'gui-for-lcp') ?>
+            <input type="radio" name="child-cat" value="0">
+          </label>
         </div>
-        <div>
-          <h3><?php _e('Relationship', 'gui-for-lcp') ?></h3>
-          <# printRelationship('catrel', 'and'); #>
-        </div>
-      </fieldset>
-      <div>
-        <h3><?php _e('Child categories', 'gui-for-lcp') ?></h3>
-        <label><?php _e('Include', 'gui-for-lcp') ?>
-          <input type="radio" name="child-cat" value="1" checked>
-        </label>
-        <label><?php _e('Exclude', 'gui-for-lcp') ?>
-          <input type="radio" name="child-cat" value="0">
-        </label>
-      </div>
       </fieldset>
     </div>
     <h2><?php _e('Author', 'gui-for-lcp') ?></h2>
@@ -85,12 +82,9 @@
       <# printSwitchCheckbox('<?php _e('Tags', 'gui-for-lcp') ?>', 'gflcp-tags', false) #>
       <fieldset class="gflcp-tags" disabled>
         <div>
-          <h3><?php _e('Current tags', 'gui-for-lcp') ?></h3>
-          <label><?php _e('Yes', 'gui-for-lcp') ?>
-            <input type="radio" class="gflcp-currenttags" name="currenttags" value="1">
-          </label>
-          <label><?php _e('No', 'gui-for-lcp') ?>
-            <input type="radio" class="gflcp-currenttags" name="currenttags" value="0" checked>
+          <label>
+            <input type="checkbox" class="gflcp-currenttags" name="currenttags">
+            <?php _e('Current tags', 'gui-for-lcp') ?>
           </label>
         </div>
         <fieldset id="gflcp-tag-select">

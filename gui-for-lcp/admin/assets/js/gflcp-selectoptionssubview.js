@@ -57,18 +57,20 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
     },
 
     toggleCurrent: function(e) {
-        const el = this.$(e.currentTarget);
-        const value = el.val();
+        const el = this.$(e.target);
         const cssClass = el.attr('class');
-        let target;
+        let targetEl;
 
-        if (false === el.prop('checked')) return null;
+        switch (cssClass) {
+            case 'gflcp-categorypage':
+                targetEl = '#gflcp-cat-select';
+                break;
+            case 'gflcp-currenttags':
+                targetEl = '#gflcp-tag-select';
+                break;
+        }
 
-        if ('gflcp-categorypage' === cssClass) target = '#gflcp-cat-select';
-        else if ('gflcp-currenttags' === cssClass) target = '#gflcp-tag-select';
-
-        if ('1' === value) this.$(target).prop('disabled', true);
-        else if ('0' === value) this.$(target).prop('disabled', false);
+        this.$(targetEl).prop('disabled', el.prop('checked'));
     },
 
     toggleSelection: function(e) {

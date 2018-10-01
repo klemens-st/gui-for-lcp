@@ -1,320 +1,208 @@
-const shortcodeHelpers = [
-    function lcpGetCategories(FD) {
-        if (!FD.has('gflcp-categories')) return [];
+const shortcodeHelpers = {
+    getCategories( FD ) {
+        if ( ! FD.has( 'gflcp-categories' ) ) {
+            return [];
+        }
 
-        const catRel = (FD.has('catrel')) ? (FD.get('catrel')) : null;
+        const catRel = FD.get( 'catrel' );
 
         let output= [];
         let ids;
         let categories;
         let exCategories;
-        let childCat = (FD.has('child-cat')) ? (FD.get('child-cat')) : null;
 
-        if ('0' === childCat) {
-            output.push('child_categories="false"');
+        if ( '0' === FD.get( 'child-cat' ) ) {
+            output.push( 'child_categories="false"' );
         }
 
-        if (FD.has('categorypage')) {
-            output.push('categorypage="yes"');
+        if ( FD.has( 'categorypage' ) ) {
+            output.push( 'categorypage="yes"' );
             return output;
         }
 
-        categories = (FD.has('cat')) ? (FD.getAll('cat')) : [];
-        exCategories = (FD.has('excat')) ? (FD.getAll('excat')): [];
-        exCategories = _.map(exCategories, function(val) {return '-' + val;});
+        categories = FD.getAll( 'cat' );
+        exCategories = FD.getAll( 'excat' );
+        exCategories = _.map( exCategories, ( val ) => '-' + val );
 
-        if ('or' === catRel) {
-            ids = categories.concat(exCategories).join(',');
-        } else if ('and' === catRel) {
-            const exCatSeparator = (_.isEmpty(categories)) ? ',' : '';
+        if ( 'or' === catRel ) {
+            ids = categories.concat( exCategories ).join( ',' );
+        } else if ( 'and' === catRel ) {
+            const exCatSeparator = ( _.isEmpty( categories ) ) ? ',' : '';
 
-            categories = categories.join('+');
-            exCategories = exCategories.join(exCatSeparator);
-            ids = categories + exCategories;
+            ids = categories.join( '+' ) + exCategories.join( exCatSeparator );
         }
-        if (!_.isEmpty(ids)) {
-            output.push(`id="${ids}"`);
+
+        if ( ! _.isEmpty( ids ) ) {
+            output.push( `id="${ids}"` );
             return output;
-        } else return [];
+        } else {
+            return [];
+        }
     },
 
-    function lcpGetTags(FD) {
-        if (!FD.has('gflcp-tags')) return [];
+    getTags( FD ) {
+        if ( ! FD.has( 'gflcp-tags' ) ) {
+            return [];
+        }
 
-        const tagRel = (FD.has('tagrel')) ? (FD.get('tagrel')) : null;
+        const tagRel = FD.get( 'tagrel' );
 
         let output= [];
         let tags;
         let exTags;
 
-        if (FD.has('currenttags')) {
-            return ['currenttags="yes"'];
+        if ( FD.has( 'currenttags' ) ) {
+            return [ 'currenttags="yes"' ];
         }
 
-        tags = (FD.has('tag')) ? (FD.getAll('tag')) : [];
-        exTags = (FD.has('extag')) ? (FD.getAll('extag')): [];
+        tags = FD.getAll( 'tag' );
+        exTags = FD.getAll( 'extag' );
 
-        if ('or' === tagRel) {
-            tags = tags.join(',');
-        } else if ('and' === tagRel) {
-            tags = tags.join('+');
+        if ( 'or' === tagRel ) {
+            tags = tags.join( ',' );
+        } else if ( 'and' === tagRel ) {
+            tags = tags.join( '+' );
         }
 
-        if (!_.isEmpty(tags)) output.push(`tags="${tags}"`);
-        if (!_.isEmpty(exTags)) output.push(`exclude_tags="${exTags.join(',')}"`);
+        if ( ! _.isEmpty( tags ) ) {
+            output.push( `tags="${tags}"` );
+        }
+        if ( ! _.isEmpty( exTags ) ) {
+            output.push( `exclude_tags="${exTags.join(',')}"` );
+        }
 
-        if (!_.isEmpty(output)) {
-            return output;
-        } else return [];
+        return output;
     },
 
-    function lcpGetAuthor(FD) {
-        if (!FD.has('author')) return [];
-
-        const author = FD.get('author');
-        if ( ! _.isEmpty( author ) ) {
-            return [`author_posts="${author}"`];
-        } else return [];
+    getAuthor( FD ) {
+        return getSimpleParam( FD, 'author', 'author_posts' );
     },
 
-    function lcpGetCustomTaxonomies(FD) {
-        if (!FD.has('gflcp-taxonomies') || !FD.has('taxonomy') || !FD.has('taxrel')) {
+    getCustomTaxonomies( FD ) {
+        const taxonomies = FD.getAll( 'taxonomy' );
+        const taxRel = FD.get( 'taxrel' );
+
+        if ( _.isEmpty( taxonomies ) ) {
             return [];
         }
-        const taxonomies = FD.getAll('taxonomy');
-        const taxRel = FD.get('taxrel');
 
-        let taxonomy;
         let singleTaxTerms;
         let output = [];
 
-        if (1 === taxonomies.length) {
-            const separator = ( 'and' === taxRel) ? ('+') : (',');
+        const separator = ( 'and' === taxRel ) ? '+' : ',';
+        let taxonomyQueries = [];
 
-            taxonomy = taxonomies[0];
-            singleTaxTerms = (FD.has(`${taxonomy}-term`)) ? (FD.getAll(`${taxonomy}-term`)) : null;
+        _.each( taxonomies, ( taxonomy ) => {
+            singleTaxTerms = FD.getAll( `${taxonomy}-term` );
 
-            if (_.isArray(singleTaxTerms)) {
-                output.push(`taxonomy="${taxonomy}" terms="${singleTaxTerms.join(separator)}"`);
-            }
-        } else if (taxonomies.length > 1) {
-            let taxonomyQueries = [];
-            _.each(taxonomies, function(taxonomy) {
-                singleTaxTerms = (FD.has(`${taxonomy}-term`)) ? (FD.getAll(`${taxonomy}-term`)) : null;
-
-                if (_.isArray(singleTaxTerms)) {
-                    taxonomyQueries.push(`${taxonomy}:{${singleTaxTerms.join(',')}}`);
+            if ( ! _.isEmpty( singleTaxTerms ) ) {
+                if ( 1 === taxonomies.length) {
+                    output.push(
+                        `taxonomy="${taxonomy}"`,
+                        `terms="${singleTaxTerms.join( separator )}"`
+                    );
+                } else {
+                    taxonomyQueries.push(
+                        `${taxonomy}:{${singleTaxTerms.join( ',' )}}`
+                    );
                 }
-            });
-            if (taxonomyQueries.length > 1) {
-                output.push(`taxonomies_${taxRel}="${taxonomyQueries.join(';')}"`);
             }
-        }
-        return output;
-    },
-
-    function lcpGetStartingWith(FD) {
-        if (!FD.has('starting-with')) return [];
-
-        const startingWith = FD.get('starting-with');
-        let output = [];
-
-        if ( ! _.isEmpty( startingWith ) ) {
-            output.push(`starting_with="${startingWith}"`);
-        }
-        return output;
-    },
-
-    function lcpGetDate(FD) {
-        let output = [];
-
-        if (FD.has('month')) {
-            const month = FD.get('month');
-            if ( ! _.isEmpty( month ) ) {
-                output.push(`monthnum="${month}"`);
-            }
-        }
-
-        if (FD.has('year')) {
-            const year = FD.get('year');
-            if ( ! _.isEmpty( year ) ) {
-                output.push(`year="${year}"`);
-            }
-        }
-        return output;
-    },
-
-    function lcpGetDateRanges(FD) {
-        let output = [];
-
-        if (FD.has('after')) {
-            const after = FD.get('after');
-            if ( ! _.isEmpty( after ) ) {
-                output.push(`after="${after}"`);
-            }
-        }
-
-        if (FD.has('before')) {
-            const before = FD.get('before');
-            if ( ! _.isEmpty( before ) ) {
-                output.push(`before="${before}"`);
-            }
-        }
-        return output;
-    },
-
-    function lcpGetSearch(FD) {
-        let output = [];
-
-        if (FD.has('search')) {
-            const search = FD.get('search');
-            if ( ! _.isEmpty( search ) ) {
-                output.push(`search="${search}"`);
-            }
-        }
-        return output;
-    },
-
-    function lcpGetExcludedPosts(FD) {
-        if (!FD.has('gflcp-exclude-posts')) return [];
-
-        let excludePosts = [];
-        let output = [];
-        let exPost = FD.get('expost');
-
-        if (FD.has('excurpost')) {
-            excludePosts.push('this');
-        }
-
-        if (! _.isEmpty(exPost)) {
-            excludePosts.push(exPost.trim());
-        }
-
-        if (! _.isEmpty(excludePosts)) {
-            output.push(`excludeposts="${excludePosts.join(',')}"`);
-        }
-        return output;
-    },
-
-    function lcpGetOffset(FD) {
-        let output = [];
-
-        if (FD.has('offset')) {
-            const offset = FD.get('offset');
-            if ( ! _.isEmpty( offset ) ) {
-                output.push(`offset="${offset}"`);
-            }
-        }
-        return output;
-    },
-
-    function lcpGetPostType(FD) {
-        if (!FD.has('pt-mode')) return [];
-
-        const postTypeMode = FD.get('pt-mode');
-        let postType = [];
-        let output = [];
-
-        if ('default' === postTypeMode)
-            ; // Empty statement
-        else if ('any' === postTypeMode) {
-            postType = postTypeMode;
-        } else if ('select' === postTypeMode) {
-            _.each(FD.getAll('post-type'), function(value) {
-                postType.push(value);
-            });
-            postType = postType.join(',');
-        }
-
-        if (!_.isEmpty(postType)) {
-            output.push(`post_type="${postType}"`);
-        }
-        return output;
-    },
-
-    function lcpGetPostStatus(FD) {
-        if (!FD.has('ps-mode')) return [];
-
-        const postStatusMode = FD.get('ps-mode');
-        let postStatus = [];
-        let output = [];
-
-        if ('default' === postStatusMode)
-            ; // Empty statement
-        else if ('any' === postStatusMode) {
-            postStatus = postStatusMode;
-        } else if ('select' === postStatusMode) {
-            _.each(FD.getAll('post-status'), function(value) {
-                postStatus.push(value);
-            });
-            postStatus = postStatus.join(',');
-        }
-
-        if (!_.isEmpty(postStatus)) {
-            output.push(`post_status="${postStatus}"`);
-        }
-        return output;
-    },
-
-    function lcpGetShowProtected(FD) {
-        let output = [];
-
-        if (FD.has('show-protected')) {
-            output.push('show_protected="yes"');
-        }
-        return output;
-    },
-
-    function lcpGetParentPost(FD) {
-        let output = [];
-
-        if (FD.has('parent-post')) {
-            const parentPost = FD.get('parent-post');
-            if (!_.isEmpty(parentPost)) {
-                output.push(`post_parent="${parentPost}"`);
-            }
-        }
-        return output;
-    },
-
-    function lcpGetCustomFields(FD) {
-        if (!FD.has('gflcp-custom-fields')) return [];
-
-        const customfieldName = FD.get('customfield-name');
-        const customfieldValue = FD.get('customfield-value');
-        let output = [];
-
-        if (!_.isEmpty(customfieldName) && !_.isEmpty(customfieldValue)) {
+        } );
+        if ( ! _.isEmpty( taxonomyQueries ) ) {
             output.push(
-                `customfield_name="${customfieldName}" customfield_value="${customfieldValue}"`
+                `taxonomies_${taxRel}="${taxonomyQueries.join( ';' )}"`
             );
         }
         return output;
     },
 
-    function getDisplayAuthor(FD) {
-        if (FD.has('display-author')) {
-            return [
-                'author="yes"',
-                ...getTagsAndClasses(FD, 'display-author', 'author')
-            ];
+    getStartingWith( FD ) {
+        return getSimpleParam( FD, 'starting-with', 'starting_with');
+    },
+
+    getDate( FD ) {
+        return [
+            ...getSimpleParam( FD, 'month', 'monthnum' ),
+            ...getSimpleParam( FD, 'year', 'year' )
+        ];
+    },
+
+    getDateRanges( FD ) {
+        return [
+            ...getSimpleParam( FD, 'after', 'after' ),
+            ...getSimpleParam( FD, 'before', 'before' )
+        ];
+    },
+
+    getSearch( FD ) {
+        return getSimpleParam( FD, 'search', 'search' );
+    },
+
+    getExcludedPosts( FD ) {
+        let excludePosts = [];
+        let output = [];
+        let exPost = FD.get( 'expost' );
+
+        if ( FD.has( 'excurpost' ) ) {
+            excludePosts.push( 'this' );
+        }
+
+        if ( ! _.isEmpty( exPost ) ) {
+            excludePosts.push( exPost.trim() );
+        }
+
+        if ( ! _.isEmpty( excludePosts ) ) {
+            output.push( `excludeposts="${excludePosts.join( ',' )}"` );
+        }
+        return output;
+    },
+
+    getOffset( FD ) {
+        return getSimpleParam( FD, 'offset', 'offset' );
+    },
+
+    getPostType( FD ) {
+        return typesStatusesHelper( FD, 'pt', 'post-type', 'post_type' );
+    },
+
+    getPostStatus(FD) {
+        return typesStatusesHelper( FD, 'ps', 'post-status', 'post_status' );
+    },
+
+    getShowProtected( FD ) {
+        return getCheckboxParam( FD, 'show-protected', 'show_protected' );
+    },
+
+    getParentPost( FD ) {
+        return getSimpleParam( FD, 'parent-post', 'post_parent' );
+    },
+
+    getCustomFields( FD ) {
+        let output = [];
+
+        output = output.concat(
+            getSimpleParam( FD, 'customfield-name', 'customfield_name' )
+        );
+        output = output.concat(
+            getSimpleParam( FD, 'customfield-value', 'customfield_value' )
+        );
+
+        if ( 2 === output.length ) {
+            return output;
         } else {
             return [];
         }
     },
 
-    function getCommets(FD) {
-        if (FD.has('comments')) {
-            return [
-                'comments="yes"',
-                ...getTagsAndClasses(FD, 'comments', 'comments')
-            ];
-        } else {
-            return [];
-        }
+    getDisplayAuthor( FD ) {
+        return getCheckboxParam( FD, 'display-author', 'author', true );
     },
 
-    function getContent(FD) {
+    getCommets( FD ) {
+        return getCheckboxParam( FD, 'comments', 'comments', true );
+    },
+
+    getContent( FD ) {
         if (FD.has('content')) {
             const mode = FD.has('content-full') ? 'full' : 'yes';
 
@@ -327,282 +215,270 @@ const shortcodeHelpers = [
         }
     },
 
-    function getCustomfieldDisplay(FD) {
-        if (! FD.has('customfield')) {
+    getCustomfieldDisplay( FD ) {
+        if ( ! FD.has('customfield' ) ) {
             return [];
         }
-        const cfDisplay =           FD.get('customfield-display');
-        const cfDisplaySeparately = FD.has('customfield-display-separately');
-        const cfDisplayGlue =       FD.get('customfield-display-glue');
-        const cfDisplayName =       FD.has('customfield-display-name');
-        const cfDisplayNameGlue =   FD.get('customfield-display-name-glue');
 
-        let output = [`customfield_display="${cfDisplay}"`];
+        const cfDisplay =           FD.get( 'customfield-display' );
+        const cfDisplaySeparately = FD.has( 'customfield-display-separately' );
+        const cfDisplayGlue =       FD.get( 'customfield-display-glue' );
+        const cfDisplayName =       FD.has( 'customfield-display-name' );
+        const cfDisplayNameGlue =   FD.get( 'customfield-display-name-glue' );
 
-        if (cfDisplaySeparately) {
-            output.push('customfield_display_separately="yes"');
+        let output = [ `customfield_display="${cfDisplay}"` ];
+
+        if ( cfDisplaySeparately ) {
+            output.push( 'customfield_display_separately="yes"' );
         } else {
-            if (! _.isEmpty(cfDisplayGlue)) {
-                output.push(`customfield_display_glue="${cfDisplayGlue}"`);
+            if ( ! _.isEmpty( cfDisplayGlue ) ) {
+                output.push( `customfield_display_glue="${cfDisplayGlue}"` );
             }
         }
 
-        if (false === cfDisplayName) {
-            output.push('customfield_display_name="no"');
+        if ( ! cfDisplayName ) {
+            output.push( 'customfield_display_name="no"' );
         } else {
-            if (! _.isEmpty(cfDisplayNameGlue)) {
-                output.push(`customfield_display_name_glue="${cfDisplayNameGlue}"`);
-            }
-        }
-
-        return [
-            ...output,
-            ...getTagsAndClasses(FD, 'customfield', 'customfield')
-        ];
-    },
-
-    function getDisplayDate(FD) {
-        if (FD.has('display-date')) {
-            return [
-                'date="yes"',
-                ...getTagsAndClasses(FD, 'display-date', 'date')
-            ];
-        } else {
-            return [];
-        }
-    },
-
-    function getDateModified(FD) {
-        if (FD.has('date-modified')) {
-            return [
-                'date_modified="yes"',
-                ...getTagsAndClasses(FD, 'date-modified', 'date_modified')
-            ];
-        } else {
-            return [];
-        }
-    },
-
-    function getExcerpt(FD) {
-        if (! FD.has('excerpt')) {
-            return [];
-        }
-        const mode = FD.has('excerpt-full') ? 'full' : 'yes';
-
-        let output = [`excerpt="${mode}"`];
-
-        if ('yes' === mode) {
-            const excerptOverwrite = FD.has('excerpt-overwrite');
-            const excerptStrip     = FD.has('excerpt-strip');
-            const excerptSize      = FD.get('excerpt-size');
-
-            if (true === excerptOverwrite) {
-                output.push('excerpt_overwrite="yes"');
-            }
-            if (true === excerptStrip) {
-                output.push('excerpt_strip="yes"');
-            }
-            if (! _.isEmpty(excerptSize)) {
-                output.push(`excerpt_size="${excerptSize}"`);
+            if ( ! _.isEmpty( cfDisplayNameGlue ) ) {
+                output.push(
+                    `customfield_display_name_glue="${cfDisplayNameGlue}"`
+                );
             }
         }
 
         return [
             ...output,
-            ...getTagsAndClasses(FD, 'excerpt', 'excerpt')
+            ...getTagsAndClasses( FD, 'customfield', 'customfield' )
         ];
     },
 
-    function getDisplayId(FD) {
-        if (FD.has('posts-id')) {
-            return ['display_id="yes"'];
-        } else {
-            return [];
-        }
+    getDisplayDate( FD ) {
+        return getCheckboxParam( FD, 'display-date', 'date', true );
     },
 
-    function getPostSuffix(FD) {
-        if (FD.has('suffix')) {
-            const postSuffix = FD.get('post-suffix');
+    getDateModified( FD ) {
+        return getCheckboxParam( FD, 'date-modified', 'date_modified', true );
+    },
 
-            if (! _.isEmpty(postSuffix)) {
-                return [`post_suffix="${postSuffix}"`];
-            } else {
-                return [];
+    getExcerpt( FD ) {
+        if (! FD.has( 'excerpt' ) ) {
+            return [];
+        }
+        const mode = FD.has( 'excerpt-full' ) ? 'full' : 'yes';
+
+        let output = [ `excerpt="${mode}"` ];
+
+        if ( 'yes' === mode ) {
+            const excerptOverwrite = FD.has( 'excerpt-overwrite' );
+            const excerptStrip     = FD.has( 'excerpt-strip' );
+            const excerptSize      = FD.get( 'excerpt-size' );
+
+            if ( excerptOverwrite ) {
+                output.push( 'excerpt_overwrite="yes"' );
+            }
+            if ( excerptStrip ) {
+                output.push( 'excerpt_strip="yes"' );
+            }
+            if ( ! _.isEmpty( excerptSize ) ) {
+                output.push( `excerpt_size="${excerptSize}"` );
             }
         }
+
+        return [
+            ...output,
+            ...getTagsAndClasses( FD, 'excerpt', 'excerpt' )
+        ];
     },
 
-    function getPostsMorelink(FD) {
-        if (FD.has('posts-morelink')) {
-            return [
-                'posts_morelink="yes"',
-                ...getTagsAndClasses(FD, 'posts-morelink', 'posts_morelink')
-            ];
-        } else {
-            return [];
-        }
+    getDisplayId( FD ) {
+        return getCheckboxParam( FD, 'posts-id', 'display_id' );
     },
 
-    function getTagsAsClass(FD) {
-        return (FD.has('tags-as-class')) ? ['tags_as_class="yes"'] : [];
+    getPostSuffix( FD ) {
+        return getSimpleParam( FD, 'suffix', 'post_suffix' );
     },
 
-    function getTitle(FD) {
-        if (FD.has('post-title')) {
-            const titleLimit = FD.get('title-limit');
-            const linkTitles = FD.has('link-titles');
+    getPostsMorelink( FD ) {
+        return getCheckboxParam( FD, 'posts-morelink', 'posts_morelink', true );
+    },
+
+    getTagsAsClass( FD ) {
+        return getCheckboxParam( FD, 'tags-as-class', 'tags_as_class' );
+    },
+
+    getTitle( FD ) {
+        if ( FD.has( 'post-title' ) ) {
+            const titleLimit = getSimpleParam( FD, 'title-limit', 'title_limit' );
+            const linkTitles = FD.has( 'link-titles' );
 
             let output = [];
 
-            if (! linkTitles) {
-                output.push('link_titles="false"');
+            if ( ! linkTitles ) {
+                output.push( 'link_titles="false"' );
             }
 
-            if (! _.isEmpty(titleLimit)) {
-                output.push(`title_limit=${titleLimit}`);
-            }
+            output.push( ...titleLimit );
 
             return output;
         } else {
-            return ['no_post_titles="yes"'];
+            return [ 'no_post_titles="yes"' ];
         }
     },
 
-    function getThumbnail(FD) {
-        if (! FD.has('thumbnail')) {
+    getThumbnail( FD ) {
+        if ( ! FD.has( 'thumbnail' ) ) {
             return [];
         }
-        const forceThumbnail = FD.has('force-thumbnail');
-        const thumbnailSize  = FD.get('thumbnail-size');
-        const thumbnailClass = FD.get('thumbnail-class');
 
-        let output = ['thumbnail="yes"'];
+        let output = [ 'thumbnail="yes"' ];
 
-        if (forceThumbnail) {
-            output.push('force_thumbnail="yes"');
-        }
-        if (! _.isEmpty(thumbnailSize)) {
-            output.push(`thumbnail_size="${thumbnailSize}"`);
-        }
-        if (! _.isEmpty(thumbnailClass)) {
-            output.push(`thumbnail_class="${thumbnailClass}"`);
-        }
+        output.push(
+            ...getCheckboxParam( FD, 'force-thumbnail', 'force_thumbnail' )
+        );
+
+        output.push(
+            ...getSimpleParam( FD, 'thumbnail-size', 'thumbnail_size' )
+        );
+
+        output.push(
+            ...getSimpleParam( FD, 'thumbnail-class', 'thumbnail_class' )
+        );
 
         return output;
     },
 
-    function getConditionalTitle(FD) {
-        if (FD.has('show-conditional-title')) {
-            const conditionalTitle = FD.get('conditional-title');
-
-            return [
-                `conditional_title="${conditionalTitle}"`,
-                ...getTagsAndClasses(FD, 'conditional-title', 'conditional_title')
-            ];
-        } else {
-            return [];
-        }
+    getConditionalTitle( FD ) {
+        return getSimpleParam( FD, 'conditional-title', 'conditional_title', true );
     },
 
-    function getCategoryTitle(FD) {
-        if (FD.has('category-title')) {
-            const mode = FD.has('catlink') ? 'catlink' : 'catname';
-            const categoryCount = FD.has('category-count');
+    getCategoryTitle( FD ) {
+        if ( FD.has( 'category-title' ) ) {
+            const mode = FD.has( 'catlink' ) ? 'catlink' : 'catname';
+            const categoryCount = FD.has( 'category-count' );
 
-            let output = [`${mode}="yes"`];
-            if (categoryCount) {
-                output.push('category_count="yes"');
+            let output = [ `${mode}="yes"` ];
+            if ( categoryCount ) {
+                output.push( 'category_count="yes"' );
             }
 
             return [
                 ...output,
-                ...getTagsAndClasses(FD, 'catlink', 'catlink')
+                ...getTagsAndClasses( FD, 'catlink', 'catlink' )
             ];
         } else {
             return [];
         }
     },
 
-    function getCategoryDescription(FD) {
-        return (FD.has('category-description')) ? ['category_description="yes"'] : [];
+    getCategoryDescription( FD ) {
+        return getCheckboxParam(
+            FD,
+            'category-description',
+            'category_description'
+        );
     },
 
-    function getMorelink(FD) {
-        if (FD.has('morelink')) {
-            return [
-                'morelink="yes"',
-                ...getTagsAndClasses(FD, 'morelink', 'morelink')
-            ];
+    getMorelink( FD ) {
+        return getCheckboxParam( FD, 'morelink', 'morelink', true );
+    },
+
+    getWrapperClass( FD ) {
+        return getSimpleParam( FD, 'wrapper-class', 'class' );
+    },
+
+    getPagination( FD ) {
+        return getCheckboxParam( FD, 'pagination', 'pagination' );
+    },
+
+    getNumberposts( FD ) {
+        return getSimpleParam( FD, 'numberposts', 'numberposts' );
+    },
+
+    getOrderBy( FD ) {
+        const orderBy = FD.get( 'orderby' );
+
+        if ( 'date' !== orderBy ) {
+            return [ `orderby="${orderBy}"` ];
         } else {
             return [];
         }
     },
 
-    function getWrapperClass(FD) {
-        if (FD.has('wrapper-class')) {
-            const wrapperClass = FD.get('class');
+    getOrder( FD ) {
+        const order = FD.get( 'order' );
 
-            return [`class="${wrapperClass}"`];
+        if ( 'asc' === order ) {
+            return [ 'order="ASC"' ];
         } else {
             return [];
         }
     },
 
-    function getPagination(FD) {
-        return (FD.has('pagination')) ? ['pagination="yes"'] : [];
+    getTemlate( FD ) {
+        return getSimpleParam( FD, 'template', 'template' );
     },
+};
 
-    function getNumberposts(FD) {
-        const numberposts = FD.get('numberposts');
+function typesStatusesHelper( FD, mode, name, shortcodeParam ) {
+    mode = FD.get( `${mode}-mode` );
+    let paramValue = [];
+    let output = [];
 
-        return ! _.isEmpty(numberposts) ?
-            [`numberposts="${numberposts}"`] :
-            [];
-    },
+    if ( 'any' === mode ) {
+        paramValue = mode;
+    } else if ( 'select' === mode ) {
+        _.each( FD.getAll( name ), ( value ) => {
+            paramValue.push( value );
+        } );
+        paramValue = paramValue.join( ',' );
+    }
 
-    function getOrderBy(FD) {
-        const orderBy = FD.get('orderby');
+    if ( ! _.isEmpty( paramValue ) ) {
+        output.push( `${shortcodeParam}="${paramValue}"` );
+    }
+    return output;
+}
 
-        if ('date' !== orderBy) {
-            return [`orderby="${orderBy}"`];
-        } else {
-            return [];
+function getCheckboxParam( FD, name, shortcodeParam, tagsAndClasses = false ) {
+    let output = [];
+
+    if ( FD.has( name ) ) {
+        output.push( `${shortcodeParam}="yes"` );
+
+        if ( tagsAndClasses ) {
+            output.push( ...getTagsAndClasses( FD, name, shortcodeParam ) );
         }
-    },
+    }
 
-    function getOrder(FD) {
-        const order = FD.get('order');
+    return output;
+}
 
-        if ('asc' === order) {
-            return ['order="ASC"'];
-        } else {
-            return [];
+function getSimpleParam( FD, name, shortcodeParam, tagsAndClasses = false ) {
+    const paramValue = FD.get( name );
+    let output = [];
+
+    if ( ! _.isEmpty( paramValue ) ) {
+        output.push( `${shortcodeParam}="${paramValue}"` );
+
+        if ( tagsAndClasses ) {
+            output.push( ...getTagsAndClasses( FD, name, shortcodeParam ) );
         }
-    },
+    }
 
-    function getTemlate(FD) {
-        const template = FD.get('template');
+    return output;
+}
 
-        if (! _.isEmpty(template)) {
-            return [`template="${template}"`];
-        } else {
-            return [];
-        }
-    },
-];
-
-function getTagsAndClasses(FD, name, shortcodeParam) {
+function getTagsAndClasses( FD, name, shortcodeParam ) {
 
     let output = [];
-    const tag = FD.get(`${name}-tag`);
-    const className = FD.get(`${name}-class`);
+    const tag = FD.get( `${name}-tag` );
+    const className = FD.get( `${name}-class` );
 
-    if (! _.isEmpty(tag)) {
-        output.push(`${shortcodeParam}_tag="${tag}"`);
+    if ( ! _.isEmpty( tag ) ) {
+        output.push( `${shortcodeParam}_tag="${tag}"` );
     }
-    if (! _.isEmpty(className)) {
-        output.push(`${shortcodeParam}_class="${className}"`);
+    if ( ! _.isEmpty( className ) ) {
+        output.push( `${shortcodeParam}_class="${className}"` );
     }
 
     return output;

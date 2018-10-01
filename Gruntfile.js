@@ -95,41 +95,27 @@ module.exports = function( grunt ) {
       }
     },
 
+    autoprefixer: {
+      dist: {
+        options: {
+          map: true
+        },
+        src: '<%= dirs.admin.css %>/admin.css',
+        dest: '<%= dirs.admin.css %>/admin.css'
+      }
+    },
+
     // watch for changes and trigger compass, jshint and uglify
     watch: {
       sass: {
         files: [
           '<%= dirs.admin.sass %>/**',
         ],
-        tasks: ['sass']
+        tasks: ['sass', 'autoprefixer']
       },
       js: {
         files: '<%= eslint.target %>',
         tasks: ['eslint', 'browserify', 'uglify']
-      }
-    },
-
-    // image optimization
-    imagemin: {
-      dist: {
-        options: {
-          optimizationLevel: 7,
-          progressive: true
-        },
-        files: [
-          {
-            expand: true,
-            cwd: '<%= dirs.admin.images %>/',
-            src: '**/*.{png,jpg,gif}',
-            dest: '<%= dirs.admin.images %>/'
-          },
-          {
-            expand: true,
-            cwd: './',
-            src: 'screenshot-*.png',
-            dest: './'
-          }
-        ]
       }
     },
 
@@ -204,6 +190,7 @@ module.exports = function( grunt ) {
   grunt.registerTask( 'default', [
     'eslint',
     'sass',
+    'autoprefixer',
     'browserify',
     'uglify'
   ] );

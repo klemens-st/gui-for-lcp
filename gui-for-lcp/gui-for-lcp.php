@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @package   gui_for_lcp
  * @author    Klemens Starybrat
@@ -34,7 +33,7 @@
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-	die;
+  die;
 }
 
 /**
@@ -59,8 +58,8 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-gflcp.php';
  */
 function run_gflcp() {
 
-	$plugin = new Gflcp();
-	$plugin->run();
+  $plugin = new Gflcp();
+  $plugin->run();
 
 }
 run_gflcp();

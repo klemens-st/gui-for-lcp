@@ -10,99 +10,126 @@
 class Gflcp_Ajax {
 
   /**
-	 * Retrieve the data required to build the GUI and send it as JSON.
-	 *
-	 * @since    1.0.0
-	 */
+   * Retrieve the data required to build the GUI and send it as JSON.
+   *
+   * @since    1.0.0
+   */
   public function gui_setup() {
     check_ajax_referer( 'gui-for-lcp', 'security' );
-    if (!current_user_can('edit_posts')) {
+    if ( ! current_user_can( 'edit_posts' ) ) {
       die();
     }
 
-    $categories = wp_terms_checklist(0, [
-      'echo' => false,
-      'walker' => new Gflcp_Walker_Category_Checklist()
-    ]);
-    $tags = wp_terms_checklist(0, [
-      'echo' => false,
-      'taxonomy' => 'post_tag',
-      'walker' => new Gflcp_Walker_Category_Checklist('tag', 'slug')
-    ]);
+    $categories = wp_terms_checklist(
+      0,
+      [
+        'echo'   => false,
+        'walker' => new Gflcp_Walker_Category_Checklist(),
+      ]
+    );
+
+    $tags = wp_terms_checklist(
+      0,
+      [
+        'echo'     => false,
+        'taxonomy' => 'post_tag',
+        'walker'   => new Gflcp_Walker_Category_Checklist( 'tag', 'slug' ),
+      ]
+    );
+
     $taxonomies = $this->prepare_taxonomies();
-    $users = get_users( [ 'fields' => [
-               'display_name',
-               'user_nicename'
-             ] ] );
+
+    $users = get_users(
+      [
+        'fields' => [
+          'display_name',
+          'user_nicename',
+        ],
+      ]
+    );
+
     $post_types = get_post_types(
       array( 'public' => true ),
       'objects'
     );
 
-    $response = json_encode( ['data' => [
-      'categories' => $categories,
-      'users' => $users,
-      'tags' => $tags,
-      'taxonomies' => $taxonomies,
-      'post_types' => $post_types
-    ]] );
-    echo $response;
-    wp_die();
+    $response = [
+      'data' => [
+        'categories' => $categories,
+        'users'      => $users,
+        'tags'       => $tags,
+        'taxonomies' => $taxonomies,
+        'post_types' => $post_types,
+      ],
+    ];
+
+    wp_send_json( $response );
   }
 
   /**
-	 * Retrieve the taxonomy terms based on the submitted taxonomies
+   * Retrieve the taxonomy terms based on the submitted taxonomies
    * and send them as JSON.
-	 *
-	 * @since    1.0.0
-	 */
+   *
+   * @since    1.0.0
+   */
   public function load_terms() {
     check_ajax_referer( 'gui-for-lcp', 'security' );
-    if (!current_user_can('edit_posts')) {
+    if ( ! current_user_can( 'edit_posts' ) ) {
       die();
     }
 
+    if ( isset( $_POST['taxonomies'] ) ) { // Input var okay.
+      $taxonomies = array_map(
+        'sanitize_text_field',
+        wp_unslash( $_POST['taxonomies'] ) // Input var okay.
+      );
+    } else {
+      die();
+    }
 
-    $taxonomies = $_POST[ 'taxonomies' ];
     $output = [];
 
     foreach ( $taxonomies as $taxonomy ) {
       // Validate the taxonomy
-      if (! taxonomy_exists($taxonomy)) {
+      if ( ! taxonomy_exists( $taxonomy ) ) {
         continue;
       }
 
-      $output[ $taxonomy ] = wp_terms_checklist(0, [
-        'echo' => false,
-        'taxonomy' => $taxonomy,
-        'walker' => new Gflcp_Walker_Category_Checklist("$taxonomy-term", 'slug')
-      ]);
+      $output[ $taxonomy ] = wp_terms_checklist(
+        0,
+        [
+          'echo'     => false,
+          'taxonomy' => $taxonomy,
+          'walker'   => new Gflcp_Walker_Category_Checklist( "$taxonomy-term", 'slug' ),
+        ]
+      );
     }
 
-    echo json_encode( [ 'taxonomies' => $output ] );
-    wp_die();
+    wp_send_json( [ 'taxonomies' => $output ] );
   }
 
   /**
-	 * Get all taxonomies from the database and limit the properties
+   * Get all taxonomies from the database and limit the properties
    * to name and label only.
-	 *
-	 * @since    1.0.0
+   *
+   * @since    1.0.0
    * @access   private
    * @return   array    The collection of objects.
-	 */
+   */
   private function prepare_taxonomies() {
     $output = [];
 
-    $args = [
+    $args       = [
       'public'   => true,
-      '_builtin' => false
+      '_builtin' => false,
     ];
     $taxonomies = get_taxonomies( $args, 'objects' );
 
     foreach ( $taxonomies as $tax ) {
-      $newtax = (object) [ 'slug' => $tax->name,
-                           'name' => $tax->label ];
+      $newtax   = (object) [
+        'slug' => $tax->name,
+        'name' => $tax->label,
+      ];
       $output[] = $newtax;
     }
     return $output;

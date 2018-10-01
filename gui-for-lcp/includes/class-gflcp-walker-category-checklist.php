@@ -3,9 +3,9 @@
 require_once ABSPATH . '/wp-admin/includes/class-walker-category-checklist.php';
 
 class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
-  public function __construct($input_name='cat', $value='term_id') {
+  public function __construct( $input_name = 'cat', $value = 'term_id' ) {
     $this->input_name = $input_name;
-    $this->value = $value;
+    $this->value      = $value;
   }
 
   /**
@@ -22,22 +22,21 @@ class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
    * @param int    $id       ID of the current term.
    */
   public function start_el( &$output, $category, $depth = 0, $args = array(), $id = 0 ) {
-      if ( empty( $args['taxonomy'] ) ) {
-        $taxonomy = 'category';
-      } else {
-        $taxonomy = $args['taxonomy'];
-      }
+    if ( empty( $args['taxonomy'] ) ) {
+      $taxonomy = 'category';
+    } else {
+      $taxonomy = $args['taxonomy'];
+    }
 
       $args['popular_cats'] = empty( $args['popular_cats'] ) ? array() : $args['popular_cats'];
-      $class = in_array( $category->term_id, $args['popular_cats'] ) ? ' class="popular-category"' : '';
+      $class                = in_array( $category->term_id, $args['popular_cats'], true ) ? ' class="popular-category"' : '';
 
       $args['selected_cats'] = empty( $args['selected_cats'] ) ? array() : $args['selected_cats'];
 
-
       /** This filter is documented in wp-includes/category-template.php */
       $output .= "\n<li$class>" .
-        '<label class="selectit"><input value="' . esc_attr($category->{$this->value}) . '" type="checkbox" name="'. esc_attr($this->input_name) . '"' .
-        checked( in_array( $category->term_id, $args['selected_cats'] ), true, false ) .
+        '<label class="selectit"><input value="' . esc_attr( $category->{$this->value} ) . '" type="checkbox" name="' . esc_attr( $this->input_name ) . '"' .
+        checked( in_array( $category->term_id, $args['selected_cats'], true ), true, false ) .
         disabled( empty( $args['disabled'] ), false, false ) . ' /> ' .
         esc_html( $category->name ) . '</label>';
 

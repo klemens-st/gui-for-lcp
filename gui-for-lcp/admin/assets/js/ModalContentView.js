@@ -1,9 +1,37 @@
+/**
+ * @file   This file defines the ModalContentView class.
+ * @module ModalContentView
+ * @author Klemens Starybrat.
+ * @since  1.0.0
+ */
+
 import MainModel from './MainModel.js';
 import SelectOptionsSubview from './SelectOptionsSubview.js';
 import DisplayOptionsSubview from './DisplayOptionsSubview.js';
 import createShortcode from './createShortcode.js';
 
-const ModalContentView = wp.Backbone.View.extend({
+const ModalContentView = wp.Backbone.View.extend(/** @lends ModalContentView.prototype */{
+    /**
+     * Main modal view.
+     *
+     * This is the main view attached to the media modal. App's main
+     * model is an instance of this view and is later passed by reference
+     * to all subviews that require it. On initialization this view listens
+     * to change events on the model and binds its render method to them.
+     *
+     * @since      1.0.0
+     * @package
+     *
+     * @constructs ModalContentView
+     * @augments   wp.Backbone.View
+     *
+     * @requires  MainModel
+     *
+     * @see module:admin
+     *
+     * @param {Object}   [options]           The view's options.
+     * @param {string}   options.className   Wrapper's CSS class.
+     */
     initialize() {
         this.model = new MainModel();
 
@@ -14,8 +42,22 @@ const ModalContentView = wp.Backbone.View.extend({
         this.listenTo( this.model, 'change:errored', this.render );
     },
 
+    /**
+     * Loads the template. File: tmpl-modal-content.php
+     *
+     * @since 1.0.0
+     * @private
+     * @type {function}
+     */
     template: wp.template( 'modal-content' ),
 
+    /**
+     * Event delegation hash.
+     *
+     * @since 1.0.0
+     * @private
+     * @type {Object}
+     */
     events: {
         'submit #gflcp-form': 'insertShortcode',
         'click .gflcp-footer button': 'checkForm',
@@ -23,11 +65,23 @@ const ModalContentView = wp.Backbone.View.extend({
         'click .gflcp-alert button': 'onTryAgain',
     },
 
+    /**
+     * Try again button handler.
+     *
+     * @since 1.0.0
+     * @private
+     */
     onTryAgain() {
         this.model.set( 'errored', false );
         this.model.getData();
     },
 
+    /**
+     * Form validation hanler.
+     *
+     * @since 1.0.0
+     * @private
+     */
     checkForm: function() {
         const invalid = this.$( ':invalid' );
 
@@ -65,6 +119,17 @@ const ModalContentView = wp.Backbone.View.extend({
         setTimeout( () => this.$( '.gflcp-hidden-btn' ).click(), 500 );
     },
 
+    /**
+     * View's render method. Two main subviews are attached here.
+     *
+     * @since 1.0.0
+     * @package
+     *
+     * @requires  SelectOptionsSubview
+     * @requires  DisplayOptionsSubview
+     *
+     * @return {Object} Instance.
+     */
     render: function() {
         this.$el.html( this.template( _.clone( this.model.attributes ) ) );
         this.views.set( '#gflcp-display-options', new DisplayOptionsSubview() );
@@ -78,13 +143,23 @@ const ModalContentView = wp.Backbone.View.extend({
         return this;
     },
 
+    /**
+     * Form submission handler.
+     *
+     * @requires  createShortcode
+     *
+     * @since 1.0.0
+     * @private
+     */
     insertShortcode( e ) {
         e.preventDefault();
         const FD = new FormData( e.currentTarget );
         wp.media.editor.insert( createShortcode( FD ) );
-        // This view is a subview of wp.media.view.Modal
-        // so in order to close the modal on shortcode insertion
-        // we can use the reference at this.views.parent
+        /*
+         * This view is a subview of wp.media.view.Modal
+         * so in order to close the modal on shortcode insertion
+         * we can use the reference at this.views.parent
+         */
         this.views.parent.close();
     }
 });

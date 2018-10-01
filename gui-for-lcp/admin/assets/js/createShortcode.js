@@ -1,3 +1,20 @@
+/**
+ * @file   This file contains shortcode building functions.
+ * @module createShortcode
+ * @author Klemens Starybrat.
+ * @since  1.0.0
+ */
+
+/**
+ * Contains shortcode building methods only. Each method corresponds with
+ * a specific LCP functionality supported by this plugin.
+ *
+ * @since 1.0.0
+ * @protected
+ * @namespace shortcodeHelpers
+ *
+ * @type {Object}
+ */
 const shortcodeHelpers = {
     getCategories( FD ) {
         if ( ! FD.has( 'gflcp-categories' ) ) {
@@ -96,6 +113,10 @@ const shortcodeHelpers = {
             singleTaxTerms = FD.getAll( `${taxonomy}-term` );
 
             if ( ! _.isEmpty( singleTaxTerms ) ) {
+                /*
+                 * There is a different syntax when using more than one
+                 * taxonomy.
+                 */
                 if ( 1 === taxonomies.length) {
                     output.push(
                         `taxonomy="${taxonomy}"`,
@@ -186,7 +207,7 @@ const shortcodeHelpers = {
         output = output.concat(
             getSimpleParam( FD, 'customfield-value', 'customfield_value' )
         );
-
+        // Checks if both name and value are specified.
         if ( 2 === output.length ) {
             return output;
         } else {
@@ -419,6 +440,23 @@ const shortcodeHelpers = {
     },
 };
 
+/**
+ * Helper for building post status and post type shortcode parameters.
+ *
+ * Called by shortcodeHelper methods.
+ *
+ * @since      1.0.0
+ * @private
+ *
+ * @see  shortcodeHelpers
+ *
+ * @param {Object}   FD              FormData instance.
+ * @param {string}   mode            Either 'pt' or 'ps'.
+ * @param {string}   name            Key of the FormData instance.
+ * @param {string}   shortcodeParam  LCP shortcode parameter.
+ *
+ * @return {Array} Parsed shortcode parameters.
+ */
 function typesStatusesHelper( FD, mode, name, shortcodeParam ) {
     mode = FD.get( `${mode}-mode` );
     let paramValue = [];
@@ -439,6 +477,23 @@ function typesStatusesHelper( FD, mode, name, shortcodeParam ) {
     return output;
 }
 
+/**
+ * Helper for building shortcode parameters from form checkboxes.
+ *
+ * Called by shortcodeHelper methods.
+ *
+ * @since      1.0.0
+ * @private
+ *
+ * @see  shortcodeHelpers
+ *
+ * @param {Object}   FD                      FormData instance..
+ * @param {string}   name                    Key of the FormData instance.
+ * @param {string}   shortcodeParam          LCP shortcode parameter.
+ * @param {boolean}  [tagsAndClasses=false]  Should tags and classes be included.
+ *
+ * @return {Array} Parsed shortcode parameters.
+ */
 function getCheckboxParam( FD, name, shortcodeParam, tagsAndClasses = false ) {
     let output = [];
 
@@ -453,6 +508,23 @@ function getCheckboxParam( FD, name, shortcodeParam, tagsAndClasses = false ) {
     return output;
 }
 
+/**
+ * Helper for building shortcode parameters from simple inputs.
+ *
+ * Called by shortcodeHelper methods.
+ *
+ * @since      1.0.0
+ * @private
+ *
+ * @see  shortcodeHelpers
+ *
+ * @param {Object}   FD                      FormData instance..
+ * @param {string}   name                    Key of the FormData instance.
+ * @param {string}   shortcodeParam          LCP shortcode parameter.
+ * @param {boolean}  [tagsAndClasses=false]  Should tags and classes be included.
+ *
+ * @return {Array} Parsed shortcode parameters.
+ */
 function getSimpleParam( FD, name, shortcodeParam, tagsAndClasses = false ) {
     const paramValue = FD.get( name );
     let output = [];
@@ -468,6 +540,25 @@ function getSimpleParam( FD, name, shortcodeParam, tagsAndClasses = false ) {
     return output;
 }
 
+/**
+ * Helper for tags and classes.
+ *
+ * Takes a FormData instance, form field name and an LCP shortcode
+ * parameter name. Builds corresponsing tag and class paramters.
+ *
+ * @example
+ * // returns ['author_class="foo"', 'author_tag="bar"']
+ * getTagsAndClasses( FD, 'display-author', 'author' );
+ *
+ * @since      1.0.0
+ * @protected
+ *
+ * @param {Object}   FD               FormData instance.
+ * @param {string}   name             Key of the FormData instance.
+ * @param {string}   shortcodeParam   LCP shortcode parameter.
+ *
+ * @return {Array} Parsed shortcode parameters.
+ */
 function getTagsAndClasses( FD, name, shortcodeParam ) {
 
     let output = [];
@@ -484,6 +575,22 @@ function getTagsAndClasses( FD, name, shortcodeParam ) {
     return output;
 }
 
+/**
+ * Shortcode building function.
+ *
+ * Calls all methods of shortcodeHelpers to build the shortcode.
+ * Returns it as a string. This is the only item exported by this module.
+ *
+ * @since      1.0.0
+ * @package
+ *
+ * @see  module:ModalContentView
+ * @see  shortcodeHelpers
+ *
+ * @param {Object}  FD  FormData instance.
+ *
+ * @return {string} Full built shortcode.
+ */
 function createShortcode( FD ) {
     // This will gather helper functions output.
     let parameters = [];

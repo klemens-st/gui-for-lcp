@@ -1,10 +1,28 @@
+/**
+ * @file   Main module: adds TinyMCE button, manages the modal instance.
+ * @module admin
+ * @author Klemens Starybrat.
+ * @since  1.0.0
+ */
+
 import ModalContentView from './ModalContentView.js';
 
 // Just to be safe
 const $ = jQuery;
+
+/**
+ * Instance of wp.media.view.Modal.
+ *
+ * @type {wp.media.view.Modal}
+ * @protected
+ */
 let modal;
 
-//https://core.trac.wordpress.org/ticket/35243#comment:65
+/**
+ * Registers the 'LCP' TinyMCE button.
+ *
+ * @see {@link https://core.trac.wordpress.org/ticket/35243#comment:65}
+ */
 $( document ).on( 'tinymce-editor-setup', function( event, editor ) {
     editor.settings.toolbar1 += ',gflcp';
     editor.addButton( 'gflcp', {
@@ -16,7 +34,22 @@ $( document ).on( 'tinymce-editor-setup', function( event, editor ) {
     });
 });
 
-
+/**
+ * This function handles opening the modal window.
+ *
+ * Fired when the 'LCP' button is clicked. Closes over modal variable
+ * to store the modal instance. A new instance is created when the modal
+ * is opened for the first time after loading a page.
+ *
+ * @since      1.0.0
+ * @protected
+ * @requires  ModalContentView
+ *
+ * @see       module:ModalContentView
+ * @see       wp.media.view.Modal
+ *
+ * @return    {boolean} Always returns false.
+ */
 function openMediaWindow() {
     if ( undefined === modal ) {
 

@@ -1,8 +1,47 @@
+/**
+ * @file   This file defines the SelectOptionsSubview class.
+ * @module SelectOptionsSubview
+ * @author Klemens Starybrat.
+ * @since  1.0.0
+ */
+
 import TaxTermsSubview from './TaxTermsSubview.js';
 
-const SelectOptionsSubview = wp.Backbone.View.extend({
+/**
+ * Backbone view for select options.
+ *
+ * Used as a subview by ModalContentView.
+ *
+ * @since      1.0.0
+ * @package
+ *
+ * @constructs SelectOptionsSubview
+ * @augments   wp.Backbone.View
+ * @inheritDoc
+ *
+ * @see   wp.Backbone.View
+ * @see   module:ModalContentView
+ *
+ * @param {Object}   [options]      The view's options.
+ * @param {Object}   options.model  Backbone model.
+ */
+const SelectOptionsSubview = wp.Backbone.View.extend(/** @lends SelectOptionsSubview.prototype */{
+    /**
+     * Loads the template. File: tmpl-display-select.php
+     *
+     * @since 1.0.0
+     * @private
+     * @type {function}
+     */
     template: wp.template( 'select-options' ),
 
+    /**
+     * Event delegation hash.
+     *
+     * @since 1.0.0
+     * @private
+     * @type {Object}
+     */
     events: {
         'change .gflcp-swtich-checkbox': 'toggleFieldset',
         'change .gflcp-categorypage, .gflcp-currenttags': 'toggleCurrent',
@@ -12,6 +51,16 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
         'click #load-terms': 'onTaxSelect'
     },
 
+    /**
+     * View's render method.
+     *
+     * @since 1.0.0
+     * @package
+     *
+     * @requires  TaxTermsSubview
+     *
+     * @return {Object} Instance.
+     */
     render: function() {
         this.$el.html( this.template( this.model.get( 'data' ) ) );
         this.views.set( '#gflcp-taxonomy-terms', new TaxTermsSubview({
@@ -26,15 +75,23 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
         this.$( '#gflcp-select-accordion' ).accordion({
             heightStyle: 'content'
         });
-        // To avoid fetching categories html twice
-        // we will copy the 'select' checklist and modify it to use
-        // as 'exclude'
+        /*
+         * To avoid fetching categories html twice
+         * we will copy the 'select' checklist and modify it to use
+         * as 'exclude'.
+         */
         this.$( '.excategory-checklist input' ).attr( 'name', 'excat' );
         // Do the same for tags
         this.$( '.extag-checklist input' ).attr( 'name', 'extag' );
         return this;
     },
 
+    /**
+     * Handles #load-terms button click.
+     *
+     * @since 1.0.0
+     * @private
+     */
     onTaxSelect() {
         const self = this;
         let taxonomies = [];
@@ -46,6 +103,13 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
         this.model.updateTaxonomies( taxonomies );
     },
 
+    /**
+     * Checkbox event handler for fieldsets.
+     *
+     * @since 1.0.0
+     * @param  {Object}  e  Event.
+     * @private
+     */
     toggleFieldset( e ) {
         const el = this.$( e.currentTarget );
         const checked = el.prop( 'checked' );
@@ -58,6 +122,13 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
         }
     },
 
+    /**
+     * Checkbox event handler for current categories and tags.
+     *
+     * @since 1.0.0
+     * @param  {Object}  e  Event.
+     * @private
+     */
     toggleCurrent( e ) {
         const el = this.$( e.target );
         const cssClass = el.attr( 'class' );
@@ -75,6 +146,13 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
         this.$( targetEl ).prop( 'disabled', el.prop( 'checked' ) );
     },
 
+    /**
+     * Handles post type and post status mode change.
+     *
+     * @since 1.0.0
+     * @param  {Object}  e  Event.
+     * @private
+     */
     toggleSelection( e ) {
         const el = this.$( e.currentTarget );
         const name = el.attr( 'name' );
@@ -93,6 +171,13 @@ const SelectOptionsSubview = wp.Backbone.View.extend({
         else this.$( targetEl ).prop( 'disabled', true );
     },
 
+    /**
+     * Handles 'select' and 'exclude' checkboxes for tags and categories.
+     *
+     * @since 1.0.0
+     * @param  {Object}  e  Event.
+     * @private
+     */
     handleExcludes( e ) {
         const el = this.$( e.currentTarget );
 

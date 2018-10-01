@@ -1,7 +1,7 @@
-import MainModel from './gflcp-mainmodel.js';
-import SelectOptionsSubview from './gflcp-selectoptionssubview.js';
-import DisplayOptionsSubview from './gflcp-displayoptionssubview.js';
-import lcpCreateShortcode from './gflcp-shortcode.js';
+import MainModel from './MainModel.js';
+import SelectOptionsSubview from './SelectOptionsSubview.js';
+import DisplayOptionsSubview from './DisplayOptionsSubview.js';
+import createShortcode from './createShortcode.js';
 
 const ModalContentView = wp.Backbone.View.extend({
     initialize() {
@@ -81,7 +81,7 @@ const ModalContentView = wp.Backbone.View.extend({
     insertShortcode( e ) {
         e.preventDefault();
         const FD = new FormData( e.currentTarget );
-        wp.media.editor.insert( lcpCreateShortcode( FD ) );
+        wp.media.editor.insert( createShortcode( FD ) );
         // This view is a subview of wp.media.view.Modal
         // so in order to close the modal on shortcode insertion
         // we can use the reference at this.views.parent

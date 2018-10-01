@@ -276,7 +276,7 @@
         <div>
           <select id="gflcp-author" name="author">
             <# _.each(data.users, function(user) { #>
-              <option value="{{user.user_nicename}}">{{user.display_name}}</option>;
+              <option value="{{user.user_nicename}}">{{user.display_name}}</option>
             <# }); #>
           </select>
         </div>

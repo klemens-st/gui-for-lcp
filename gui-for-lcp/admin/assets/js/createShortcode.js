@@ -484,15 +484,15 @@ function getTagsAndClasses( FD, name, shortcodeParam ) {
     return output;
 }
 
-function lcpCreateShortcode(FD) {
+function createShortcode( FD ) {
     // This will gather helper functions output.
     let parameters = [];
 
-    _.each(shortcodeHelpers, (func) => (
-        parameters = parameters.concat(func(FD))
-    ));
+    _.each( shortcodeHelpers, ( func ) => (
+        parameters = parameters.concat( func( FD ) )
+    ) );
 
-    return '[catlist ' + parameters.join(' ') + ']';
+    return '[catlist ' + parameters.join( ' ' ) + ']';
 }
 
-export default lcpCreateShortcode;
+export default createShortcode;

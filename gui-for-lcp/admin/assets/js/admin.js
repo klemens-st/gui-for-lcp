@@ -1,12 +1,8 @@
-import ModalContentView from './gflcp-modalcontentview.js';
+import ModalContentView from './ModalContentView.js';
 
 // Just to be safe
 const $ = jQuery;
 let modal;
-
-$( document ).ready( () => {
-    $( '.insert-lcp' ).click( lcpOpenMediaWindow );
-});
 
 //https://core.trac.wordpress.org/ticket/35243#comment:65
 $( document ).on( 'tinymce-editor-setup', function( event, editor ) {
@@ -15,13 +11,13 @@ $( document ).on( 'tinymce-editor-setup', function( event, editor ) {
         text: 'LCP',
         icon: false,
         onclick() {
-            lcpOpenMediaWindow();
+            openMediaWindow();
         }
     });
 });
 
 
-function lcpOpenMediaWindow() {
+function openMediaWindow() {
     if ( undefined === modal ) {
 
         // Create a modal view.

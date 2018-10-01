@@ -52,41 +52,6 @@ const SelectOptionsSubview = wp.Backbone.View.extend(/** @lends SelectOptionsSub
     },
 
     /**
-     * View's render method.
-     *
-     * @since 1.0.0
-     * @package
-     *
-     * @requires  TaxTermsSubview
-     *
-     * @return {Object} Instance.
-     */
-    render: function() {
-        this.$el.html( this.template( this.model.get( 'data' ) ) );
-        this.views.set( '#gflcp-taxonomy-terms', new TaxTermsSubview({
-            // Use parent's model in the subview
-            model: this.model
-        }));
-
-        this.$( '.gflcp-datepicker' ).datepicker({
-            dateFormat: 'yy/mm/dd'
-        });
-
-        this.$( '#gflcp-select-accordion' ).accordion({
-            heightStyle: 'content'
-        });
-        /*
-         * To avoid fetching categories html twice
-         * we will copy the 'select' checklist and modify it to use
-         * as 'exclude'.
-         */
-        this.$( '.excategory-checklist input' ).attr( 'name', 'excat' );
-        // Do the same for tags
-        this.$( '.extag-checklist input' ).attr( 'name', 'extag' );
-        return this;
-    },
-
-    /**
      * Handles #load-terms button click.
      *
      * @since 1.0.0
@@ -204,6 +169,41 @@ const SelectOptionsSubview = wp.Backbone.View.extend(/** @lends SelectOptionsSub
         } else {
             targetEl.prop( 'disabled', false );
         }
+    },
+
+    /**
+     * View's render method.
+     *
+     * @since 1.0.0
+     * @package
+     *
+     * @requires  TaxTermsSubview
+     *
+     * @return {Object} Instance.
+     */
+    render: function() {
+        this.$el.html( this.template( this.model.get( 'data' ) ) );
+        this.views.set( '#gflcp-taxonomy-terms', new TaxTermsSubview({
+            // Use parent's model in the subview
+            model: this.model
+        }));
+
+        this.$( '.gflcp-datepicker' ).datepicker({
+            dateFormat: 'yy/mm/dd'
+        });
+
+        this.$( '#gflcp-select-accordion' ).accordion({
+            heightStyle: 'content'
+        });
+        /*
+         * To avoid fetching categories html twice
+         * we will copy the 'select' checklist and modify it to use
+         * as 'exclude'.
+         */
+        this.$( '.excategory-checklist input' ).attr( 'name', 'excat' );
+        // Do the same for tags
+        this.$( '.extag-checklist input' ).attr( 'name', 'extag' );
+        return this;
     },
 });
 

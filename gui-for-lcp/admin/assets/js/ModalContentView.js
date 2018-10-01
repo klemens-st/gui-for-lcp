@@ -59,8 +59,8 @@ const ModalContentView = wp.Backbone.View.extend(/** @lends ModalContentView.pro
      * @type {Object}
      */
     events: {
-        'submit #gflcp-form': 'insertShortcode',
-        'click .gflcp-footer button': 'checkForm',
+        'submit #gflcp-form': 'onFormSubmit',
+        'click .gflcp-footer button': 'onInsertBtnClick',
         'reset #gflcp-form': 'render',
         'click .gflcp-alert button': 'onTryAgain',
     },
@@ -82,7 +82,7 @@ const ModalContentView = wp.Backbone.View.extend(/** @lends ModalContentView.pro
      * @since 1.0.0
      * @private
      */
-    checkForm: function() {
+    onInsertBtnClick() {
         const invalid = this.$( ':invalid' );
 
         // Don't manipulate any panels if the form is ok
@@ -120,6 +120,26 @@ const ModalContentView = wp.Backbone.View.extend(/** @lends ModalContentView.pro
     },
 
     /**
+     * Form submission handler.
+     *
+     * @requires  createShortcode
+     *
+     * @since 1.0.0
+     * @private
+     */
+    onFormSubmit( e ) {
+        e.preventDefault();
+        const FD = new FormData( e.currentTarget );
+        wp.media.editor.insert( createShortcode( FD ) );
+        /*
+         * This view is a subview of wp.media.view.Modal
+         * so in order to close the modal on shortcode insertion
+         * we can use the reference at this.views.parent
+         */
+        this.views.parent.close();
+    },
+
+    /**
      * View's render method. Two main subviews are attached here.
      *
      * @since 1.0.0
@@ -142,26 +162,6 @@ const ModalContentView = wp.Backbone.View.extend(/** @lends ModalContentView.pro
 
         return this;
     },
-
-    /**
-     * Form submission handler.
-     *
-     * @requires  createShortcode
-     *
-     * @since 1.0.0
-     * @private
-     */
-    insertShortcode( e ) {
-        e.preventDefault();
-        const FD = new FormData( e.currentTarget );
-        wp.media.editor.insert( createShortcode( FD ) );
-        /*
-         * This view is a subview of wp.media.view.Modal
-         * so in order to close the modal on shortcode insertion
-         * we can use the reference at this.views.parent
-         */
-        this.views.parent.close();
-    }
 });
 
 export default ModalContentView;

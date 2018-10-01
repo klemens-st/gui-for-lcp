@@ -15,7 +15,7 @@
  * Author:            Klemens Starybrat
  * Author URI:
  * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       gui-for-lcp
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program. If not, see https://www.gnu.org/licenses/gpl-2.0.txt.
+ * along with this program. If not, see https://www.gnu.org/licenses/gpl-3.0.txt.
  */
 
 // If this file is called directly, abort.

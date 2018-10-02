@@ -19,7 +19,6 @@ module.exports = function( grunt ) {
         css: 'gui-for-lcp/admin/assets/css',
         sass: 'gui-for-lcp/admin/assets/sass',
         images: 'gui-for-lcp/admin/assets/images',
-        fonts: 'gui-for-lcp/admin/assets/fonts'
       },
     },
 
@@ -32,11 +31,10 @@ module.exports = function( grunt ) {
         '.editorconfig',
         '.git/',
         '.gitignore',
-        '.jshintrc',
+        '.eslintrc',
         '.sass-cache/',
         'node_modules/',
-        'gui-for-lcp/admin/assets/sass/',
-        'gui-for-lcp/admin/assets/js/admin.js',
+        'gui-for-lcp/admin/assets/js/dist/admin.js',
         'Gruntfile.js',
         'README.md',
         'package.json',
@@ -64,7 +62,7 @@ module.exports = function( grunt ) {
           ],
           browserifyOptions: {debug: true}
         }
-      }
+      },
     },
 
     // uglify to concat and minify
@@ -84,7 +82,7 @@ module.exports = function( grunt ) {
       }
     },
 
-    // compass and scss
+    // scss
     sass: {
       dist: {
         options: {

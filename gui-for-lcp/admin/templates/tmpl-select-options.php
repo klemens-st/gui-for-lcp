@@ -1,7 +1,7 @@
 <script type="text/html" id="tmpl-select-options">
   <#
     function printRelationship(name, checked) {
-        const values = {
+        var values = {
             and: '<?php esc_html_e( 'AND', 'gui-for-lcp' ); ?>',
             or:  '<?php esc_html_e( 'OR', 'gui-for-lcp' ); ?>'
         };
@@ -9,7 +9,7 @@
         <ul>
         <#
         _.each(values, (label, value) => {
-            let printChecked = value === checked ? ' checked' : '';
+            var printChecked = value === checked ? ' checked' : '';
             #>
             <li>
               <label>
@@ -25,7 +25,7 @@
     }
 
     function printSwitchCheckbox(name, checked) {
-        const printChecked = checked ? ' checked' : '';
+        var printChecked = checked ? ' checked' : '';
       #>
         <div class="gflcp-switch-block">
           <label>
@@ -214,10 +214,10 @@
           <legend><?php esc_html_e( 'Post statuses', 'gui-for-lcp' ); ?></legend>
           <ul class="cat-checklist ps-checklist">
             <#
-              const statuses = ['publish', 'pending', 'draft', 'auto-draft',
+              var statuses = ['publish', 'pending', 'draft', 'auto-draft',
                                 'future', 'private', 'inherit', 'trash'];
               _.each(statuses, function(status, key) {
-                let checked = key === 0 ? ' checked' : '';
+                var checked = key === 0 ? ' checked' : '';
             #>
               <li><label>
                 <input type="checkbox" name="post-status" value="{{status}}"{{checked}}>

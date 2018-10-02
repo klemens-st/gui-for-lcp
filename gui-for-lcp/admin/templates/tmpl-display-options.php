@@ -23,7 +23,7 @@
         <?php esc_html_e( 'Order by', 'gui-for-lcp' ); ?>
         <select name="orderby">
           <#
-            const orderbyOptions = {
+            var orderbyOptions = {
               author:     '<?php esc_html_e( 'Author ID', 'gui-for-lcp' ); ?>',
               category:   '<?php esc_html_e( 'Category ID', 'gui-for-lcp' ); ?>',
               content:    '<?php esc_html_e( 'Content', 'gui-for-lcp' ); ?>',

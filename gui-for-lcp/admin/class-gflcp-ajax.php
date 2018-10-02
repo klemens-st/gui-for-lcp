@@ -1,16 +1,32 @@
 <?php
+/**
+ * GUI for LCP: Gflcp_Ajax class.
+ *
+ * This file defines the Gflcp_Ajax class.
+ *
+ * @author     Klemens Starybrat
+ *
+ * @package gui_for_lcp\admin
+ * @since 1.0.0
+ */
 
 /**
  * The admin ajax functionality of the plugin.
  *
- * @package    gui_for_lcp
- * @subpackage gui_for_lcp/includes
- * @author     Klemens Starybrat
+ * Handles all plugin's ajax requests.
+ * Public methods of this class are used as callbacks in ajax action hooks.
+ *
+ * @since 1.0.0
+ *
+ * @see Gflcp_Walker_Category_Checklist
  */
 class Gflcp_Ajax {
 
   /**
-   * Retrieve the data required to build the GUI and send it as JSON.
+   * Retrieves the data required to build the GUI and send it as JSON.
+   *
+   * Uses Walker instances, built in WordPress functions and private helper methods
+   * to create final output.
    *
    * @since    1.0.0
    */
@@ -67,8 +83,10 @@ class Gflcp_Ajax {
   }
 
   /**
-   * Retrieve the taxonomy terms based on the submitted taxonomies
+   * Retrieves the taxonomy terms based on the submitted taxonomies
    * and send them as JSON.
+   *
+   * User input is properly sanitized and validated.
    *
    * @since    1.0.0
    */
@@ -78,7 +96,9 @@ class Gflcp_Ajax {
       die();
     }
 
+    // Validate array key.
     if ( isset( $_POST['taxonomies'] ) ) { // Input var okay.
+      // Sanitize form input.
       $taxonomies = array_map(
         'sanitize_text_field',
         wp_unslash( $_POST['taxonomies'] ) // Input var okay.

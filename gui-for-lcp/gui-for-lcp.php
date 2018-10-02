@@ -42,24 +42,19 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'GUI_FOR_LCP_VERSION', '1.0.0' );
 
 /**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
+ * The core plugin class that is used to define plugin's hooks.
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-gflcp.php';
 
 /**
  * Begins execution of the plugin.
  *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
- *
  * @since    1.0.0
  */
-function run_gflcp() {
+function gflcp_run() {
 
   $plugin = new Gflcp();
   $plugin->run();
 
 }
-run_gflcp();
+gflcp_run();

@@ -1,18 +1,23 @@
 <?php
+/**
+ * GUI for LCP: Gflcp class.
+ *
+ * This file defines the Gflcp class.
+ *
+ * @author     Klemens Starybrat
+ *
+ * @package gui_for_lcp\includes
+ * @since 1.0.0
+ */
 
 /**
  * The core plugin class.
  *
- * This is used to define internationalization, admin-specific hooks, and
- * public-facing site hooks.
- *
+ * This is used to define hooks and load dependencies.
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    gui_for_lcp
- * @subpackage gui_for_lcp/includes
- * @author     Klemens Starybrat
  */
 class Gflcp {
 
@@ -75,6 +80,7 @@ class Gflcp {
    * - Gflcp_Loader. Orchestrates the hooks of the plugin.
    * - Gflcp_Admin. Defines all hooks for the admin area.
    * - Gflcp_Ajax. Defines all ajax handlers.
+   * - Gflcp_Walker_Category Checklist. Formats term checklists.
    *
    * Create an instance of the loader which will be used to register the hooks
    * with WordPress.
@@ -153,7 +159,7 @@ class Gflcp {
 
   /**
    * The name of the plugin used to uniquely identify it within the context of
-   * WordPress and to define internationalization functionality.
+   * WordPress.
    *
    * @since     1.0.0
    * @return    string    The name of the plugin.

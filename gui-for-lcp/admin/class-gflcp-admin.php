@@ -1,11 +1,22 @@
 <?php
+/**
+ * GUI for LCP: Gflcp_Admin class.
+ *
+ * This file defines the Gflcp_Admin class.
+ *
+ * @author     Klemens Starybrat
+ *
+ * @package gui_for_lcp\admin
+ * @since 1.0.0
+ */
 
 /**
  * The admin-specific functionality of the plugin.
  *
- * @package    gui_for_lcp
- * @subpackage gui_for_lcp/includes
- * @author     Klemens Starybrat
+ * This is used to define admin hooks and load admin area templates.
+ * Also enqueues 'ajax_object' for later use in JavaScript.
+ *
+ * @since 1.0.0
  */
 class Gflcp_Admin {
 
@@ -56,17 +67,6 @@ class Gflcp_Admin {
       'all'
     );
 
-  }
-
-  /**
-   * Register the script and styles for media JavaScript API.
-   *
-   * @since    1.0.0
-   */
-  public function enqueue_media() {
-
-    $ajax_nonce = wp_create_nonce( 'gui-for-lcp' );
-
     wp_enqueue_style(
       $this->plugin_name . '-jquery-ui',
       plugin_dir_url( __FILE__ ) . 'assets/vendors/jquery-ui/jquery-ui.css',
@@ -74,6 +74,17 @@ class Gflcp_Admin {
       $this->version,
       'all'
     );
+
+  }
+
+  /**
+   * Register the scripts for media JavaScript API.
+   *
+   * @since    1.0.0
+   */
+  public function enqueue_media() {
+
+    $ajax_nonce = wp_create_nonce( 'gui-for-lcp' );
 
     wp_enqueue_script(
       $this->plugin_name,

@@ -1,3 +1,16 @@
+<?php
+/**
+ * GUI for LCP: Display options template.
+ *
+ * Used by DisplayOptionsSubview.js.
+ *
+ * @author     Klemens Starybrat
+ *
+ * @package gui_for_lcp\admin\templates
+ * @since 1.0.0
+ */
+
+?>
 <script type="text/html" id="tmpl-display-options">
   <div class="gflcp-display-accordion">
     <h2><?php esc_html_e( 'Pagination, Number of posts & Order', 'gui-for-lcp' ); ?></h2>

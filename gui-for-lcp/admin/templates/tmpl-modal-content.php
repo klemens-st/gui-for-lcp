@@ -1,3 +1,16 @@
+<?php
+/**
+ * GUI for LCP: Modal content main template.
+ *
+ * Used by ModalContentView.js.
+ *
+ * @author     Klemens Starybrat
+ *
+ * @package gui_for_lcp\admin\templates
+ * @since 1.0.0
+ */
+
+?>
 <script type="text/html" id="tmpl-modal-content">
   <header>
     <h1>List Category Posts: <?php esc_html_e( 'Shortcode Creator', 'gui-for-lcp' ); ?></h1>

@@ -1,4 +1,14 @@
 <?php
+/**
+ * GUI for LCP: Gflcp_Loader class.
+ *
+ * This file defines the Gflcp_Loader class.
+ *
+ * @author     Klemens Starybrat
+ *
+ * @package gui_for_lcp\includes
+ * @since 1.0.0
+ */
 
 /**
  * Register all actions and filters for the plugin.
@@ -7,9 +17,7 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    gui_for_lcp
- * @subpackage gui_for_lcp/includes
- * @author     Klemens Starybrat
+ * @since 1.0.0
  */
 class Gflcp_Loader {
 
@@ -65,7 +73,7 @@ class Gflcp_Loader {
    * @param    object $component        A reference to the instance of the object on which the filter is defined.
    * @param    string $callback         The name of the function definition on the $component.
    * @param    int    $priority         Optional. The priority at which the function should be fired. Default is 10.
-   * @param    int    $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1
+   * @param    int    $accepted_args    Optional. The number of arguments that should be passed to the $callback. Default is 1.
    */
   public function add_filter( $hook, $component, $callback, $priority = 10, $accepted_args = 1 ) {
     $this->filters = $this->add( $this->filters, $hook, $component, $callback, $priority, $accepted_args );
@@ -83,7 +91,7 @@ class Gflcp_Loader {
    * @param    string $callback         The name of the function definition on the $component.
    * @param    int    $priority         The priority at which the function should be fired.
    * @param    int    $accepted_args    The number of arguments that should be passed to the $callback.
-   * @return   array                                  The collection of actions and filters registered with WordPress.
+   * @return   array                    The collection of actions and filters registered with WordPress.
    */
   private function add( $hooks, $hook, $component, $callback, $priority, $accepted_args ) {
 

@@ -1,3 +1,16 @@
+<?php
+/**
+ * GUI for LCP: Select options template.
+ *
+ * Used by SelectOptionsSubview.js.
+ *
+ * @author     Klemens Starybrat
+ *
+ * @package gui_for_lcp\admin\templates
+ * @since 1.0.0
+ */
+
+?>
 <script type="text/html" id="tmpl-select-options">
   <#
     function printRelationship(name, checked) {

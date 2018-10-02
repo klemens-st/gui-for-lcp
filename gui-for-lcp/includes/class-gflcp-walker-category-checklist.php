@@ -1,8 +1,44 @@
 <?php
-// https://developer.wordpress.org/reference/classes/walker_category_checklist/
+/**
+ * GUI for LCP: Gflcp_Walker_Category_Checklist class.
+ *
+ * This file defines the Gflcp_Walker_Category_Checklist class.
+ *
+ * @author     Klemens Starybrat
+ *
+ * @package gui_for_lcp\includes
+ * @since 1.0.0
+ */
+
+/**
+ * Walker_Category_Checklist class that is extended in this file.
+ */
 require_once ABSPATH . '/wp-admin/includes/class-walker-category-checklist.php';
 
+/**
+ * Specialized Walker class for categories, tags and custom taxonomies.
+ *
+ * WordPress Walker classes make creating terms checklists pretty straightforward.
+ * This is why this plugin uses this functionality to build some of its checklists.
+ * All other checklists that don't fit into one of the included WP Walkers are built
+ * on the front-end with JavaScript.
+ *
+ * @since 1.0.0
+ *
+ * @see Walker_Category_Checklist
+ * @see Gflcp_Ajax
+ */
 class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
+  /**
+   * Summary.
+   *
+   * Description.
+   *
+   * @since 1.0.0
+   *
+   * @param string $input_name Options. 'name' attribute of checkboxes. Default 'cat'.
+   * @param string $value      Optional.'value' attribute of checkboxes. Default 'term_id'.
+   */
   public function __construct( $input_name = 'cat', $value = 'term_id' ) {
     $this->input_name = $input_name;
     $this->value      = $value;
@@ -18,7 +54,7 @@ class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
    * @param string $output   Used to append additional content (passed by reference).
    * @param object $category The current term object.
    * @param int    $depth    Depth of the term in reference to parents. Default 0.
-   * @param array  $args     An array of arguments. @see wp_terms_checklist()
+   * @param array  $args     An array of arguments. @see wp_terms_checklist().
    * @param int    $id       ID of the current term.
    */
   public function start_el( &$output, $category, $depth = 0, $args = array(), $id = 0 ) {

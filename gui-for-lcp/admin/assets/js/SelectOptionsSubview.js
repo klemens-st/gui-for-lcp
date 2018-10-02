@@ -189,7 +189,12 @@ const SelectOptionsSubview = wp.Backbone.View.extend(/** @lends SelectOptionsSub
         }));
 
         this.$( '.gflcp-datepicker' ).datepicker({
-            dateFormat: 'yy/mm/dd'
+            dateFormat: 'yy/mm/dd',
+            beforeShow() {
+                // Move datepicker div inside .gflcp-modal
+                const $ = jQuery;
+                $('.gflcp-modal').append($('#ui-datepicker-div'));
+            }
         });
 
         this.$( '#gflcp-select-accordion' ).accordion({

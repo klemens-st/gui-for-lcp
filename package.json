@@ -23,5 +23,8 @@
     "grunt-rsync": "^3.0.0",
     "grunt-shell": "^2.1.0",
     "load-grunt-tasks": "^4.0.0"
+  },
+  "dependencies": {
+    "formdata-polyfill": "^3.0.12"
   }
 }

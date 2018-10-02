@@ -5,6 +5,11 @@
  * @since  1.0.0
  */
 
+/**
+ * FormData polyfill for Edge and IE 10.
+ */
+import 'formdata-polyfill';
+
 import ModalContentView from './ModalContentView.js';
 
 // Just to be safe

@@ -1,0 +1,13 @@
+language: php
+
+jobs:
+  include:
+    - stage: "Lint"
+      name: "Lint PHP"
+      php: '7.0'
+      install:
+        - composer create-project wp-coding-standards/wpcs --no-dev
+      script: ./wpcs/vendor/bin/phpcs -p --tab-width=2
+    - name: "Lint JS"
+      install: npm install
+      script: grunt eslint

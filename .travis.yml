@@ -11,3 +11,12 @@ jobs:
     - name: "Lint JS"
       install: npm install
       script: grunt eslint
+    - stage: "Build"
+      before_install:
+        - npm install -g sass
+      install: npm install
+      script: grunt
+
+stages:
+  - "Lint"
+  - "Build"

@@ -30,9 +30,7 @@ require_once ABSPATH . '/wp-admin/includes/class-walker-category-checklist.php';
  */
 class Gflcp_Walker_Category_Checklist extends Walker_Category_Checklist {
   /**
-   * Summary.
-   *
-   * Description.
+   * Instance constructor.
    *
    * @since 1.0.0
    *

@@ -1,8 +1,8 @@
 {
   "name": "gui-for-lcp",
   "version": "1.0.0",
-  "description": "This plugin adds an \"Add LCP\" button to post edit screen which opens a modal with a convenient GUI for creating List Category Posts shortcodes.",
-  "main": ".eslintrc.js",
+  "description": "WP plugin that adds a graphical shortcode creator for List Category Posts, accessible via the 'LCP' button in WordPress editor.",
+  "main": "gui-for-lcp/admin/assets/js/admin.js",
   "scripts": {
     "test": ""
   },

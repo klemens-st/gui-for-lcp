@@ -12,7 +12,7 @@ This plugin adds a graphical shortcode creator for the List Category Posts plugi
 
 == Description ==
 
-This plugin adds a graphical shortcode creator for the [List Category Posts](https://wordpress.org/plugins/list-category-posts/) plugin. It is available in WordPress editor by clicking the 'LCP' button of the editor's toolbar.
+This plugin adds a graphical shortcode creator for the [List Category Posts](https://wordpress.org/plugins/list-category-posts/) plugin by Fernando Briano. The creator is available in WordPress editor by clicking the 'LCP' button of the editor's toolbar.
 
 This means you can use the shortcode creator in:
 
@@ -38,7 +38,7 @@ Once you are happy with your selected options, just click the 'Insert into edito
 
 ==List Category Posts parameters reference==
 
-Below is a list of shortcode creator's sections together with corresponding shortcode paramters. This is intended to help you navigate List Category Post's documentation.
+Below is a list of shortcode creator's sections together with corresponding shortcode parameters. This is intended to help you navigate List Category Post's documentation.
 
 ===Selection options===
 
@@ -65,11 +65,17 @@ Below is a list of shortcode creator's sections together with corresponding shor
 
 ==Development==
 
-You can find the development version of the plugin on [Github](https://github.com/zymeth25/gui-for-lcp). All suggestions and contributions are welcome.
+GUI for List Category Posts is open source software. You can find the
+development version of the plugin on [Github](https://github.com/zymeth25/gui-for-lcp).
+
+All suggestions and contributions are welcome :) Fork it, read the respository's
+readme and start helping with the development!
 
 This is a very early version of GUI for List Category Posts so users' feedback is *more than welcome* :)
 
-Please use the support forum for issues with **using** the plugin and Github issues for discussing **code changes** and **bugs**.
+==Support==
+
+Please use the support forum for questions about **using** the plugin. Use Github issues for discussing **code changes** and **bugs**.
 
 == Installation ==
 
@@ -80,6 +86,13 @@ Please note that in order for your generated shortcodes to work you need to have
 = My shortcodes don't work =
 
 Make sure you have [List Category Posts](https://wordpress.org/plugins/list-category-posts/) installed and activated.
+
+
+== Screenshots ==
+
+1. The 'LCP' button in WordPress editor. Works in text widgets, too.
+2. Modal window opened by the button.
+3. Example usage.
 
 
 == Changelog ==

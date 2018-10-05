@@ -24,7 +24,7 @@ module.exports = function( grunt ) {
 
     // svn settings
     svn_settings: {
-      path: '/PATH/TO/YOUR/SVN/REPO/<%= pkg.name %>',
+      path: './svn/<%= pkg.name %>',
       tag: '<%= svn_settings.path %>/tags/<%= pkg.version %>',
       trunk: '<%= svn_settings.path %>/trunk',
       exclude: [
@@ -34,7 +34,7 @@ module.exports = function( grunt ) {
         '.eslintrc',
         '.sass-cache/',
         'node_modules/',
-        'gui-for-lcp/admin/assets/js/dist/admin.js',
+        'admin/assets/js/dist/admin.js',
         'Gruntfile.js',
         'README.md',
         'package.json',

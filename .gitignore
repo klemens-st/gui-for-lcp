@@ -49,3 +49,6 @@ wordpress/
 wp-cli.yml
 wp-cli/
 playbook.retry
+
+# SVN
+svn/

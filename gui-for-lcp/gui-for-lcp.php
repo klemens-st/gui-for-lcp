@@ -39,7 +39,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin version.
  */
-define( 'GUI_FOR_LCP_VERSION', '1.0.0' );
+define( 'GUI_FOR_LCP_VERSION', '1.0.1' );
 
 /**
  * The core plugin class that is used to define plugin's hooks.

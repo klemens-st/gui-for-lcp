@@ -2,9 +2,9 @@
 Contributors: zymeth25
 Tags: list, categories, posts, gui
 Requires at least: 4.6
-Tested up to: 4.9
+Tested up to: 5.0
 Requires PHP: 5.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -99,3 +99,6 @@ Make sure you have [List Category Posts](https://wordpress.org/plugins/list-cate
 
 = 1.0.0 =
 * Initial plugin release.
+
+= 1.0.1 =
+* Fixed a typo in readme.txt.

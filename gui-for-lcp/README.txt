@@ -21,7 +21,7 @@ This means you can use the shortcode creator in:
 * Gutenberg's 'Classic' block
 * and wherever the WYSIWYG editor is used in plugins and themes
 
-Make sure you have read the [LCP plugin's detailed documentation](https://github.com/picandocodigo/List-Category-Posts/wiki) as well as its readme to understand its features and potential. This is important because even though the GUI provided here tires to make things easily understandable on the front-end, it *does not* explain all features of the base plugin in detail.
+Make sure you have read the [LCP plugin's detailed documentation](https://github.com/picandocodigo/List-Category-Posts/wiki) as well as its readme to understand its features and potential. This is important because even though the GUI provided here tries to make things easily understandable on the front-end, it *does not* explain all features of the base plugin in detail.
 
 ==How to use the plugin==
 

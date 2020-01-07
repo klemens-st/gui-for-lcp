@@ -1,6 +1,7 @@
 node_modules/
 gui-for-lcp/admin/assets/css/
 gui-for-lcp/admin/assets/js/dist/
+wpcs/
 
 # Numerous always-ignore extensions
 *.diff

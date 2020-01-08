@@ -19,7 +19,7 @@ The code you submit should follow these rules.
 
 ### PHP
 
-For PHP files is enforced by PHP Code Sniffer with the `WordPress` standard.
+For PHP files rules are enforced by PHP Code Sniffer with the `WordPress` standard.
 Refer to the [official repository](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) for more information.
 
 [README.md](https://github.com/zymeth25/gui-for-lcp) contains information on how to use PHP Code Sniffer in this project.
@@ -28,7 +28,7 @@ This is very helpful in fixing style issues. You can also use the `phpcbf` comma
 
 ### JavaScript
 
-Currently there are no automated style checks for JS files so please double-check your code. Eslint is set up but in only
+Currently there are no automated style checks for JS files so please double-check your code. Eslint is set up but it only
 performs basic syntax checks.
 
 If you have any style related questions you can include them in your PR's description or in a related issue.

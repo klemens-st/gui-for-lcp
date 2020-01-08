@@ -9,7 +9,7 @@ Production releases are available on the [plugin's page in WordPress.org plugin 
 
 ## Support
 
-Please use the [WordPress support forum](https://wordpress.org/support/plugin/list-category-posts)
+Please use the [WordPress support forum](https://wordpress.org/support/plugin/gui-for-lcp/)
 for **user support** and any **questions about how to use the plugin**.
 [Github issues](https://github.com/zymeth25/gui-for-lcp/issues) should only be used for **bug reports**,
 **feature requests** and other code-related topics.

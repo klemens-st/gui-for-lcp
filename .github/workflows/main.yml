@@ -1,0 +1,41 @@
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  lint-php:
+    strategy:
+      matrix:
+        php: [5.6.20, 7.4]
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer
+      - name: Install WPCS
+        run: composer create-project wp-coding-standards/wpcs --no-dev
+      - name: Run phpcs
+        run: ./wpcs/vendor/bin/phpcs -p --tab-width=2
+  
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm ci
+      - run: npm run build

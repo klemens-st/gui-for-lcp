@@ -10,6 +10,8 @@
  */
 import 'formdata-polyfill';
 
+import '../sass/admin.scss';
+
 import ModalContentView from './ModalContentView.js';
 
 // Just to be safe

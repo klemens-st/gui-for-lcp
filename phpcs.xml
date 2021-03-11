@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="GUI for LCP">
     <description>A custom set of rules to check for the GUI for LCP</description>
-    <config name="installed_paths" value="../../.." />
 
     <!-- The plugin direcotry to be checked. -->
     <file>./gui-for-lcp</file>

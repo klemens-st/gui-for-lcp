@@ -10,6 +10,9 @@
     <!-- Check php files only. -->
     <exclude-pattern>*\.(?!php$)</exclude-pattern>
 
+    <!-- Exclude vendor files -->
+    <exclude-pattern>*/provision/*</exclude-pattern>
+
     <arg name="tab-width" value="2"/>
 
     <!-- Include the WordPress standard. -->

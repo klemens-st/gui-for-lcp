@@ -24,11 +24,7 @@ The testing environment is a Vagrant box powered by [VCCW](http://vccw.cc/).
 
 ### Prerequisites
 
-The build is run by Grunt, for all its tasks to work you need to have the following software installed:
-
-* [Node.js](https://nodejs.org/en/)
-* [Ruby](https://www.ruby-lang.org/en/downloads/) - If you're on OS X or Linux you probably already have Ruby installed
-* [Sass](https://sass-lang.com/install)
+The build is run by npm, for all its tasks to work you need to have [Node.js](https://nodejs.org/en/) installed:
 
 The virtual machine used for testing needs:
 
@@ -46,13 +42,6 @@ Fork the repo, clone it locally and cd into its root directory.
 npm install
 ```
 
-#### Install grunt CLI globally.
-
-```
-npm install -g grunt-cli
-```
-You may need to use `sudo`.
-
 #### Set up a Vagrant box
 
 ```
@@ -67,12 +56,6 @@ The above command will:
   
 Any changes in the mounted directories are reflected in the Vagrant box.
 
-#### Run default build tasks
-
-```
-grunt
-```
-You can inspect `Gruntfile.js` to learn what tasks and commands are available.
 
 ## Testing and developing
 
@@ -83,12 +66,18 @@ WP admin login:
 * Password: `admin`
 
 
-To avoid running grunt tasks manually every time you change SCSS or JS files, a watch task has been set up.
+To avoid running build scripts manually every time you change SCSS or JS files, a watch task has been set up.
 ```
-grunt watch
+npm run watch
 ```
 This will automatically compile CSS files and bundle JS whenever you change the source.
+Files generates by this task are not fit for production, however.
 
+#### Build for production
+
+```
+npm run build
+```
 
 ### Automated tests
 

@@ -27,9 +27,14 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer
       - name: Install WPCS
-        run: composer create-project wp-coding-standards/wpcs --no-dev
+        run: |
+          composer self-update
+          composer require squizlabs/php_codesniffer:dev-master
+          composer install
+      - name: Check syntax
+        run: find -L . -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
       - name: Run phpcs
-        run: ./wpcs/vendor/bin/phpcs -p --tab-width=2
+        run: vendor/bin/phpcs .
   
   build:
     runs-on: ubuntu-latest

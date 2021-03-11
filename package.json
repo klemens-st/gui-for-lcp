@@ -2,29 +2,49 @@
   "name": "gui-for-lcp",
   "version": "1.0.1",
   "description": "WP plugin that adds a graphical shortcode creator for List Category Posts, accessible via the 'LCP' button in WordPress editor.",
-  "main": "gui-for-lcp/admin/assets/js/admin.js",
   "scripts": {
-    "test": ""
+    "build": "webpack --config webpack.prod.js",
+    "watch": "webpack --watch --config webpack.dev.js"
+  },
+  "sideEffects": [
+    "formdata-polyfill",
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "browserslist": [
+    "extends @wordpress/browserslist-config"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/klemens-st/gui-for-lcp.git"
   },
   "author": "Klemens Starybrat",
   "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/klemens-st/gui-for-lcp/issues"
+  },
+  "homepage": "https://github.com/klemens-st/gui-for-lcp#readme",
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "babel-preset-env": "^2.0.0-beta.2",
-    "babelify": "^10.0.0",
-    "grunt": "^1.0.4",
-    "grunt-autoprefixer": "^3.0.4",
-    "grunt-babel": "^8.0.0",
-    "grunt-browserify": "^5.3.0",
-    "grunt-contrib-sass": "^1.0.0",
-    "grunt-contrib-uglify-es": "^3.3.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-eslint": "^21.0.0",
-    "grunt-rsync": "^3.0.0",
-    "grunt-shell": "^2.1.0",
-    "load-grunt-tasks": "^4.0.0"
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@wordpress/browserslist-config": "^3.0.1",
+    "autoprefixer": "^10.2.5",
+    "babel-loader": "^8.2.2",
+    "browserslist": "^4.16.3",
+    "css-loader": "^5.1.2",
+    "eslint": "^7.21.0",
+    "eslint-webpack-plugin": "^2.5.2",
+    "mini-css-extract-plugin": "^1.3.9",
+    "postcss": "^8.2.8",
+    "postcss-loader": "^5.1.0",
+    "sass": "^1.32.8",
+    "sass-loader": "^11.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.24.4",
+    "webpack-cli": "^4.5.0",
+    "webpack-merge": "^5.7.3"
   },
   "dependencies": {
-    "formdata-polyfill": "^3.0.13"
+    "formdata-polyfill": "^3.0.20"
   }
 }

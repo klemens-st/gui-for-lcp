@@ -1,5 +1,6 @@
 === GUI for List Category Posts ===
 Contributors: zymeth25
+Donate link: https://www.paypal.com/donate?hosted_button_id=BX4TN5Z4MSX52
 Tags: list, categories, posts, gui
 Requires at least: 4.6
 Tested up to: 5.3

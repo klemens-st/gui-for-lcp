@@ -3,9 +3,9 @@ Contributors: zymeth25
 Donate link: https://www.paypal.com/donate?hosted_button_id=BX4TN5Z4MSX52
 Tags: list, categories, posts, gui
 Requires at least: 4.6
-Tested up to: 5.3
+Tested up to: 5.7
 Requires PHP: 5.4
-Stable tag: 1.0.1
+Stable tag: 2.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -103,3 +103,7 @@ Make sure you have [List Category Posts](https://wordpress.org/plugins/list-cate
 
 = 1.0.1 =
 * Fixed a typo in readme.txt.
+
+= 2.0.0 =
+* Full overhaul of build tools and dependencies.
+* Added a donate link :)

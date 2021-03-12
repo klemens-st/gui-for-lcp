@@ -58,10 +58,15 @@ class Gflcp_Admin {
    * @since    1.0.0
    */
   public function enqueue_styles() {
-    /*
-     * The main CSS file of the Backbone app has been removed from this function
-     * and is now managed by webpack. TODO: Move jquery-ui.css to webpack as well.
-     */
+
+    wp_enqueue_style(
+      $this->plugin_name . '-admin',
+      plugin_dir_url( __FILE__ ) . 'assets/css/admin.css',
+      array(),
+      $this->version,
+      'all'
+    );
+
     wp_enqueue_style(
       $this->plugin_name . '-jquery-ui',
       plugin_dir_url( __FILE__ ) . 'assets/vendors/jquery-ui/jquery-ui.css',

@@ -55,6 +55,7 @@ db_pass: wordpress
 #
 plugins:
 - logbook
+- list-category-posts
 
 #
 # WordPress Default Theme

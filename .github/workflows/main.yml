@@ -1,0 +1,51 @@
+name: CI
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  lint-php:
+    strategy:
+      matrix:
+        php: [5.6.20, 7.4]
+
+    runs-on: ubuntu-latest
+    env:
+      PHPCS_DIR: /tmp/phpcs
+      SNIFFS_DIR: /tmp/sniffs
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup PHP Action
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+      - name: Install WPCS
+        run: |
+          # Install PHP_CodeSniffer.
+          git clone -b master --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
+          # Install WordPress Coding Standards.
+          git clone -b master --depth 1 https://github.com/WordPress/WordPress-Coding-Standards.git $SNIFFS_DIR
+          # Set install path for WordPress Coding Standards.
+          $PHPCS_DIR/bin/phpcs --config-set installed_paths $SNIFFS_DIR
+      - name: Check syntax
+        run: find -L . -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+      - name: Run phpcs
+        run: $PHPCS_DIR/bin/phpcs -p . --standard=phpcs.xml --tab-width=2
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+      - run: npm ci
+      - run: npm run build

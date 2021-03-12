@@ -36,6 +36,6 @@ If you have any style related questions you can include them in your PR's descri
 ## Pull Request Process
 
 1. Discuss your changes in an issue first.
-2. Make sure the `grunt` command runs without errors.
-3. Make sure the `phpcs` command runs without errors or warnings. Remember this should be executed on the Vagrant machine.
+2. Make sure the `npm run build` command runs without errors.
+3. Make sure the `phpcs --tab-width=2` command runs without errors or warnings. Remember this should be executed on the Vagrant machine.
 4. Open a new pull request by filling out the template.

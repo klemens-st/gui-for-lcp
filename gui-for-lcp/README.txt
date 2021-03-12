@@ -67,7 +67,7 @@ Below is a list of shortcode creator's sections together with corresponding shor
 ==Development==
 
 GUI for List Category Posts is open source software. You can find the
-development version of the plugin on [Github](https://github.com/zymeth25/gui-for-lcp).
+development version of the plugin on [Github](https://github.com/klemens-st/gui-for-lcp).
 
 All suggestions and contributions are welcome :) Fork it, read the respository's
 readme and start helping with the development!

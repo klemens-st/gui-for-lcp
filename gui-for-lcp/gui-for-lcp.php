@@ -3,7 +3,7 @@
  * @package   gui_for_lcp
  * @author    Klemens Starybrat
  * @license   GPL-3.0
- * @link      https://github.com/zymeth25/gui-for-lcp
+ * @link      https://github.com/klemens-st/gui-for-lcp
  * @copyright 2018 Klemens Starybrat
  *
  * @wordpress-plugin
@@ -12,7 +12,7 @@
  * Description:       This plugin adds a graphical shortcode creator for List Category Posts, accessible via the "LCP" button in WordPress editor.
  * Version:           2.0.0
  * Author:            Klemens Starybrat
- * Author URI:        https://github.com/zymeth25
+ * Author URI:        https://github.com/klemens-st
  * License:           GPL-3.0
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       gui-for-lcp

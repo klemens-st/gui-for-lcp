@@ -22,7 +22,7 @@ The code you submit should follow these rules.
 For PHP files rules are enforced by PHP Code Sniffer with the `WordPress` standard.
 Refer to the [official repository](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) for more information.
 
-[README.md](https://github.com/zymeth25/gui-for-lcp) contains information on how to use PHP Code Sniffer in this project.
+[README.md](https://github.com/klemens-st/gui-for-lcp) contains information on how to use PHP Code Sniffer in this project.
 This is very helpful in fixing style issues. You can also use the `phpcbf` command to
 [resolve some style issues automatically](https://github.com/squizlabs/PHP_CodeSniffer/wiki/Fixing-Errors-Automatically).
 

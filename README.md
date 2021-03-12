@@ -11,7 +11,7 @@ Production releases are available on the [plugin's page in WordPress.org plugin 
 
 Please use the [WordPress support forum](https://wordpress.org/support/plugin/gui-for-lcp/)
 for **user support** and any **questions about how to use the plugin**.
-[Github issues](https://github.com/zymeth25/gui-for-lcp/issues) should only be used for **bug reports**,
+[Github issues](https://github.com/klemens-st/gui-for-lcp/issues) should only be used for **bug reports**,
 **feature requests** and other code-related topics.
 
 ## Getting Started
@@ -95,12 +95,12 @@ phpcs -p
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://github.com/zymeth25/gui-for-lcp/blob/master/.github/CONTRIBUTING.md)
+Please read [CONTRIBUTING.md](https://github.com/klemens-st/gui-for-lcp/blob/master/.github/CONTRIBUTING.md)
 for details on the process for submitting pull requests.
 
 ## Versioning
 
-I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/zymeth25/gui-for-lcp/tags). 
+I use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/klemens-st/gui-for-lcp/tags). 
 
 ## License
 

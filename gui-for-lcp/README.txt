@@ -74,7 +74,12 @@ readme and start helping with the development!
 
 This is a very early version of GUI for List Category Posts so users' feedback is *more than welcome* :)
 
-==Support==
+==Support the plugin==
+
+If you have found this plugin useful and would like to support its further development please consider
+[sponsoring it on GitHub](https://github.com/sponsors/klemens-st/) or [donating on PayPal](https://www.paypal.com/donate?hosted_button_id=BX4TN5Z4MSX52) :)
+
+==User Support==
 
 Please use the support forum for questions about **using** the plugin. Use Github issues for discussing **code changes** and **bugs**.
 

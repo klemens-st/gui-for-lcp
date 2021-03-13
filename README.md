@@ -1,3 +1,5 @@
+![CI](https://github.com/klemens-st/gui-for-lcp/actions/workflows/main.yml/badge.svg)
+
 # GUI for List Category Posts
 
 This WordPress plugin adds a graphical shortcode creator for the [List Category Posts](https://wordpress.org/plugins/list-category-posts/)

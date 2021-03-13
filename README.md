@@ -1,4 +1,5 @@
 ![CI](https://github.com/klemens-st/gui-for-lcp/actions/workflows/main.yml/badge.svg)
+![CodeQL](https://github.com/klemens-st/gui-for-lcp/actions/workflows/codeql-analysis.yml/badge.svg)
 
 # GUI for List Category Posts
 

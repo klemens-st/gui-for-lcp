@@ -4,13 +4,13 @@
  * @author    Klemens Starybrat
  * @license   GPL-3.0
  * @link      https://github.com/klemens-st/gui-for-lcp
- * @copyright 2018 Klemens Starybrat
+ * @copyright 2023 Klemens Starybrat
  *
  * @wordpress-plugin
  * Plugin Name:       GUI for List Category Posts
  * Plugin URI:        https://github.com/klemens-st/gui-for-lcp
  * Description:       This plugin adds a graphical shortcode creator for List Category Posts, accessible via the "LCP" button in WordPress editor.
- * Version:           2.0.1
+ * Version:           2.0.2
  * Author:            Klemens Starybrat
  * Author URI:        https://github.com/klemens-st
  * License:           GPL-3.0
@@ -39,7 +39,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Current plugin version.
  */
-define( 'GUI_FOR_LCP_VERSION', '2.0.1' );
+define( 'GUI_FOR_LCP_VERSION', '2.0.2' );
 
 /**
  * The core plugin class that is used to define plugin's hooks.

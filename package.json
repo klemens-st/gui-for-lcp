@@ -1,6 +1,6 @@
 {
   "name": "gui-for-lcp",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "WP plugin that adds a graphical shortcode creator for List Category Posts, accessible via the 'LCP' button in WordPress editor.",
   "scripts": {
     "build": "webpack --config webpack.prod.js",

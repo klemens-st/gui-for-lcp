@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @import "mixins";
 
 $main-theme-color: #007fff;
@@ -178,7 +180,7 @@ $main-bg-color: #f6f6f6;
 
 $switch-width: 30px;
 $switch-padding: 4px;
-$switch-height: $switch-width / 2 + $switch-padding;
+$switch-height: math.div($switch-width, 2) + $switch-padding;
 $switch-sq-size: $switch-height - 2 * $switch-padding;
 
 .gflcp-switch-block {
